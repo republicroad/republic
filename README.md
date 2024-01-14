@@ -21,6 +21,14 @@ linux 上系统容器和虚拟机软件. 方便模拟各种发行版. 搭建集�
 
 
 ## design
+
+### obsidian
+
+这是一个支持mar
+
+### stackedit
+
+这是一个在线的 markdown 编辑器
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjc2Nzk2NTE4XX0=
+eyJoaXN0b3J5IjpbMjE1NDYyNzY2XX0=
 -->

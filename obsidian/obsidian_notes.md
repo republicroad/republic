@@ -5,11 +5,14 @@
 
 ### markdown 本地图片
 
-[nginx lua架构图](./nginx_lua.jpg)
+相对项目的根路径设置图片文件夹即可.
 
-![nginx_lua架构图](nginx_lua.jpg)
+[nginx lua架构图](/imgs/2024-01-15/nginx_lua.jpg)
+
+![nginx_lua架构图](/imgs/2024-01-15/nginx_lua.jpg)
 
 ![nginx_lua时序图](/imgs/2024-01-15/pytW3uzcsfDnEUCq.jpeg)
+
 ![nginx_lua时序图](nginx_lua2.jpg)
 
 ## 资料链接

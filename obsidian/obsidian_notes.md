@@ -18,3 +18,5 @@
 ## 资料链接
 
 [obsidian 插件](https://mdnice.com/writing/5caac9e9eb61489a959db5fd415e4d20)
+
+[手动安装插件](https://www.youtube.com/watch?v=ffGfVBLDI_0)

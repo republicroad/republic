@@ -29,11 +29,13 @@ linux 上系统容器和虚拟机软件. 方便模拟各种发行版. 搭建集�
 ### stackedit
 
 这是一个在线的 markdown 编辑器.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIxNDgxMzE1M119
--->
+
+	https://stackedit.cn/
 
 
 ### vscode
 
 [bash on windows vscdoe](https://stackoverflow.com/a/50159674)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTc1NTE4MzM5Ml19
+-->

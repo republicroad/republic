@@ -20,6 +20,9 @@ linux 上系统容器和虚拟机软件. 方便模拟各种发行版. 搭建集�
 运维开发, 熟悉各种系统, 包管理等.
 
 
+### git
+
+
 ## design
 
 ### obsidian
@@ -36,6 +39,11 @@ linux 上系统容器和虚拟机软件. 方便模拟各种发行版. 搭建集�
 ### vscode
 
 [bash on windows vscdoe](https://stackoverflow.com/a/50159674)
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc1NTE4MzM5Ml19
--->
+
+
+
+##  organazation
+
+这里查看 republic 组织成员. 处理组织人员管理.
+
+	https://github.com/orgs/republicroad/people

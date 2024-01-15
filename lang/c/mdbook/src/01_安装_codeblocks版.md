@@ -3,27 +3,27 @@
 ## 1.【下载】codeblocks-20.03minggw-nosetup.zip
 
 解压至某个文件夹，然后点击codeblocks.exe
-![avatar](/picture/01_1.png)
+![avatar](./picture/01_1.png)
 先不关联任何c文件
- 	![avatar](/picture/01_3.png)
+	![avatar](./picture/01_3.png)
 打开后默认包含了GNU GCC Compiler 编译器，选择ok
-![avatar](/picture/01_2.png)
+![avatar](./picture/01_2.png)
 ## 2.【创建项目】
 
   create a new project
-![avatar](/picture/01_4.png)
+![avatar](./picture/01_4.png)
   选择空项目 Empty project
-	![avatar](/picture/01_5.png)
+	![avatar](./picture/01_5.png)
   填写项目名称, 选择项目目录
-	![avatar](/picture/01_6.png)
+	![avatar](./picture/01_6.png)
   设置编译 debug(调试) 和 release(发布)
-  ![avatar](/picture/01_7.png)
+  ![avatar](./picture/01_7.png)
   
 ## 3.【创建文件】
  创建空文件 -- 选择左上角的创建空白文件图标Empty file
-  ![avatar](/picture/01_10.png)
+  ![avatar](./picture/01_10.png)
  文件名以 .c 结尾
-    ![avatar](/picture/01_11.png)
+    ![avatar](./picture/01_11.png)
  输入测试代码
  
  代码开始
@@ -39,12 +39,12 @@
 
 代码结束
 
- ![avatar](/picture/01_8.png)
+ ![avatar](./picture/01_8.png)
 
 ## 3.运行
 
 点击运行按钮，查看运行结果
-![avatar](/picture/01_12.png)
+![avatar](./picture/01_12.png)
 
 
 

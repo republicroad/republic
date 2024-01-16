@@ -4,7 +4,16 @@
 
 ### git
 
-[git_windows_crlf](https://stackoverflow.com/questions/17628305/windows-git-warning-lf-will-be-replaced-by-crlf-is-that-warning-tail-backwar)
+
+- 避免windows提醒文件的换行符. 这个只在windows系统上设置, 不能跨平台设置. 
+	```
+	git config --global core.autocrlf false
+	```
+
+
+- 设置git 的账号信息, 才能使用 obsidian-git 插件来进行提交.
+
+	![[./obsidian_git_tips01.png]]
 
 
 ### markdown 本地图片
@@ -24,3 +33,5 @@
 [obsidian 插件](https://mdnice.com/writing/5caac9e9eb61489a959db5fd415e4d20)
 
 [手动安装插件](https://www.youtube.com/watch?v=ffGfVBLDI_0)
+
+[git_windows_crlf](https://stackoverflow.com/questions/17628305/windows-git-warning-lf-will-be-replaced-by-crlf-is-that-warning-tail-backwar)

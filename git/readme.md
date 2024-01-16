@@ -40,7 +40,14 @@ git config --global --unset-all http.proxy
 - 测试 github 的是否连通
 
 	ssh -vT git@github.com
+	
 
+- 设置git用户名
+
+
+	git config --global user.email "xxxxx@xxx.com"
+	git config --global user.name "XXXXX"
+	
 ## cmd
 
 - git clone

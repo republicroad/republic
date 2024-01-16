@@ -6,7 +6,7 @@
 
 - 设置git 的账号信息, 才能使用 obsidian-git 插件来进行提交.
 
-	![[./obsidian_git_tips01.png]]
+	![设置git账号信息](./obsidian_git_tips01.png)
 
 
 ### [Version History Diff](obsidian://show-plugin?id=obsidian-version-history-diff)

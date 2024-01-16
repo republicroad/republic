@@ -2,6 +2,10 @@
 ## 技巧汇总
 
 
+### git
+
+[git_windows_crlf](https://stackoverflow.com/questions/17628305/windows-git-warning-lf-will-be-replaced-by-crlf-is-that-warning-tail-backwar)
+
 
 ### markdown 本地图片
 

@@ -2,30 +2,11 @@
 ## 技巧汇总
 
 
-### git
-
-
-- 避免windows提醒文件的换行符. 这个只在windows系统上设置, 不能跨平台设置. 
-	```
-	git config --global core.autocrlf false
-	```
-
+### obsidian-git
 
 - 设置git 的账号信息, 才能使用 obsidian-git 插件来进行提交.
 
 	![[./obsidian_git_tips01.png]]
-
-
-- git 设置代理
-```
-git config --global http.proxy http://192.168.1.201:1080/
-git config --global --unset-all http.proxy
-```
-
-测试 github 的联通
-
-	ssh -v git@github.com
-
 
 ### markdown 本地图片
 

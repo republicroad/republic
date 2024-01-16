@@ -5,7 +5,6 @@
 ## tech
 
 
-
 ### lang
 
 从 c 开始.
@@ -47,3 +46,23 @@ linux 上系统容器和虚拟机软件. 方便模拟各种发行版. 搭建集�
 这里查看 republic 组织成员. 处理组织人员管理.
 
 	https://github.com/orgs/republicroad/people
+
+
+## 协作流程
+
+首先安装 git, 然后使用 git clone 此文档.
+
+	# 如果是使用 git clone git@github.com:RYefccd/republic.git 
+	# 那么默认的 origin 就是 git@github.com:RYefccd/republic.git, 对这个进行重命名
+	# 如果用 https 协议 clone 的话, 那么重新设置 originssh 即可
+	git remote rename origin originssh
+	git remote add origin https://github.com/republicroad/republic.git
+
+最后效果如下, 把仓库的 ssh 协议和https协议都配置完成.
+```shell
+$ git remote -v
+origin  https://github.com/republicroad/republic.git (fetch)
+origin  https://github.com/republicroad/republic.git (push)
+originssh       git@github.com:RYefccd/republic.git (fetch)
+originssh       git@github.com:RYefccd/republic.git (push)
+```

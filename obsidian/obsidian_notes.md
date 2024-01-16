@@ -16,6 +16,17 @@
 	![[./obsidian_git_tips01.png]]
 
 
+- git 设置代理
+```
+git config --global http.proxy http://192.168.1.201:1080/
+git config --global --unset-all http.proxy
+```
+
+测试 github 的联通
+
+	ssh -v git@github.com
+
+
 ### markdown 本地图片
 
 相对项目的根路径设置图片文件夹即可.

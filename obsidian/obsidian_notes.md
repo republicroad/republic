@@ -8,6 +8,20 @@
 
 	![[./obsidian_git_tips01.png]]
 
+
+### [Version History Diff](obsidian://show-plugin?id=obsidian-version-history-diff)
+
+配合 obsidian-git 查看某一个文件的历史 git 版本.
+
+	ctrl + p  打开命令行
+	输入 git diff
+	选择 Version history diff: show git diff view for active file
+
+
+### Obsidian Custom File Extensions
+
+可以在 obsidian 查看 配置的非 markdown 文件.
+
 ### markdown 本地图片
 
 相对项目的根路径设置图片文件夹即可.
@@ -27,3 +41,5 @@
 [手动安装插件](https://www.youtube.com/watch?v=ffGfVBLDI_0)
 
 [git_windows_crlf](https://stackoverflow.com/questions/17628305/windows-git-warning-lf-will-be-replaced-by-crlf-is-that-warning-tail-backwar)
+
+[open not md file](https://github.com/MeepTech/obsidian-custom-file-extensions-plugin)

@@ -35,7 +35,9 @@ git config --global http.proxy http://localhost:7890/
 git config --global --unset-all http.proxy
 ```
 
-- 测试 github 的联通
+[Configure Git to use a proxy](https://gist.github.com/evantoli/f8c23a37eb3558ab8765)
+
+- 测试 github 的是否连通
 
 	ssh -vT git@github.com
 

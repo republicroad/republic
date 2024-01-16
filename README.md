@@ -66,3 +66,20 @@ origin  https://github.com/republicroad/republic.git (push)
 originssh       git@github.com:RYefccd/republic.git (fetch)
 originssh       git@github.com:RYefccd/republic.git (push)
 ```
+
+
+## mdbook
+
+将下载的 mdbook 压缩包解压得到可执行文件 mdbook.exe, 把此文件放到系统的默认搜索目录下.
+
+	echo $PATH   linux, mac
+	echo %PATH%  windows
+
+可以看到系统搜索目录.
+
+	比如 window11 可以放到用户AppData中的WindowsApps文件夹中.
+	C:\Users\RYefccd\AppData\Local\Microsoft\WindowsApps
+
+可以用一下命令来把markdown文件构建成html页面并在网页打开.
+
+	mdbook.exe build lang/c/mdbook -o

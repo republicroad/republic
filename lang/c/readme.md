@@ -48,3 +48,27 @@ https://github.com/oz123/awesome-c?tab=readme-ov-file
 ### system programming ebook
 
 https://edu.anarcho-copy.org/GNU%20Linux%20-%20Unix-Like/
+
+### poiter
+
+指针出现的原因(传值vs传引用):
+
+[difference-between-call-by-value-and-call-by-reference](https://www.geeksforgeeks.org/difference-between-call-by-value-and-call-by-reference/)
+
+
+### ascii 表
+
+[ascii codes](https://www.petefreitag.com/cheatsheets/ascii-codes/)
+[ascii-cheat-sheet](https://catonmat.net/ascii-cheat-sheet)
+
+
+![[./ascii_sheet.png]]
+
+https://www.cheat-sheets.org/saved-copy/ascii_a4.pdf
+
+
+### 进制转换与格式化输出
+
+[c 打印二进制](https://stackoverflow.com/a/3208376)
+
+https://www.geeksforgeeks.org/format-specifiers-in-c/

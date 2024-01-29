@@ -1,7 +1,7 @@
 
 ## 技巧汇总
 
-
+### 安装
 #### 1 安装代理可以访问插件
 
 ```shell
@@ -11,9 +11,9 @@
    # 右点击属性，在后面添加配置
 ```
 
-![[ob_proxy_01.png]]
+![[attach/ob_proxy_01.png]]
 
-![[ob_proxy_02.png]]
+![[attach/ob_proxy_02.png]]
 
 
 
@@ -32,13 +32,13 @@
 
 #### 2 安装注意事项，一般选默认,有几个注意一下
 
-![[git_windows_tips2.jpg]]
+![[attach/git_windows_tips2.jpg]]
 
-![[git_windows_tips3.jpg]]
+![[attach/git_windows_tips3.jpg]]
 
-![[git_windows_tips1.jpg]]
+![[attach/git_windows_tips1.jpg]]
 
-![[git_windows_tips4.jpg]]
+![[attach/git_windows_tips4.jpg]]
 
 
 
@@ -54,7 +54,7 @@
 
 - 设置git 的账号信息, 才能使用 obsidian-git 插件来进行提交(**不在obsidian里提交代码忽略此条**)
 
-	![[obsidian_git_tips01.png]]
+	![[attach/obsidian_git_tips01.png]]
 
 
 
@@ -113,6 +113,14 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 ```
 
 
+
+### 编辑技巧
+
+obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 \!\[[图片名]] 表示. 可以在**设置**-->**文件与链接** 中的**使用 wiki 链接**关闭即可. 如下图所示:
+
+![](attach/Pasted%20image%2020240130003753.png)
+
+这样可以保证 github 预览中可以渲染出图片.
 ## 资料链接
 
 [obsidian 插件](https://mdnice.com/writing/5caac9e9eb61489a959db5fd415e4d20)

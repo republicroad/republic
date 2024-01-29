@@ -7,7 +7,7 @@
 
 1. 打开以后exe文件后, 首页如下
 
-	![[clash/attach/Pasted image 20240129212301.png]]
+	![[/clash/attach/Pasted image 20240129212301.png]]
 
 
 

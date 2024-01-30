@@ -11,9 +11,10 @@
    # 右点击属性，在后面添加配置
 ```
 
-![[attach/ob_proxy_01.png]]
+![](attach/ob_proxy_01.png)
 
-![[attach/ob_proxy_02.png]]
+
+![](attach/ob_proxy_02.png)
 
 
 
@@ -32,13 +33,13 @@
 
 #### 2 安装注意事项，一般选默认,有几个注意一下
 
-![[attach/git_windows_tips2.jpg]]
+![](attach/git_windows_tips2.jpg)
 
-![[attach/git_windows_tips3.jpg]]
+![](attach/git_windows_tips3.jpg)
 
-![[attach/git_windows_tips1.jpg]]
+![](attach/git_windows_tips1.jpg)
 
-![[attach/git_windows_tips4.jpg]]
+![](attach/git_windows_tips4.jpg)
 
 
 
@@ -54,7 +55,7 @@
 
 - 设置git 的账号信息, 才能使用 obsidian-git 插件来进行提交(**不在obsidian里提交代码忽略此条**)
 
-	![[attach/obsidian_git_tips01.png]]
+	![](attach/obsidian_git_tips01.png)
 
 
 

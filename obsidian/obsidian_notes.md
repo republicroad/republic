@@ -116,11 +116,30 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 
 ### 编辑技巧
 
+#### 图片引用
+
+图片使用相对当前文档的单独目录
+
 obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 \!\[[图片名]] 表示. 可以在**设置**-->**文件与链接** 中的**使用 wiki 链接**关闭即可. 如下图所示:
 
 ![](attach/Pasted%20image%2020240130003753.png)
 
 这样可以保证 github 预览中可以渲染出图片.
+
+
+#### 文档引用
+
+
+相对当前目录
+	[vscode_docs](../vscode/vscode_docs.md)
+	
+相对当前仓库根目录
+	[vscode_docs](vscode/vscode_docs.md)
+	
+尽可能简短的模式
+	[vscode_docs](vscode_docs.md)
+
+
 ## 资料链接
 
 [obsidian 插件](https://mdnice.com/writing/5caac9e9eb61489a959db5fd415e4d20)

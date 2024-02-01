@@ -148,3 +148,5 @@ obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 
 
 [git_windows_crlf](https://stackoverflow.com/questions/17628305/windows-git-warning-lf-will-be-replaced-by-crlf-is-that-warning-tail-backwar)
 
+[obsidian_plugin_template](https://github.com/polyipseity/obsidian-plugin-template)
+

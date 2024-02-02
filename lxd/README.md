@@ -20,7 +20,7 @@ https://documentation.ubuntu.com/lxd/en/latest/howto/access_ui/
 lxc remote rename images images_bak
 lxc remote add images https://mirrors.tuna.tsinghua.edu.cn/lxc-images/ --protocol=simplestreams --public
 
-# 5 比如查看ubuntu:1804在远程镜像里的一些信息
+# 5 比如查看默认images源下ubuntu:1804在远程镜像里的一些信息 
 lxc image list images:ubuntu/18.04 | less  
 
 +-----------------------------------+--------------+--------+--------------------------------------+---------+----------+-------------------------------+
@@ -36,13 +36,13 @@ lxc image list
 +-------+--------------+--------+--------------------------------------+--------+---------+-----------------------------+
 | ALIAS | FINGERPRINT  | PUBLIC |             DESCRIPTION              |  ARCH  |  SIZE   |         UPLOAD DATE         |
 +-------+--------------+--------+--------------------------------------+--------+---------+-----------------------------+
-|       | edab8a6bdc03 | no     | Ubuntu xenial amd64 (20230829_07:42) | x86_64 | 87.89MB | Feb 1, 2024 at 5:37am (UTC) |
+|       | 8b430b6d8271 | no     | Ubuntu xenial amd64 (20230829_07:42) | x86_64 | 87.89MB | Feb 1, 2024 at 5:37am (UTC) |
 +-------+--------------+--------+--------------------------------------+--------+---------+-----------------------------+
 
 # 8 根据本地镜像，创建一个容器 后面是镜像id  ut18是取的别名
 lxc launch 8b430b6d8271 ut18
 
-# 9 添加到用户组
+# 9 当前用户添加到用户组
 newgrp lxd
 
 # 10 可以查看本地List containers容器
@@ -50,8 +50,8 @@ lxc list
 lxc exec ut18 bash   # 进入容器
 
 # 11 管理容器
-lxc stop container    # 暂停
-lxc delete container  # 删除  可以加--force
+lxc stop container-name    # 暂停
+lxc delete container-name  # 删除  可以加--force
 ```
 
 

@@ -12,7 +12,7 @@
 ```
 
 
-![[](attach/ob_proxy_01.png)
+![](attach/ob_proxy_01.png)
 
 ![](attach/ob_proxy_02.png)
 
@@ -68,7 +68,8 @@
 # 设置代理
 git config --global http.proxy http://192.168.1.201:1080/
 # git config --global http.proxy socks5://localhost:7890/
-移除代理
+
+# 移除代理
 git config --global --unset-all http.proxy
 ```
 

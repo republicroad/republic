@@ -133,13 +133,13 @@ obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 
 
 
 相对当前目录
-	[vscode_docs](../vscode/vscode_docs.md)
+	[vscode](vscode.md)
 	
 相对当前仓库根目录
-	[vscode_docs](vscode/vscode_docs.md)
+	[vscode](vscode.md)
 	
 尽可能简短的模式
-	[vscode_docs](vscode_docs.md)
+	[vscode](vscode.md)
 
 
 ## 资料链接

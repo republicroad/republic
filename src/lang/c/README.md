@@ -62,7 +62,7 @@ https://edu.anarcho-copy.org/GNU%20Linux%20-%20Unix-Like/
 [ascii-cheat-sheet](https://catonmat.net/ascii-cheat-sheet)
 
 
-![](./ascii_sheet.png)
+![](attach/ascii_sheet.png)
 
 https://www.cheat-sheets.org/saved-copy/ascii_a4.pdf
 

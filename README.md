@@ -82,4 +82,8 @@ originssh       git@github.com:RYefccd/republic.git (push)
 
 可以用一下命令来把markdown文件构建成html页面并在网页打开.
 
-	mdbook.exe build lang/c/mdbook -o
+	mdbook.exe build republic -o
+
+或者可以开启一个本地服务, 可以边修改文档边刷新:
+
+	mdbook.exe serve republic

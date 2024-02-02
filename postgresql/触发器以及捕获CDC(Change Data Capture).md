@@ -1,7 +1,10 @@
 #### 1常用方法有：
 
 ```text
-1 pg的wal(预写日志）wal不是人直观的数据，需要一层层解析里面的二进制page，中间夹着着各种header头文件和原控制信息。市面上如，WalMiner,wal2sql 是waL(write ahead logs)逻辑复制日志中解析出执行的SQL语句的工具。解析性能慢，并且需要修改pg的日志level配置（walminer除外）和slot的配置，会造成pg存储压力。WalMiner最新版本还收费了。此类型的工具最多只能解析出执行过的sql语句，无法监控特定的表的数据变更，并且还需要基于sql语句，继续二次开发获得最终的CDC。
+1 pg的wal(预写日志）wal不是人直观的数据，需要一层层解析里面的二进制page，中间夹着着各种header头文件和原控制信息。市面上如，
+WalMiner,wal2sql 是waL(write ahead logs)逻辑复制日志中解析出执行的SQL语句的工具。解析性能慢，并且需要修改pg的日志level配置（walminer除外）和slot的配置，
+会造成pg存储压力。WalMiner最新版本还收费了。此类型的工具最多只能解析出执行过的sql语句，无法监控特定的表的数据变更，并且还需要基于sql语句，
+继续二次开发获得最终的CDC。
 
 参考文档：
 https://gitee.com/movead/XLogMiner
@@ -17,15 +20,18 @@ http://www.postgres.cn/v2/news/viewone/1/419
 ```
 https://bryteflow.com/postgres-cdc-6-easy-methods-capture-data-changes/
 
-文章提到过pg的触发器，可以监控特定的几个表的CDC，然后把新，旧值插入预先构建好的表中。跟MongoDB的oplog一样，直接读取方便后续解析。
+文章提到过pg的触发器，可以监控特定的几个表的CDC，然后把新，旧值插入预先构建好的表中。
+跟MongoDB的oplog一样，直接读取方便后续解析。
 ```
 
 #### 3 potgresql 触发器概念
 
 ````
-PostgreSQL 触发器（trigger）是一种特殊的函数，当某个数据变更事件（INSERT、UPDATE、DELETE 或者 TRUNCATE）DML 或者数据库事件（DDL 语句）发生时自动执行，而不是由用户或者应用程序进行调用
+PostgreSQL 触发器（trigger）是一种特殊的函数，当某个数据变更事件（INSERT、UPDATE、DELETE 或者 TRUNCATE）DML
+或者数据库事件（DDL 语句）发生时自动执行，而不是由用户或者应用程序进行调用
 
-基于某个表或者视图数据变更的触发器被称为数据变更触发器（DML 触发器），基于数据库事件的触发器被称为事件触发器（DDL 触发器）。一般我们更多使用的是数据变更触发器。
+基于某个表或者视图数据变更的触发器被称为数据变更触发器（DML 触发器），
+基于数据库事件的触发器被称为事件触发器（DDL 触发器）。一般我们更多使用的是数据变更触发器。
 ````
 
 #### 4 创建触发器步骤

@@ -87,3 +87,69 @@ originssh       git@github.com:RYefccd/republic.git (push)
 或者可以开启一个本地服务, 可以边修改文档边刷新:
 
 	mdbook.exe serve republic
+
+
+### mdbook action
+
+
+1. 克隆仓库 
+
+	git clone https://github.com/republicroad/republic.git
+
+	```bash
+	# 代码结构如下
+	wh@VM-16-16-ubuntu:~/workspace$ tree -L 2 .
+	.
+	├── build_book.sh
+	└── republic
+	    ├── attach
+	    ├── book.toml
+	    ├── Excalidraw
+	    ├── excalidrawlib
+	    ├── journal
+	    ├── LICENSE
+	    ├── obsidian_config
+	    ├── README.md
+	    └── src
+	```
+	
+2. mdbook 构建 
+
+	mdbook build republic
+
+
+```bash
+wh@VM-16-16-ubuntu:~/workspace$ mdbook build republic
+2024-02-04 16:55:57 [INFO] (mdbook::book): Book building has started
+2024-02-04 16:55:57 [INFO] (mdbook::book): Running the html backend
+```
+
+
+```bash
+wh@VM-16-16-ubuntu:~/workspace$ tree -L 2 .
+.
+├── build_book.sh
+└── republic
+    ├── attach
+    ├── book  # 多了一个book文件夹
+    ├── book.toml
+    ├── Excalidraw
+    ├── excalidrawlib
+    ├── journal
+    ├── LICENSE
+    ├── obsidian_config
+    ├── README.md
+    └── src
+```
+
+3. nginx 配置
+```
+        location /book/ {
+            #root  html;
+            root /home/wh/workspace/republic/;
+            index  index.html index.htm;
+        }
+
+```
+
+http://150.158.144.155/book/

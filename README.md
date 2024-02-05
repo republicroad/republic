@@ -1,6 +1,7 @@
 # republic
 大梦谁先觉, 平生我自知.
 
+> https://republicroad.github.io/republic/
 
 ## tech
 

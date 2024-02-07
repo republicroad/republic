@@ -4,3 +4,8 @@ language = "en"
 multilingual = false
 src = "src"
 title = "republic"
+
+[preprocessor.toc]
+max-level = 4
+command = "mdbook-toc"
+renderer = ["html"]

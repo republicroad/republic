@@ -142,6 +142,27 @@ obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 
 	[vscode](vscode.md)
 
 
+## 插件
+
+### excalidraw
+
+
+### git
+
+
+### BRAT
+
+使用这个插件可以安装一些正在开发中(代码存在git服务器)的插件, 这样方便开发和测试.
+
+### vscode editor
+
+使用 vscode editor 的风格和快捷键来打开代码文件(可配置语言代码文件).
+
+
+### Calender
+
+todo: 以后可以把干支也加入日历
+
 ## 资料链接
 
 [obsidian 插件](https://mdnice.com/writing/5caac9e9eb61489a959db5fd415e4d20)

@@ -12,6 +12,7 @@
 - [git](git.md)
 - [database](database/README.md)
 	- [pg_trigger](database/pg_trigger.md)
+	- [postgresql应用技巧](database/postgresql应用技巧.md)
 - [devops](devops/README.md)
 	- [package_manager](devops/package_manager.md)
 - [lxd](lxd/README.md)

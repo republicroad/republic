@@ -7,6 +7,7 @@
 ```shell
   # 配置代理，可以访问第三方插件社区市场
  --proxy-server=http://192.168.1.201:1080
+C:\Users\RYefccd\AppData\Local\Programs\obsidian\Obsidian.exe --proxy-server=http://127.0.0.1:7890
 
    # 右点击属性，在后面添加配置
 ```

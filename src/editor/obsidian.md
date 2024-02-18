@@ -44,7 +44,7 @@ C:\Users\RYefccd\AppData\Local\Programs\obsidian\Obsidian.exe --proxy-server=htt
 
 
 
-#### 3 windows下的git修改配置。
+#### 3 windows下的git修改配置
 
 
 - 避免windows提醒文件的换行符. 这个只在windows系统上设置, 不能跨平台设置. 

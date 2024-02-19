@@ -1,7 +1,9 @@
 # republic
 大梦谁先觉, 平生我自知.
 
-> https://republicroad.github.io/republic/
+[github地址](https://github.com/republicroad/republic/tree/main)
+
+> [文档地址](https://republicroad.github.io/republic/)
 
 ## tech
 

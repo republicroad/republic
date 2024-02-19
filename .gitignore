@@ -2,8 +2,5 @@
 /tmp
 lxd/lxd-ui-192.168.0.39.pfx
 lxd/lxd-ui-192.168.0.39.crt
-.obsidian/*
-!.obsidian/app.json
-!.obsidian/hotkeys.json
 lang/c/mdbook/book/
 book

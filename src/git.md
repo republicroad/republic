@@ -183,3 +183,20 @@ IdentityFile ~/.ssh/id_rsa
 ```
 
 [github和gitlab ssh 服务器域名](https://stackoverflow.com/a/55149904)
+
+
+## gitignore
+
+文件夹中只有几个文件需要被追踪, 那么可以在此文件夹创建一个.gitignore文件, 首先输入一行*，然后接下来的行写 **!xxxx.json**, 这样就可以实现反选的逻辑.
+
+```shell
+# *
+# !app.json
+# !hotkeys.json
+```
+
+```shell
+# .obsidian/*
+# !.obsidian/app.json
+# !.obsidian/hotkeys.json
+```

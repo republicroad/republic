@@ -164,6 +164,10 @@ obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 
 
 todo: 以后可以把干支也加入日历
 
+### Templater
+
+https://silentvoid13.github.io/Templater/introduction.html
+
 ## 资料链接
 
 [obsidian 插件](https://mdnice.com/writing/5caac9e9eb61489a959db5fd415e4d20)

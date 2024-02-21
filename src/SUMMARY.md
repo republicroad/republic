@@ -6,6 +6,7 @@
 - [editor](editor/README.md)
 	- [obsidian](editor/obsidian.md)
 	- [vscode](editor/vscode.md)
+	- [vscode_快捷键](editor/vscode_keyboard_shortcuts.md)
 	- [excalidraw](editor/excalidraw.md)
 	- [stackedit](editor/stackedit.md)
 - [clash](clash/clash.md)

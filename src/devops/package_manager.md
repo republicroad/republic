@@ -95,6 +95,77 @@
 
 - [rpm软件包管理器-dnf](https://wangchujiang.com/linux-command/c/dnf.html)
 
+### pacman
+
+https://wiki.archlinux.org/title/pacman
+
+```
+$ pacman -h
+usage:  pacman <operation> [...]
+operations:
+    pacman {-h --help}
+    pacman {-V --version}
+    pacman {-D --database} <options> <package(s)>
+    pacman {-F --files}    [options] [file(s)]
+    pacman {-Q --query}    [options] [package(s)]   # 查看本地包
+    pacman {-R --remove}   [options] <package(s)>
+    pacman {-S --sync}     [options] [package(s)]   # 查看远程仓库包
+    pacman {-T --deptest}  [options] [package(s)]
+    pacman {-U --upgrade}  [options] <file(s)>
+
+use 'pacman {-h --help}' with an operation for available options
+
+```
+
+
+在windows上安装通用c运行时开发库(编译器,调试器)
+
+	pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
+
+查看本地显式安装的包
+
+	 pacman -Q -e
+
+查看本地安装的依赖包
+
+	 pacman -Q -d
+
+在远程搜索包
+
+	pacman -Ss '^vim-'
+
+查看包的树形层级
+
+```
+$ pactree mingw-w64-ucrt-x86_64-gcc
+mingw-w64-ucrt-x86_64-gcc
+├─mingw-w64-ucrt-x86_64-binutils
+│ ├─mingw-w64-ucrt-x86_64-zstd
+│ │ └─mingw-w64-ucrt-x86_64-gcc-libs
+│ │   └─mingw-w64-ucrt-x86_64-libwinpthread-git provides mingw-w64-ucrt-x86_64-libwinpthread
+│ └─mingw-w64-ucrt-x86_64-zlib
+├─mingw-w64-ucrt-x86_64-crt-git provides mingw-w64-ucrt-x86_64-crt
+│ └─mingw-w64-ucrt-x86_64-headers-git
+├─mingw-w64-ucrt-x86_64-headers-git provides mingw-w64-ucrt-x86_64-headers
+├─mingw-w64-ucrt-x86_64-isl
+│ └─mingw-w64-ucrt-x86_64-gmp
+├─mingw-w64-ucrt-x86_64-libiconv
+├─mingw-w64-ucrt-x86_64-gmp
+├─mingw-w64-ucrt-x86_64-mpfr
+│ ├─mingw-w64-ucrt-x86_64-gcc-libs
+│ └─mingw-w64-ucrt-x86_64-gmp
+├─mingw-w64-ucrt-x86_64-mpc
+│ ├─mingw-w64-ucrt-x86_64-gmp
+│ └─mingw-w64-ucrt-x86_64-mpfr
+├─mingw-w64-ucrt-x86_64-gcc-libs=13.2.0-3
+├─mingw-w64-ucrt-x86_64-windows-default-manifest
+├─mingw-w64-ucrt-x86_64-winpthreads-git provides mingw-w64-ucrt-x86_64-winpthreads
+│ ├─mingw-w64-ucrt-x86_64-crt-git
+│ └─mingw-w64-ucrt-x86_64-libwinpthread-git=11.0.0.r547.g4c8123efb
+├─mingw-w64-ucrt-x86_64-zlib
+└─mingw-w64-ucrt-x86_64-zstd
+
+```
 
 ### nix
 

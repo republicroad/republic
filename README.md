@@ -142,3 +142,9 @@ wh@VM-16-16-ubuntu:~/workspace$ tree -L 2 .
 ```
 
 http://150.158.144.155/book/
+
+
+### mdbook-pagetoc
+
+[mdbook-pagetoc](https://crates.io/crates/mdbook-pagetoc)
+[In-page Table of contents issue](https://github.com/rust-lang/mdBook/issues/1523#issuecomment-1089103336)

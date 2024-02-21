@@ -52,6 +52,7 @@ windows上进行c的开发需要安装c/c++的编译器和调试器.
 
 参考资料:	  
 [Installing the MinGW-w64 toolchain](https://code.visualstudio.com/docs/cpp/config-mingw#_installing-the-mingww64-toolchain)
+[MSYS2 Environments](https://www.msys2.org/docs/environments/)
 
 #### 运行程序
 

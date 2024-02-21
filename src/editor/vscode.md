@@ -14,6 +14,7 @@ windows上进行c的开发需要安装c/c++的编译器和调试器.
 - [mingw-w64](http://mingw-w64.org/)
 - [MSVC](https://visualstudio.microsoft.com/downloads/#remote-tools-for-visual-studio-2022)
 
+ [msys2(Software Distribution and Building Platform for Windows)](https://www.msys2.org/) 
 
 #### 安装 c/c++ extentions
 
@@ -57,7 +58,7 @@ windows上进行c的开发需要安装c/c++的编译器和调试器.
 #### 运行程序
 
 代码如下:
-[学生成绩管理系统](../lang/c/02_c_standard.md#学生成绩管理系统)
+[学生成绩管理系统](../lang/c/demos.md#学生成绩管理系统)
 
 
 ![](attach/Pasted%20image%2020240221181400.png)

@@ -20,7 +20,7 @@ int main()
 
 ## 2.找出100以内的所有质数
 
-![avatar](../attach/02_01.png)
+![avatar](../../editor/attach/02_01.png)
 
 
 ## 3.使用筛子找出100以内的质数

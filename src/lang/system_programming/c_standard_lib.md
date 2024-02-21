@@ -5,10 +5,6 @@
 ### strftime
 
 - utc
-
-
-
-
 - gmt
 
 

@@ -8,7 +8,7 @@
 	- [vscode](editor/vscode.md)
 	- [vscode_快捷键](editor/vscode_keyboard_shortcuts.md)
 	- [excalidraw](editor/excalidraw.md)
-	- [stackedit](editor/stackedit.md)
+	- [codeblocks](editor/codeblocks.md)
 - [clash](clash/clash.md)
 - [git](git.md)
 - [database](database/README.md)
@@ -19,9 +19,7 @@
 - [lxd](lxd/README.md)
 - [windows_wsl2](windows_wsl2.md)
 - [langs](lang/c/README.md)
-	- [01_c_ide](lang/c/01_c_ide.md)
-	- [02_c_standard](lang/c/02_c_standard.md)
-	- [c_standard_lib](lang/system_programming/c_standard_lib.md)
+	- [C](lang/c/demos.md)
 
 
 

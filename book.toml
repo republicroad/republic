@@ -5,7 +5,7 @@ multilingual = false
 src = "src"
 title = "republic"
 
-[preprocessor.toc]
-max-level = 4
-command = "mdbook-toc"
-renderer = ["html"]
+[preprocessor.pagetoc]
+[output.html]
+additional-css = ["theme/pagetoc.css"]
+additional-js  = ["theme/pagetoc.js"]

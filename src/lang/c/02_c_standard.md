@@ -1,7 +1,7 @@
 
 <!-- toc -->
 
-# 练习循环和分支
+# exam
 
 ## 1.求1至100之和
 
@@ -156,7 +156,7 @@ int main(void)
 
 
 
-## 6. function
+## function
 
 函数定义语法:
 

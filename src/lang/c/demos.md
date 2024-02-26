@@ -391,3 +391,9 @@ a = 20 b = 10
 
 使用此程序进行演示:
 ![](../../../langsrc/c/mysms.c)
+
+
+包含源码:
+```
+{{#include ../../../langsrc/c/mysms_linux.c}}
+```

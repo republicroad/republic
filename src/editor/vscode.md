@@ -111,9 +111,9 @@ There is NO WARRANTY, to the extent permitted by law.
 
 
 > [!NOTE] dpkg
-> 也可以用 dpkg -L 来查看这个库包含哪里文件.
-> dpkg -L build-essential 
-> [dpkg](../devops/package_manager.md#dpkg)
+> 也可以用 dpkg -L 来查看这个库包含哪里文件.  
+> dpkg -L build-essential   
+> [dpkg](../devops/package_manager.md#dpkg)  
 
 
 

@@ -1,6 +1,10 @@
 
 ### general cheetsheet
 
+link:  
+[keyboard-shortcuts-windows.pdf](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+
+inline linke:  
 ![](keyboard-shortcuts-windows.pdf)
 
 

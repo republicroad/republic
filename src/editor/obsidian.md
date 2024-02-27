@@ -160,7 +160,7 @@ obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 
 使用 vscode editor 的风格和快捷键来打开代码文件(可配置语言代码文件).
 
 
-### Calender
+### Calendar
 
 todo: 以后可以把干支也加入日历
 

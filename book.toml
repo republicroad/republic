@@ -9,3 +9,4 @@ title = "republic"
 [output.html]
 additional-css = ["theme/pagetoc.css"]
 additional-js  = ["theme/pagetoc.js"]
+git-repository-url = "https://github.com/republicroad/republic"

@@ -57,22 +57,13 @@
       "key": "B"
     }
   ],
-  "outline:open": [
+  "file-explorer:reveal-active-file": [
     {
       "modifiers": [
         "Mod",
         "Shift"
       ],
-      "key": "O"
-    }
-  ],
-  "obsidian-git:open-git-view": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "G"
+      "key": "R"
     }
   ]
 }

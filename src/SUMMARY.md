@@ -20,6 +20,7 @@
 - [windows_wsl2](windows_wsl2.md)
 - [langs](lang/c/README.md)
 	- [C](lang/c/demos.md)
+- [nginx](nginx.md)
 
 
 

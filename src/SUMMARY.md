@@ -17,6 +17,7 @@
 - [devops](devops/README.md)
 	- [package_manager](devops/package_manager.md)
 - [lxd](lxd/README.md)
+	- [lxdinit](lxd/lxdinit.md)
 - [windows_wsl2](windows_wsl2.md)
 - [langs](lang/c/README.md)
 	- [C](lang/c/demos.md)

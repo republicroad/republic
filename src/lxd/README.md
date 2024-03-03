@@ -68,3 +68,10 @@ lxc delete container-name  # 删除  可以加--force
 - https://seanblanchfield.com/2023/05/bridge-networking-in-lxd
 - https://blog.simos.info/-how-to-make-your-lxd-containers-get-ip-addresses-from-your-lan-using-a-bridge/
 - https://docs.rockylinux.org/books/lxd_server/05-lxd_images/
+
+```shell
+lxc stop c1
+lxc network attach lxdbr0 c1 eth0 eth0
+lxc config device set c1 eth0 ipv4.address 10.99.10.42
+lxc start c1
+```

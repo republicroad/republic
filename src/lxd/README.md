@@ -75,3 +75,9 @@ lxc network attach lxdbr0 c1 eth0 eth0
 lxc config device set c1 eth0 ipv4.address 10.99.10.42
 lxc start c1
 ```
+
+
+
+### docker in lxd
+
+[how-to-run-docker-inside-lxd-containers](https://ubuntu.com/tutorials/how-to-run-docker-inside-lxd-containers#2-create-lxd-container)

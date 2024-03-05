@@ -78,36 +78,36 @@ location /dirtest/ {
 https://youtu.be/pkHQCPXaimU
 
 Chapters:
-[00:00:00](https://www.youtube.com/watch?v=pkHQCPXaimU&t=0s) Introduction 
-[00:02:01](https://www.youtube.com/watch?v=pkHQCPXaimU&t=121s) What is NGINX? 
-[00:06:22](https://www.youtube.com/watch?v=pkHQCPXaimU&t=382s) NGINX Installation Options 
-[00:08:23](https://www.youtube.com/watch?v=pkHQCPXaimU&t=503s) How to Install NGINX on Debian/Ubuntu 
-[00:11:39](https://www.youtube.com/watch?v=pkHQCPXaimU&t=699s) How to Install NGINX on CentOS/Red Hat 
-[00:13:55](https://www.youtube.com/watch?v=pkHQCPXaimU&t=835s) How to Install NGINX Plus 
-[00:14:38](https://www.youtube.com/watch?v=pkHQCPXaimU&t=878s) How to Verify Your NGINX Installation 
-[00:17:04](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1024s) NGINX Key Files, Commands and Directories
-[00:18:58](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1138s) Key NGINX Commands
-[00:21:22](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1282s) Basic NGINX Configurations
-[00:21:34](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1294s) Simple Virtual Server
-[00:24:38](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1478s) Basic Web Server Configuration
-[00:28:02](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1682s)Basic Load Balancing Configuration
-[00:32:55](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1975s) Basic Reverse Proxy Configuration
-[00:35:22](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2122s) Basic Caching Configuration
-[00:38:49](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2329s) Basic SSL Configuration
-[00:40:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2445s)Basic HTTP/2 Configuration
-[00:41:55](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2515s)Multiplexing Multiple Sites on One IP
-[00:43:39](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2619s) Layer 7 Request Routing
-[00:45:23](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2723s) Modifications to main nginx.conf
-[00:47:02](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2822s) HTTP/1.1 Keepalive to Upstreams
-[00:48:03](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2883s)SSL Session Caching
-[00:48:46](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2926s) Advanced Caching Configuration
-[00:49:37](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2977s) gRPC Proxying with SSL Termination
-[00:50:53](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3053s) ~~Active Health Checks(nginx plus)~~
-[00:52:29](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3149s) Sticky Cookie Session Persistence
-[00:53:57](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3237s) NGINX Stub Status Module
-[00:54:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3285s) NGINX Plus Extended Status
-[00:56:12](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3372s) NGINX Access Logs
-[00:59:26](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3566s) Q & A
+[00:00:00](https://www.youtube.com/watch?v=pkHQCPXaimU&t=0s) Introduction  
+[00:02:01](https://www.youtube.com/watch?v=pkHQCPXaimU&t=121s) What is NGINX?   
+[00:06:22](https://www.youtube.com/watch?v=pkHQCPXaimU&t=382s) NGINX Installation Options   
+[00:08:23](https://www.youtube.com/watch?v=pkHQCPXaimU&t=503s) How to Install NGINX on Debian/Ubuntu   
+[00:11:39](https://www.youtube.com/watch?v=pkHQCPXaimU&t=699s) How to Install NGINX on CentOS/Red Hat   
+[00:13:55](https://www.youtube.com/watch?v=pkHQCPXaimU&t=835s) How to Install NGINX Plus   
+[00:14:38](https://www.youtube.com/watch?v=pkHQCPXaimU&t=878s) How to Verify Your NGINX Installation   
+[00:17:04](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1024s) NGINX Key Files, Commands and Directories  
+[00:18:58](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1138s) Key NGINX Commands  
+[00:21:22](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1282s) Basic NGINX Configurations  
+[00:21:34](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1294s) Simple Virtual Server  
+[00:24:38](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1478s) Basic Web Server Configuration  
+[00:28:02](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1682s)Basic Load Balancing Configuration  
+[00:32:55](https://www.youtube.com/watch?v=pkHQCPXaimU&t=1975s) Basic Reverse Proxy Configuration  
+[00:35:22](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2122s) Basic Caching Configuration  
+[00:38:49](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2329s) Basic SSL Configuration  
+[00:40:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2445s)Basic HTTP/2 Configuration  
+[00:41:55](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2515s)Multiplexing Multiple Sites on One IP  
+[00:43:39](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2619s) Layer 7 Request Routing  
+[00:45:23](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2723s) Modifications to main nginx.conf  
+[00:47:02](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2822s) HTTP/1.1 Keepalive to Upstreams  
+[00:48:03](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2883s)SSL Session Caching  
+[00:48:46](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2926s) Advanced Caching Configuration  
+[00:49:37](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2977s) gRPC Proxying with SSL Termination  
+[00:50:53](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3053s) ~~Active Health Checks(nginx plus)~~  
+[00:52:29](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3149s) Sticky Cookie Session Persistence  
+[00:53:57](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3237s) NGINX Stub Status Module  
+[00:54:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3285s) NGINX Plus Extended Status  
+[00:56:12](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3372s) NGINX Access Logs  
+[00:59:26](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3566s) Q & A  
 
 
 [Top 25 Nginx Web Server Best Security Practices](https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html)

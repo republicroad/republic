@@ -102,7 +102,7 @@ Chapters:
 [00:48:03](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2883s)SSL Session Caching
 [00:48:46](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2926s) Advanced Caching Configuration
 [00:49:37](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2977s) gRPC Proxying with SSL Termination
-[00:50:53](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3053s) Active Health Checks
+[00:50:53](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3053s) ~~Active Health Checks(nginx plus)~~
 [00:52:29](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3149s) Sticky Cookie Session Persistence
 [00:53:57](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3237s) NGINX Stub Status Module
 [00:54:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3285s) NGINX Plus Extended Status

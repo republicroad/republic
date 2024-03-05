@@ -81,3 +81,28 @@ lxc start c1
 ### docker in lxd
 
 [how-to-run-docker-inside-lxd-containers](https://ubuntu.com/tutorials/how-to-run-docker-inside-lxd-containers#2-create-lxd-container)
+
+
+## cloud-images.ubuntu
+
+[cloud-images.ubuntu](https://cloud-images.ubuntu.com/)
+
+```
+ryefccd@republic:~$ lxc remote list
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+|         NAME         |                        URL                        |   PROTOCOL    |  AUTH TYPE  | PUBLIC | STATIC | GLOBAL |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| images               | https://mirrors.tuna.tsinghua.edu.cn/lxc-images/  | simplestreams | none        | YES    | NO     | NO     |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| images_bak           | https://images.linuxcontainers.org                | simplestreams | none        | YES    | NO     | NO     |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| local (current)      | unix://                                           | lxd           | file access | NO     | YES    | NO     |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| ubuntu               | https://cloud-images.ubuntu.com/releases          | simplestreams | none        | YES    | YES    | NO     |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| ubuntu-daily         | https://cloud-images.ubuntu.com/daily             | simplestreams | none        | YES    | YES    | NO     |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| ubuntu-minimal       | https://cloud-images.ubuntu.com/minimal/releases/ | simplestreams | none        | YES    | YES    | NO     |
++----------------------+---------------------------------------------------+---------------+-------------+--------+--------+--------+
+| ubuntu-minimal-daily | https://cloud-images.ubuntu.com/minimal/daily/    | simplestreams | none        | YES    | YES    | NO     |
+```

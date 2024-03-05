@@ -3,38 +3,9 @@ creation date: 2024-02-20 21:45
 modification date: 星期二 20日 二月 2024 21:46:11
 ---
 # republic
-大梦谁先觉, 平生我自知.
 
-[github地址](https://github.com/republicroad/republic/tree/main)
-
+> [github地址](https://github.com/republicroad/republic/tree/main)
 > [文档地址](https://republicroad.github.io/republic/)
-
-## tech
-
-
-### lang
-
-从 c 开始.
-
-### lxd
-
-linux 上系统容器和虚拟机软件. 方便模拟各种发行版. 搭建集群, 进行分布式测试.
-
-
-### devops
-
-运维开发, 熟悉各种系统, 包管理等.
-
-
-### git
-
-
-## 
-##  organazation
-
-这里查看 republic 组织成员. 处理组织人员管理.
-
-	https://github.com/orgs/republicroad/people
 
 
 ## 协作流程

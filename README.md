@@ -4,7 +4,7 @@ modification date: 星期二 20日 二月 2024 21:46:11
 ---
 # republic
 
-> [github地址](https://github.com/republicroad/republic/tree/main)
+> [github地址](https://github.com/republicroad/republic/tree/main)  
 > [文档地址](https://republicroad.github.io/republic/)
 
 

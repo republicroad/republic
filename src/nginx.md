@@ -72,6 +72,14 @@ location /dirtest/ {
 ### 是否携带uri(尾斜杠)
 
 
+### 域名解析
+
+
+[ngx_upstream_jdomain](https://github.com/nicholaschiasson/ngx_upstream_jdomain)
+
+
+
+
 ## 最佳实践
 
 

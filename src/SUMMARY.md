@@ -24,5 +24,6 @@
 	- [C](lang/c/demos.md)
 - [nginx](nginx.md)
 - [mitmproxy](mitmproxy/README.md)
+- [密码管理](passstore.md)
 
 

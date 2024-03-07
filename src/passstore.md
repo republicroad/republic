@@ -59,7 +59,7 @@ sec 后面的 2548D4EA89DBA07C 就是私钥
 
 
 
-## passstore 
+## passstore(linux)
 
 ### 初始化密码存储
 
@@ -133,6 +133,58 @@ drwx------  3 root root 4096 Mar  6 09:53 myemail/
 ![](https://camo.githubusercontent.com/38f77b9a896dfc29ed6481ba789885f61fa7e776515c807e2c48ea35761e90a2/68747470733a2f2f692e696d6775722e636f6d2f69686176654a742e676966)
 
 
-### 同步gpg秘钥至windows机器
+安装完成(需要额外下载.net运行时依赖), 这个程序内置了gpg, 但是没有pass命令, 需要创建和passstore兼容的存储方式.
 
-[Accessing an existing password store on a different host](https://github.com/geluk/pass-winmenu/tree/master?tab=readme-ov-file#accessing-an-existing-password-store-on-a-different-host)
+```
+powershell> mkdir $HOME\.password-store
+```
+
+gpg生成秘钥, 或者[导入之前的gpg秘钥](https://github.com/geluk/pass-winmenu/tree/master?tab=readme-ov-file#accessing-an-existing-password-store-on-a-different-host)).
+
+查看gpg key 的用户名或者email
+
+```
+PS C:\Users\fhj\.password-store> gpg --list-keys --keyid-format LONG C:/opt/pass-winmenu/lib/GnuPG/home/pubring.kbx 
+---------------------------------------------- 
+pub rsa2048/CD83D5B32C8CDBE5 2024-03-06 [SC] 3F05CB3B23702B75A636A207CD83D5B32C8CDBE5 
+uid [ultimate] userxxx (xxx)f158273257xx@163.com
+sub rsa2048/F303E2F36C2A99E3 2024-03-06 [E]
+```
+
+
+把uid部分中的email存入passstore的元信息中.
+
+```
+powershell> echo "f158273257xx@163.com" | Out-File -Encoding utf8 $HOME\.password-store\.gpg-id
+```
+
+结果如下:
+
+```
+PS C:\Users\fhj\.password-store> ls 
+
+	目录: C:\Users\fhj\.password-store 
+	
+Mode LastWriteTime Length Name 
+---- ------------- ------ ---- 
+-a---- 2024/3/6 18:33 25 .gpg-id
+
+
+PS C:\Users\fhj\.password-store> cat .\.gpg-id 
+f158273257xx@163.com
+```
+
+$HOME\.password-store 文件中存储的密码就会使用  `f158273257xx@163.com`  对应的 gpg 秘钥来对密码文件进行加密和解密.
+
+可以使用git仓库来进行密码版本追踪. 
+```
+PS C:\Users\fhj\.password-store> git init
+```
+
+在git上创建一个私有空仓库, 根据提示关联remote仓库.
+
+```
+git remote add origin https://gitee.com/xxxxx/pass_store.git
+```
+
+然后重启 `pass-winmenu.exe` 此程序就可以自动使用git来追踪密码文件(已经用gpg加密)的版本了.

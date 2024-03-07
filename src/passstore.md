@@ -1,9 +1,10 @@
 
 密码管理. 当有很多密码需要记忆和保存时, 可以利用此机制来生成随机密码并分类存储. 可以托管在自己的git私有仓库中. 方便在各处使用.
 
+> docs:  
 > [passwordstore](https://www.passwordstore.org/)  
 > [GPG Keys Management](https://docs.fedoraproject.org/en-US/quick-docs/create-gpg-keys/#:~:text=The%20GPG%20key%20ID%20is,32%20bits%20of%20the%20fingerprint.)  
-> https://www.gnupg.org/gph/en/manual/c235.html
+> https://www.gnupg.org/gph/en/manual/c235.html  
 > [creating-a-new-gpg-key-with-subkeys](https://www.void.gr/kargig/blog/2013/12/02/creating-a-new-gpg-key-with-subkeys/)
 
 ## requirement
@@ -188,3 +189,18 @@ git remote add origin https://gitee.com/xxxxx/pass_store.git
 ```
 
 然后重启 `pass-winmenu.exe` 此程序就可以自动使用git来追踪密码文件(已经用gpg加密)的版本了.
+
+
+
+## 资料
+
+1. [management-password-store](https://www.redhat.com/sysadmin/management-password-store)
+2. [wl-clipboard](https://askubuntu.com/a/1370797)
+3. [index](https://git.zx2c4.com/) : [password-store](https://git.zx2c4.com/password-store/)
+4. [](https://git.zx2c4.com/password-store/about/)
+
+
+
+> [!NOTE] relative
+> 
+>**gpg2**(1), **tr**(1), **git**(1), **xclip**(1), **wl-clipboard**(1), **qrencode**(1).

@@ -389,9 +389,50 @@ server {
 ![](attach/Pasted%20image%2020240307165852.png)
 [00:47:02](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2822s) HTTP/1.1 Keepalive to Upstreams  
 
+##### 20. SSL session 缓存
+```shell
+'''
+server {
+	listen  443  ssl http2 default_server;
+	server_name   www.example.com;
+	
+	ssl_certificate  cert.ctr;
+	ssl_certificate_key cert.key;
 
-[00:48:03](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2883s)SSL Session Caching  
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 10m;
+}
+'''
+1MB可以存储大约4000个session
+shared 所有worker之间共享缓存。
+```
+
+![](attach/Pasted%20image%2020240307171936.png)
+[00:48:03](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2883s)SSL Session Caching 
+##### 21.高级缓存设置
+```shell
+'''
+proxy_cache_path /path/to/cache levels=1:2
+				keys_zone=my_cache:10m max_size=10g
+				inactive=60m use_temp_path=off;
+server {
+	location / {
+		proxy_cache my_cache;
+		proxy_cache_lock on;
+		proxy_cache_revalidate on;
+		proxy_cache_use_stale error timeout updating 
+				http_500 http_502 http_503 http_504
+		proxy_cache_backgroud_update on;
+
+		proxy_set_header  HOST $host;
+		proxy_pass http://my_upstream;
+	}
+}
+'''
+```
+![](attach/Pasted%20image%2020240307173048.png)
 [00:48:46](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2926s) Advanced Caching Configuration  
+
 [00:49:37](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2977s) gRPC Proxying with SSL Termination  
 [00:50:53](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3053s) ~~Active Health Checks(nginx plus)~~  
 [00:52:29](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3149s) Sticky Cookie Session Persistence  

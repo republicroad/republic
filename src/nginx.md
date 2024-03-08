@@ -432,12 +432,40 @@ server {
 ```
 ![](attach/Pasted%20image%2020240307173048.png)
 [00:48:46](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2926s) Advanced Caching Configuration  
+##### 22. gRPC 代理
+```shell
+'''
+server {
+	listen  443  ssl http2;
+	ssl_certificate  cert.ctr;
+	ssl_certificate_key cert.key;
 
+	location / {
+		grpc_pass grpc://localhost:50051
+	}
+}
+'''
+```
+![](attach/Pasted%20image%2020240308102410.png)
 [00:49:37](https://www.youtube.com/watch?v=pkHQCPXaimU&t=2977s) gRPC Proxying with SSL Termination  
 [00:50:53](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3053s) ~~Active Health Checks(nginx plus)~~  
-[00:52:29](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3149s) Sticky Cookie Session Persistence  
+[00:52:29](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3149s) ~~Sticky Cookie Session Persistence(nginx plus)~~  
+##### 23.nginx Stub Status 
+```shell
+'''
+server {
+	location /basic_status {
+		stub_status;
+	}
+}
+'''
+curl http://www.example.com/basic_status
+```
+![](attach/Pasted%20image%2020240308110530.png)
 [00:53:57](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3237s) NGINX Stub Status Module  
-[00:54:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3285s) NGINX Plus Extended Status  
+[00:54:45](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3285s) ~~NGINX Plus Extended Status~~  
+##### 24.nginx access logs
+**![](attach/Pasted%20image%2020240308110750.png)**
 [00:56:12](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3372s) NGINX Access Logs  
 [00:59:26](https://www.youtube.com/watch?v=pkHQCPXaimU&t=3566s) Q & A  
 

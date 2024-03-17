@@ -366,18 +366,18 @@ a = 20 b = 10
 ### 总结
 
 
-> [!NOTE] Title
+> [!NOTE] call-by-reference vs Call By Value
 > In C, we use pointers to achieve call-by-reference. In C++, we can either use pointers or [references](https://www.geeksforgeeks.org/references-in-c/) for pass-by-reference. In Java,  [primitive types are passed as values and non-primitive types are always references](https://www.geeksforgeeks.org/g-fact-31-java-is-strictly-pass-by-value/)_._
 
-|Call By Value|Call By Reference|
-|---|---|
-|While calling a function, we pass the values of variables to it. Such functions are known as “Call By Values”.|While calling a function, instead of passing the values of variables, we pass the address of variables(location of variables) to the function known as “Call By References.|
-|In this method, the value of each variable in the calling function is copied into corresponding dummy variables of the called function.|In this method, **the address of actual variables** in the calling function** is copied into the dummy variables** of the called function. |
-|With this method, the changes made to the dummy variables in the called function have no effect on the values of actual variables in the calling function.|With this method, using addresses we would have access to the actual variables and hence we would be able to manipulate them.|
-|In call-by-values, we cannot alter the values of actual variables through function calls.|In call by reference, we can alter the values of variables through function calls.|
-|Values of variables are passed by the Simple technique.|Pointer variables are necessary to define to store the address values of variables.|
-|This method is preferred when we have to pass some small values that should not change.|This method is preferred when we have to pass a large amount of data to the function.|
-|Call by value is considered safer as original data is preserved|Call by reference is risky as it allows direct modification in original data|
+| Call By Value                                                                                                                                              | Call By Reference                                                                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| While calling a function, we pass the values of variables to it. Such functions are known as “Call By Values”.                                             | While calling a function, instead of passing the values of variables, we pass the address of variables(location of variables) to the function known as “Call By References. |
+| In this method, the value of each variable in the calling function is copied into corresponding dummy variables of the called function.                    | In this method, **the address of actual variables** in the calling function** is copied into the dummy variables** of the called function.                                  |
+| With this method, the changes made to the dummy variables in the called function have no effect on the values of actual variables in the calling function. | With this method, using addresses we would have access to the actual variables and hence we would be able to manipulate them.                                               |
+| In call-by-values, we cannot alter the values of actual variables through function calls.                                                                  | In call by reference, we can alter the values of variables through function calls.                                                                                          |
+| Values of variables are passed by the Simple technique.                                                                                                    | Pointer variables are necessary to define to store the address values of variables.                                                                                         |
+| This method is preferred when we have to pass some small values that should not change.                                                                    | This method is preferred when we have to pass a large amount of data to the function.                                                                                       |
+| Call by value is considered safer as original data is preserved                                                                                            | Call by reference is risky as it allows direct modification in original data                                                                                                |
 
 参考: [difference-between-call-by-value-and-call-by-reference](https://www.geeksforgeeks.org/difference-between-call-by-value-and-call-by-reference/)
 

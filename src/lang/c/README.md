@@ -5,6 +5,15 @@
 指针, 静态库, 动态库, 调试, 逆向.
 
 
+[diveintosystems](https://diveintosystems.org/)
+
+![](attach/Pasted%20image%2020240317145909.png)
+
+> [!NOTE] diveintosystems
+> _Dive into Systems_ includes one or more chapters on the following topis: **Introduction to Computer Systems**; **C Programming** (covers most of the C language, debugging with gdb and valgrind, and code optimization); **Computer Organization and Architecture** (includes binary representation, computer architecture, memory hierarchy, and caching); **Assembly Programming** (covers 64-bit x86, 32-bit x86, and 64-bit ARM); **The Operating System**; and **Parallel Computing** (focus on shared memory and threads, and also looking ahead to others).
+
+[Writing and Using Your Own C Libraries](https://diveintosystems.org/book/C2-C_depth/advanced_writing_libraries.html)
+
 
 ## 资料链接
 

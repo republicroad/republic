@@ -19,11 +19,12 @@
 - [lxd](lxd/README.md)
 	- [lxdinit](lxd/lxdinit.md)
 	- [incus](lxd/incus.md)
-- [windows_wsl2](windows_wsl2.md)
 - [langs](lang/c/README.md)
-	- [C](lang/c/demos.md)
+	- [C](lang/c/c_concepts.md)
 - [nginx](nginx.md)
 - [mitmproxy](mitmproxy/README.md)
 - [密码管理](passstore.md)
+- [windows开发环境](utility/readme.md)
+	- [windows_wsl2](utility/windows_wsl2.md)
 
 

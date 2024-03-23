@@ -21,6 +21,7 @@
 	- [incus](lxd/incus.md)
 - [langs](lang/c/README.md)
 	- [C](lang/c/c_concepts.md)
+	- [system_program](lang/c/system_program.md)
 - [nginx](nginx.md)
 - [mitmproxy](mitmproxy/README.md)
 - [密码管理](passstore.md)

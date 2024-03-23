@@ -19,6 +19,14 @@
 [人工智能系统 教材](https://github.com/microsoft/AI-System/tree/main/Textbook)
 [影响深度学习系统设计的理论，原则与假设](https://github.com/microsoft/AI-System/blob/main/Textbook/%E7%AC%AC1%E7%AB%A0-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/1.5-%E5%BD%B1%E5%93%8D%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%90%86%E8%AE%BA%EF%BC%8C%E5%8E%9F%E5%88%99%E4%B8%8E%E5%81%87%E8%AE%BE.md)
 
+[Working with `glibc`](https://sys.readthedocs.io/en/latest/doc/03_glibc.html#working-with-glibc)
+
+### [every-programmer-should-know](https://github.com/mtdvio/every-programmer-should-know)
+
+- [interactive_latency time](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
+- [Algorithms Visualization](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
+- [system-design-primer](https://github.com/donnemartin/system-design-primer)
+- [bigocheatsheet](https://www.bigocheatsheet.com/)
 ## Contributing
 
 

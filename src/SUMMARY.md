@@ -9,6 +9,7 @@
 	- [vscode_快捷键](editor/vscode_keyboard_shortcuts.md)
 	- [excalidraw](editor/excalidraw.md)
 	- [codeblocks](editor/codeblocks.md)
+- [diveintosystems(zh_cn)](diveintosystems/readme.md.md)
 - [clash](clash/clash.md)
 - [git](git.md)
 - [database](database/README.md)

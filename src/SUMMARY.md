@@ -17,6 +17,7 @@
 	- [postgresql应用技巧](database/postgresql应用技巧.md)
 - [devops](devops/README.md)
 	- [package_manager](devops/package_manager.md)
+	- [system_tools](devops/system_tools.md)
 - [lxd](lxd/README.md)
 	- [lxdinit](lxd/lxdinit.md)
 	- [incus](lxd/incus.md)

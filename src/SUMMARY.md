@@ -10,6 +10,8 @@
 	- [excalidraw](editor/excalidraw.md)
 	- [codeblocks](editor/codeblocks.md)
 - [diveintosystems(zh_cn)](diveintosystems/readme.md.md)
+	- [1.0 简介](diveintosystems/第一章-优美的c语言/1.0%20简介.md)
+	- [1.1 C 语言编程入门](diveintosystems/第一章-优美的c语言/1.1%20C%20语言编程入门.md)
 - [clash](clash/clash.md)
 - [git](git.md)
 - [database](database/README.md)

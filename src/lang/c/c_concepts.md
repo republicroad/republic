@@ -1,74 +1,8 @@
 
-# exam
-
-## 1.求1至100之和
-
-```c
-int main()
-{
-    int  x;
-    for(int a=0; a<=100; a++)
-    {
-        x+=a;
-    }
-
-    return 0;
-}
-```
-
-## 2.找出100以内的所有质数
-
-![avatar](../../editor/attach/02_01.png)
+# c concepts
 
 
-## 3.使用筛子找出100以内的质数
-
-```c
-#include <stdio.h>
-static int MAX_NUM = 101;
-
-int main()
-{
-    int b=2; // 最小的质数, 遍历开始
-    int nums[MAX_NUM];
-    for(int j=0;j<MAX_NUM;j++)
-    {
-        nums[j] = 1;  //数组初始化为1,状态位
-    }
-
-    nums[0]=nums[1]=0;  // 0,1既不是质数也不是合数
-    while(b * b < MAX_NUM)
-    {
-        if(nums[b] == 1){//查看当前数字(下标)是否是质数, 如果是质数,开始把它的倍数的状态位都设置为0, 表示合数.
-            for(int i=2;i*b<MAX_NUM;i++)
-            {
-                nums[b*i]=0;
-            }
-        }
-        b+=1;  //寻找下一个质数.
-    }
-
-    for(int j=0;j<MAX_NUM;j++)
-    {
-        if(nums[j] == 1){  // 剩下这些状态位为1的就是筛子留下的质数了.
-            printf("%d ", j);
-        }
-    }
-    return 0;
-
-}
-
-```
-
-
-## 4.补充
-
-问：最后不写return 0;有影响吗？
-
-答：最好带上 return 语句. 一般c语言, linux内核返回0代表程序正常执行返回, 返回非0代表出问题了.
-
-
-## 5.c types
+## c types
 
 2023-01-21
 ```c
@@ -150,8 +84,6 @@ int main(void)
 }
 
 ```
-
-
 
 
 ## function
@@ -366,18 +298,18 @@ a = 20 b = 10
 ### 总结
 
 
-> [!NOTE] Title
+> [!NOTE] call-by-reference vs Call By Value
 > In C, we use pointers to achieve call-by-reference. In C++, we can either use pointers or [references](https://www.geeksforgeeks.org/references-in-c/) for pass-by-reference. In Java,  [primitive types are passed as values and non-primitive types are always references](https://www.geeksforgeeks.org/g-fact-31-java-is-strictly-pass-by-value/)_._
 
-|Call By Value|Call By Reference|
-|---|---|
-|While calling a function, we pass the values of variables to it. Such functions are known as “Call By Values”.|While calling a function, instead of passing the values of variables, we pass the address of variables(location of variables) to the function known as “Call By References.|
-|In this method, the value of each variable in the calling function is copied into corresponding dummy variables of the called function.|In this method, **the address of actual variables** in the calling function** is copied into the dummy variables** of the called function. |
-|With this method, the changes made to the dummy variables in the called function have no effect on the values of actual variables in the calling function.|With this method, using addresses we would have access to the actual variables and hence we would be able to manipulate them.|
-|In call-by-values, we cannot alter the values of actual variables through function calls.|In call by reference, we can alter the values of variables through function calls.|
-|Values of variables are passed by the Simple technique.|Pointer variables are necessary to define to store the address values of variables.|
-|This method is preferred when we have to pass some small values that should not change.|This method is preferred when we have to pass a large amount of data to the function.|
-|Call by value is considered safer as original data is preserved|Call by reference is risky as it allows direct modification in original data|
+| Call By Value                                                                                                                                              | Call By Reference                                                                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| While calling a function, we pass the values of variables to it. Such functions are known as “Call By Values”.                                             | While calling a function, instead of passing the values of variables, we pass the address of variables(location of variables) to the function known as “Call By References. |
+| In this method, the value of each variable in the calling function is copied into corresponding dummy variables of the called function.                    | In this method, **the address of actual variables** in the calling function** is copied into the dummy variables** of the called function.                                  |
+| With this method, the changes made to the dummy variables in the called function have no effect on the values of actual variables in the calling function. | With this method, using addresses we would have access to the actual variables and hence we would be able to manipulate them.                                               |
+| In call-by-values, we cannot alter the values of actual variables through function calls.                                                                  | In call by reference, we can alter the values of variables through function calls.                                                                                          |
+| Values of variables are passed by the Simple technique.                                                                                                    | Pointer variables are necessary to define to store the address values of variables.                                                                                         |
+| This method is preferred when we have to pass some small values that should not change.                                                                    | This method is preferred when we have to pass a large amount of data to the function.                                                                                       |
+| Call by value is considered safer as original data is preserved                                                                                            | Call by reference is risky as it allows direct modification in original data                                                                                                |
 
 参考: [difference-between-call-by-value-and-call-by-reference](https://www.geeksforgeeks.org/difference-between-call-by-value-and-call-by-reference/)
 

@@ -14,7 +14,6 @@
 | 软件名 | 版本 | github |
 | ---- | ---- | ---- |
 | openresty | 1.21.4.3 | https://github.com/openresty/openresty |
-
 nginx配置文件
 ```
   
@@ -423,5 +422,4 @@ Transfer/sec:     52.77MB
 | resty_md5 | /test/s6 | 248135.40 | 373.68us | 5.20ms | 212.08ms |
 
 文件下载
-
 ![](attach/nginx.conf)

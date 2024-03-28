@@ -15,7 +15,6 @@
 | ---- | ---- | ---- |
 | openresty | 1.21.4.3 | https://github.com/openresty/openresty |
 
-
 nginx配置文件
 ```
   

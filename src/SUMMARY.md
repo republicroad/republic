@@ -27,6 +27,7 @@
 	- [C](lang/c/c_concepts.md)
 	- [system_program](lang/c/system_program.md)
 - [nginx](nginx.md)
+	- [nginx压测](nginx压测.md)
 - [mitmproxy](mitmproxy/README.md)
 - [密码管理](passstore.md)
 - [windows开发环境](utility/readme.md)

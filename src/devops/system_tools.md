@@ -20,10 +20,11 @@ wh@ubuntu22:~$ ldd /bin/bash
 
 把所有的依赖库复制到 myroot 对应的目录中
 
-	mkdir -p myroot/lib/ myroot/lib64/
+	mkdir -p myroot/lib/ myroot/lib64/ myroot/bin
 	cp /lib/x86_64-linux-gnu/libtinfo.so.6 myroot/lib/
 	cp /lib/x86_64-linux-gnu/libc.so.6 myroot/lib/
 	cp /lib64/ld-linux-x86-64.so.2 myroot/lib64/
+	cp /bin/bash myroot/bin/
 
 进入chroot环境(sudo chroot myroot/ bash)
 

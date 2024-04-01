@@ -32,7 +32,23 @@ https://www.gnu.org/software/guile/
 [亿级流量架构网关设计思路，常用网关对比](https://developer.aliyun.com/article/1036808?spm=a2c6h.14164896.0.0.49bd47c54bushS&scm=20140722.S_community@@%E6%96%87%E7%AB%A0@@1036808._.ID_1036808-RL_%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E6%9E%B6%E6%9E%84%E7%BD%91%E5%85%B3%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94-LOC_search~UND~community~UND~item-OR_ser-V_3-P0_0)
 [亿级流量架构网关设计思路，常用网关对比2](https://developer.aliyun.com/article/1036809?spm=a2c6h.14164896.0.0.49bd47c54bushS)
 
+https://edgar615.github.io/api-gateway-flow.html
+
+[上万租户SAAS系统大规模Nginx动态路由优化方案](https://www.bilibili.com/video/BV1Ro4y167An/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+[Apisix集中式流控与Sentinel分布式流控](https://www.bilibili.com/video/BV1vo4y1T7vY/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+
+[apisix 故障排查: Apache APISIX 在希沃网关的应用与实践](https://www.bilibili.com/video/BV1sm4y1F7Nh/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+[vivo 用数据库替换etcd: Apache APISIX 落地实践分享](https://www.bilibili.com/video/BV1Qe4y177sm/?spm_id_from=autoNext&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+
+[etcd initial cluster status 开始检查这个状态设置为空或者为new, 以后每次部署设置为 exists: 景顺长城基于 Apache APISIX 在金融云原生的生产实践](https://www.bilibili.com/video/BV1mc411L7TA?t=1118.1)
+[基于 Apache APISIX 的蓝鲸 API 网关设计与应用](https://www.bilibili.com/video/BV1aT4y1q7eg/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+[爱奇艺基于 Apache APISIX 的 API 网关落地实践](https://www.bilibili.com/video/BV1Qq4y1M7bK/?spm_id_from=autoNext&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+[【IT老齐321】20分钟上手高性能动态网关APISIX](https://www.bilibili.com/video/BV1RV4y1S7CU/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+
+[Apache APISIX在有赞的落地实践](https://www.bilibili.com/video/BV1Y64y1h7A7/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)
+
+### 概念对比
 
 [NGINX 与 Kong 的痛点](https://apisix.apache.org/zh/blog/2022/07/30/why-we-need-apache-apisix/)
 
-https://edgar615.github.io/api-gateway-flow.html
+

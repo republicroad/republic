@@ -31,3 +31,8 @@ https://www.gnu.org/software/guile/
 
 [亿级流量架构网关设计思路，常用网关对比](https://developer.aliyun.com/article/1036808?spm=a2c6h.14164896.0.0.49bd47c54bushS&scm=20140722.S_community@@%E6%96%87%E7%AB%A0@@1036808._.ID_1036808-RL_%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E6%9E%B6%E6%9E%84%E7%BD%91%E5%85%B3%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94-LOC_search~UND~community~UND~item-OR_ser-V_3-P0_0)
 [亿级流量架构网关设计思路，常用网关对比2](https://developer.aliyun.com/article/1036809?spm=a2c6h.14164896.0.0.49bd47c54bushS)
+
+
+[NGINX 与 Kong 的痛点](https://apisix.apache.org/zh/blog/2022/07/30/why-we-need-apache-apisix/)
+
+https://edgar615.github.io/api-gateway-flow.html

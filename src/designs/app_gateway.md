@@ -58,12 +58,16 @@ IT老齐的咨询建议:
 [Higress nginx apisix: 云原生网关当道，三大主流厂商如何“竞技”？](https://www.infoq.cn/article/k3ssXQGz0pq4pHaLbdWd?utm_source=related_read_bottom&utm_medium=article)
 [Edith网关——面向小红书亿级DAU的网关大规模实践-陈华昌](https://www.sgpjbg.com/baogao/153222.html)
 [云原生时代的通用流量入口 高性能云原生网关实践-韩佳浩.pdf](https://www.sgpjbg.com/baogao/153200.html)
+[网易hango](https://github.com/hango-io/hango-gateway)
+[Loggly: Benchmarking 5 Popular Load Balancers: Nginx, HAProxy, Envoy, Traefik, and ALB](https://www.loggly.com/blog/benchmarking-5-popular-load-balancers-nginx-haproxy-envoy-traefik-and-alb/)
+[slack: Migrating Millions of Concurrent Websockets to Envoy](https://slack.engineering/migrating-millions-of-concurrent-websockets-to-envoy/)
 
+[Envoy 架构](https://icloudnative.io/envoy-handbook/docs/gettingstarted/architecture/)
 
 #### 限流应用
 
 [kong golang: 服务限流在多项目下的方案设计与落地实践](https://www.bilibili.com/video/BV1se41117go/?buvid=XY09E1B018DB4714D9199E7BB35EC2E15E122&from_spmid=tm.recommend.0.0&is_story_h5=false&mid=6kqihrl4D1JHmaSUPkMkZg%3D%3D&p=1&plat_id=116&share_from=ugc&share_medium=android&share_plat=android&share_session_id=6fc5dd26-d0b7-46a8-81d3-4fb4bc53c92c&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1705716947&unique_k=Vhn1KP0&up_id=2094867263&vd_source=5801d88e2ad7cf00f270560298a1ff4f)
-[网易hango](https://github.com/hango-io/hango-gateway)
+
 
 #### java网关
 

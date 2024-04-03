@@ -51,6 +51,11 @@
 - 客户端请求签名
 
 
+瑞数          botgate
+威胁猎人   api安全管控平台
+
+
+
 ## 参考资料
 
 [什么是API网关？](https://info.support.huawei.com/info-finder/encyclopedia/zh/API%E7%BD%91%E5%85%B3.html)

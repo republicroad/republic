@@ -23,6 +23,8 @@
 		- [2.8. c语言输入和输出](diveintosystems/第二章-深入C语言编程/2.8.%20c语言输入和输出.md)
 		- [2.9. 高级C语言概念](diveintosystems/第二章-深入C语言编程/2.9.%20高级C语言概念.md)
 		- [2.10. 总结](diveintosystems/第二章-深入C语言编程/2.10.%20总结.md)
+- [readme](designs/readme.md)
+	- [gateway](designs/gateway.md)
 - [clash](clash/clash.md)
 - [git](git.md)
 - [database](database/README.md)

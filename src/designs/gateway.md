@@ -1,5 +1,5 @@
 
-网关是一种能够在不同[网络](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE "网络传输协议")或[协议](https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%AE%AE%E6%A0%88 "协议栈")之间进行[数据交换](https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2 "数据交换")的设备或服务器。网关可以实现不同网络之间的互联互通，也可以实现不同协议之间的转换和适配。在应用层面, 一般是指七层应用层协议的路由入口。
+网关是一种能够在不同[网络](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE "网络传输协议")或[协议](https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%AE%AE%E6%A0%88 "协议栈")之间进行[数据交换](https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2 "数据交换")的设备或服务器。网关可以实现不同网络之间的互联互通，也可以实现不同协议之间的转换和适配。这是网关在网络中的原始含义，延伸含义就是在两个系统间进行访问控制。在应用层面，一般是指七层应用层协议的路由入口。
 
 ## 网关发展
 
@@ -65,6 +65,8 @@
 [亿级流量架构网关设计思路，常用网关对比](https://developer.aliyun.com/article/1036808?spm=a2c6h.14164896.0.0.49bd47c54bushS&scm=20140722.S_community@@%E6%96%87%E7%AB%A0@@1036808._.ID_1036808-RL_%E4%BA%BF%E7%BA%A7%E6%B5%81%E9%87%8F%E6%9E%B6%E6%9E%84%E7%BD%91%E5%85%B3%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%EF%BC%8C%E5%B8%B8%E7%94%A8%E7%BD%91%E5%85%B3%E5%AF%B9%E6%AF%94-LOC_search~UND~community~UND~item-OR_ser-V_3-P0_0)  
 [亿级流量架构网关设计思路，常用网关对比2](https://developer.aliyun.com/article/1036809?spm=a2c6h.14164896.0.0.49bd47c54bushS)  
 https://edgar615.github.io/api-gateway-flow.html  
+[交易系统: 百亿流量微服务网关的设计与实现](https://zhuanlan.zhihu.com/p/97985176)
+[亿级流量架构之网关设计思路,常见网关对比](https://cloud.tencent.com/developer/article/1908302)
 
 #### 视频资料
 
@@ -86,6 +88,10 @@ IT老齐的咨询建议:
 
 ### 概念对比
 
+[温铭: Apache APISIX 的全流量 API 网关统筹集群流量 ](https://cloudnative.to/blog/full-traffic-api-gateway-based-on-apache-apisix/)
+- https://github.com/cloudnativeto/academy/tree/master/webinar/
+- [基于Apache APISIX的全流量API网关-温铭.pdf](https://github.com/cloudnativeto/academy/blob/master/webinar/03-%E5%9F%BA%E4%BA%8EApache%20APISIX%E7%9A%84%E5%85%A8%E6%B5%81%E9%87%8FAPI%E7%BD%91%E5%85%B3-%E6%B8%A9%E9%93%AD.pdf)
+- https://www.bilibili.com/video/BV1Gt4y1q7qC/?vd_source=8f2e8d9afb969c72b313832ed92dc193
 [NGINX 与 Kong 的痛点](https://apisix.apache.org/zh/blog/2022/07/30/why-we-need-apache-apisix/)  
 [API 网关 Kong 实战](https://xie.infoq.cn/article/10e4dab2de0bdb6f2c3c93da6)  
 - [视频: API 网关 Kong 实战](https://www.bilibili.com/video/BV1jY411p7qm/?p=4&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
@@ -120,8 +126,11 @@ IT老齐的咨询建议:
 [美团: 百亿规模API网关服务Shepherd的设计与实现](https://tech.meituan.com/2021/05/20/shepherd-api-gateway.html)  
 [美团网关服务编排_流程引擎:美团服务体验平台对接业务数据的最佳实践-海盗中间件](https://tech.meituan.com/2018/07/26/sep-service-arrange.html)  
 [放弃 Spring Cloud Gateway！Apache APISIX 在「还呗」业务中的技术实践](https://www.infoq.cn/article/9QV9xxWgTWS9UdQo7kwd?utm_source=related_read_bottom&utm_medium=article)  
-
+[如何设计一个亿级网关(API Gateway)？](https://www.woshinlper.com/system-design/micro-service/API%E7%BD%91%E5%85%B3/)
+[唯品会API网关设计与实践](https://mp.weixin.qq.com/s/gREMe-G7nqNJJLzbZ3ed3A)
+[csdn: 100万级连接，石墨文档WebSocket网关如何架构？](https://blog.csdn.net/crazymakercircle/article/details/135228907)
 
 #### golang 网关
 
 [小红书Edith](https://new.qq.com/rain/a/20231222A04SM500)  
+[日均数十亿访问量！解读个推API网关高能演进](https://www.getui.com/college/2021110230)

@@ -27,6 +27,11 @@
 - [Algorithms Visualization](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
 - [system-design-primer](https://github.com/donnemartin/system-design-primer)
 - [bigocheatsheet](https://www.bigocheatsheet.com/)
+
+### tools
+
+[everything curl](https://everything.curl.dev/index.html)
+
 ## Contributing
 
 

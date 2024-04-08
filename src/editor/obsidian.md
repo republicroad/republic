@@ -1,6 +1,29 @@
 
 ## 技巧汇总
 
+### 非编辑操作
+
+#### 搜索(ctrl+shift+F)
+
+有如下搜索 options
+
+- path
+- file
+- tag
+- [line](#line)
+- section
+##### line
+
+在同一行搜索关键字. 注意, 如果包含 `:` 等其他字符, 使用下列方式来进行行匹配.
+
+	line:("keyword")
+
+例子:
+
+	line:("https://stackoverflow.com/questions/16931770/makefile4-missing-separator-stop")
+
+
+
 ### 安装
 #### 1 安装代理可以访问插件
 
@@ -141,6 +164,9 @@ obsidian 默认粘贴图片使用的是 wiki 链接, 使用如\[[文件名]]和 
 	
 尽可能简短的模式
 	[vscode](vscode.md)
+
+
+
 
 
 ## 插件

@@ -102,7 +102,7 @@ Option--Edit Options --modify\_headers
 ```python
 def request(flow: http.HTTPFlow) -> None:
     """
-    将顺丰的ID替换成我们自己的ID 避免受规则影响
+    ID替换成我们自己的ID 
     """
     if "https://example.com/exc" in flow.request.url and re.search("7aff034c32dd2092ef63d12b86a95aeb",
                                                                               flow.request.url):

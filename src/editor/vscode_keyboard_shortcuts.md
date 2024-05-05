@@ -19,3 +19,21 @@ vscode 菜单栏的 **go** 选项
 | back                  | Ctrl + Alt + - | 返回原来位置                |     |
 | go to Reference       | Shife + F12    | 查看变量在哪些地方被引用(包括调用和实现) |     |
 | go to implementations | Ctrl + F12     | 查看变量实现的定义             |     |
+
+### vscode配置格式
+
+```json
+{
+  "key": "ctrl+i",
+  "command": "workbench.action.chat.stopListeningAndSubmit",
+  "when": "hasChatProvider && hasSpeechProvider && inChatInput && voiceChatInProgress || hasChatProvider && hasSpeechProvider && inlineChatFocused && voiceChatInProgress"
+}
+```
+
+https://github.com/codebling/vs-code-default-keybindings/blob/master/windows.negative.keybindings.json#L722
+
+
+### 资料
+
+https://code.visualstudio.com/docs/editor/intellisense#:~:text=You%20can%20trigger%20IntelliSense%20in,name%20to%20limit%20the%20suggestions.
+https://github.com/codebling/vs-code-default-keybindings/tree/master

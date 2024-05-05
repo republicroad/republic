@@ -32,6 +32,14 @@
 
 [everything curl](https://everything.curl.dev/index.html)
 
+### compile
+
+https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html
+
+
+### debug
+
+
 ## Contributing
 
 

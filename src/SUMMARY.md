@@ -10,6 +10,7 @@
 	- [excalidraw](editor/excalidraw.md)
 	- [codeblocks](editor/codeblocks.md)
 - [diveintosystems(zh_cn)](diveintosystems/readme.md.md)
+	- [第零章-简介](diveintosystems/第零章-简介.md)
 	- [第一章-优美的c语言](diveintosystems/第一章-优美的c语言/1.0%20简介.md)
 		- [1.1 C 语言编程入门](diveintosystems/第一章-优美的c语言/1.1%20C%20语言编程入门.md)
 		- [1.2. 输入与输出(printf和scanf)](diveintosystems/第一章-优美的c语言/1.2.%20输入与输出(printf和scanf).md)

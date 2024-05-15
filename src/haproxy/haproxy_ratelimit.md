@@ -30,8 +30,8 @@ wrk -t12 -c400 -d30s --latency "http://10.84.71.214/?mykey=fccdabc"
 调试 stick table:
 
 ```bash
-echo "show table rate_limit_table" | socat unix:/run/haproxy/admin.sock -
+echo "show table rate_10s" | socat unix:/run/haproxy/admin.sock -
 
 每隔一秒刷新 stick table 中的数据.
-watch -n 1 'echo "show table rate_limit_table" | socat unix:/run/haproxy/admin.sock -'
+watch -n 1 'echo "show table rate_10s" | socat unix:/run/haproxy/admin.sock -'
 ```

@@ -40,6 +40,7 @@
 - [readme](designs/readme.md)
 	- [gateway](designs/gateway.md)
 	- [webserver_benchmark](designs/webserver_benchmark.md)
+	- [sqlalchemy](designs/sqlalchemy.md)
 - [clash](clash/clash.md)
 - [git](git.md)
 - [database](database/README.md)

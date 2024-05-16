@@ -58,7 +58,7 @@ location /dirtest/ {
 	/var/www/html + f2.txt = /var/www/htmlf2.txt
 
 如果上面的 alias 配置是 /var/www/html, 那么最后的访问路径就是 /var/www/htmlf2.txt,
-所以无论何时, 如果配置路径时文件夹(目录)，最好带上尾斜杠, 这样可以避免很多低级配置问题. 毕竟, nginx做的是字符串拼接, 而不是真正的目录操作.[目录配置](nginx.md#目录配置)
+所以无论何时, 如果配置路径时文件夹(目录)，最好带上尾斜杠, 这样可以避免很多低级配置问题. 毕竟, nginx做的是字符串拼接, 而不是真正的目录操作.[目录配置](readme.md#目录配置)
 
 ### try_files
 

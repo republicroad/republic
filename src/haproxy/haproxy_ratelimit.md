@@ -1,5 +1,8 @@
 # haproxy ratelimit(stick table)
 
+haproxy配置文件:
+![](ratelimt_conf_haproxy.cfg)
+
 测试脚本:
 
 ```bash

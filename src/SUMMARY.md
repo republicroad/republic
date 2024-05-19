@@ -37,7 +37,7 @@
 			- [2.9.6. 编写和使用自己的C库(compiling multiple .c and .h files)](diveintosystems/第2章-深入C语言编程/2.9.%20高级C语言概念/2.9.6.%20编写和使用自己的C库(compiling%20multiple%20.c%20and%20.h%20files).md)
 			- [2.9.7. 将C编译为汇编代码并且编译汇编代码](diveintosystems/第2章-深入C语言编程/2.9.%20高级C语言概念/2.9.7.%20将C编译为汇编代码并且编译汇编代码.md)
 		- [2.10. 总结](diveintosystems/第2章-深入C语言编程/2.10.%20总结.md)
-	- [第3章-调试](diveintosystems/第3章-调试/3.0.md)
+	- [第3章-C调试工具](diveintosystems/第3章-调试/3.0%20C调试工具.md)
 		- [3.1. 使用 GDB 进行调试](diveintosystems/第3章-调试/3.1.%20使用%20GDB%20进行调试.md)
 		- [3.2. GDB Commands in Detail](diveintosystems/第3章-调试/3.2.%20GDB%20Commands%20in%20Detail.md)
 - [readme](designs/readme.md)

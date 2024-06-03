@@ -47,6 +47,7 @@
 - [clash](clash/clash.md)
 - [git](git.md)
 - [database](database/README.md)
+	- [sql](database/sql.md)
 	- [pg_trigger](database/pg_trigger.md)
 	- [postgresql应用技巧](database/postgresql应用技巧.md)
 - [devops](devops/README.md)

@@ -1,10 +1,10 @@
 # haproxy ratelimit(stick table)
 
 haproxy配置文件:
-[ratelimt_conf_haproxy.cfg](ratelimt_conf_haproxy.cfg)
+[haproxy.cfg](haproxy_sw/haproxy.cfg)
 
 另外一个文件测试链接:
-![](ratelimt_conf_haproxy.cfg)
+![](haproxy_sw/haproxy.cfg)
 
 测试脚本:
 

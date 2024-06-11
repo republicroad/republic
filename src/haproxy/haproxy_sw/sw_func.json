@@ -1,0 +1,398 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "slide window function api",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://150.158.144.155:8888/"
+
+        }
+    ],
+    "tags": [
+        {
+            "name": "rate_limit",
+            "description": "rate_limit func api"
+        }
+    ],
+    "paths": {
+        "/rate_10s": {
+            "get":{
+                "tags":["rate_limit"],
+				"summary": "Rate_10s_limit_get",
+				"operationId": "Rate_10s_limit_get",
+                "parameters": [
+                    {
+                      "name": "mykey",
+                      "in": "query",
+                      "description": "key use to incr rate",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Rate_res"
+                                }
+							}
+						}
+					}
+				}
+			},
+            "post":{
+                "tags":["rate_limit"],
+				"summary": "Rate_10s_limit_incr",
+				"operationId": "Rate_10s_limit_incr",
+                "parameters": [
+                    {
+                      "name": "mykey",
+                      "in": "query",
+                      "description": "key use to incr rate",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Rate_res"
+                                }
+							}
+						}
+					}
+				}
+			}
+        },
+        "/rate_1m": {
+            "get":{
+                "tags":["rate_limit"],
+				"summary": "Rate_1m_limit_get",
+				"operationId": "Rate_1m_limit_get",
+                "parameters": [
+                    {
+                      "name": "mykey",
+                      "in": "query",
+                      "description": "key use to incr rate",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Rate_res"
+                                }
+							}
+						}
+					}
+				}
+			},
+            "post":{
+                "tags":["rate_limit"],
+				"summary": "Rate_1m_limit_incr",
+				"operationId": "Rate_1m_limit_incr",
+                "parameters": [
+                    {
+                      "name": "mykey",
+                      "in": "query",
+                      "description": "key use to incr rate",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Rate_res"
+                                }
+							}
+						}
+					}
+				}
+			}
+        },
+        "/rate_1h": {
+            "get":{
+                "tags":["rate_limit"],
+				"summary": "Rate_1h_limit_get",
+				"operationId": "Rate_1h_limit_get",
+                "parameters": [
+                    {
+                      "name": "mykey",
+                      "in": "query",
+                      "description": "key use to incr rate",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Rate_res"
+                                }
+							}
+						}
+					}
+				}
+			},
+            "post":{
+                "tags":["rate_limit"],
+				"summary": "Rate_1h_limit_incr",
+				"operationId": "Rate_1h_limit_incr",
+                "parameters": [
+                    {
+                      "name": "mykey",
+                      "in": "query",
+                      "description": "key use to incr rate",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Rate_res"
+                                }
+							}
+						}
+					}
+				}
+			}
+        },
+        "/group_distinct_1m": {
+            "get":{
+                "tags":["rate_limit"],
+				"summary": "Group_distinct_1m_rate_limit_get ",
+				"operationId": "Group_distinct_1m_rate_limit_get",
+                "parameters": [
+                    {
+                      "name": "group",
+                      "in": "query",
+                      "description": "key use to group by",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                        "name": "distinct",
+                        "in": "query",
+                        "description": "key use to distinct",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Group_distinct_res"
+                                }
+							}
+						}
+					}
+				}
+			},
+            "post":{
+                "tags":["rate_limit"],
+				"summary": "Group_distinct_1m_rate_limit_incr ",
+				"operationId": "Group_distinct_1m_rate_limit_incr",
+                "parameters": [
+                    {
+                      "name": "group",
+                      "in": "query",
+                      "description": "key use to group by",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                        "name": "distinct",
+                        "in": "query",
+                        "description": "key use to distinct",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Group_distinct_res"
+                                }
+							}
+						}
+					}
+				}
+			}
+        }
+    },
+
+    "components": {
+        "schemas": {
+            "Rate_res":{
+                "type": "object",
+                "properties": {
+                    "ip": {
+                        "type": "string",
+                        "example": "59.174.226.158"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 12713
+                    },
+                    "date": {
+                        "type": "string",
+                        "example": "2024-06-07T08:49:49+0000"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "example": "1717750189"
+                    },
+                    "mykey": {
+                        "type": "string",
+                        "example": "geetest1"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 0
+                    },
+                    "idle": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 0
+                    },
+                    "counter": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "rate": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+                }
+            },
+            "Group_distinct_res":{
+                "type": "object",
+                "properties":{
+                    "ip": {
+                        "type": "string",
+                        "example": "59.174.226.158"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 12713
+                    },
+                    "date": {
+                        "type": "string",
+                        "example": "2024-06-07T08:49:49+0000"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "example": "1717750189"
+                    },
+                    "group": {
+                        "type": "string",
+                        "example": "deviced1"
+                    },
+                    "distinct": {
+                        "type": "string",
+                        "example": "user1"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 0
+                    },
+                    "group_pv": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "group_pv_rate": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "group_uv": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "group_uv_rate": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "combine_key_pv": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "combine_key_pv_rate": {
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    }
+
+                }
+            }
+        }
+    }   
+}

@@ -66,7 +66,7 @@
 	- [system_program](lang/c/system_program.md)
 - [readme](nginx/readme.md)
 	- [nginx压测](nginx/nginx压测.md)
-- [haproxy_ratelimit](haproxy/haproxy_ratelimit.md)
+- [haproxy](haproxy/readme.md)
 - [mitmproxy](mitmproxy/README.md)
 - [密码管理](passstore.md)
 - [windows开发环境](utility/readme.md)

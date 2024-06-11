@@ -3,8 +3,31 @@
 haproxy配置文件:
 [haproxy.cfg](haproxy_sw/haproxy.cfg)
 
-另外一个文件测试链接:
-![](haproxy_sw/haproxy.cfg)
+为了使用 openapi 文档, 请把 haproxy_sw 中内容复制到 /etc/haproxy 目录中.
+
+```bash
+root@ub20:~# tree -L 3 /etc/haproxy/
+/etc/haproxy/
+├── errors
+│   ├── 400.http
+│   ├── 403.http
+│   ├── 408.http
+│   ├── 500.http
+│   ├── 502.http
+│   ├── 503.http
+│   └── 504.http
+├── haproxy.cfg
+├── sw_func.html
+├── sw_func.json
+└── swagger-ui
+    └── 5.0.0
+        ├── swagger-ui-bundle.min.js
+        └── swagger-ui.min.css
+
+3 directories, 12 files
+```
+
+
 
 测试脚本:
 
@@ -86,3 +109,9 @@ Every 1.0s: echo "show table group_distinct_1m" | sudo socat unix:/run/haproxy/a
 ```bash
 wrk -t12 -c400 -d30s --latency "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd1"
 ```
+
+### roadmap
+
+现在是使用 haproxy 来进行计数, 目前用的都是 inc, 如果以后 sum 的场景, 这个就需要 add 操作.  
+[sc-add-gpc](https://www.haproxy.com/documentation/haproxy-configuration-manual/latest/#4-sc-add-gpc)  
+[sc-inc-gpc](https://www.haproxy.com/documentation/haproxy-configuration-manual/latest/#4-sc-inc-gpc)  

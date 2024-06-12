@@ -6,7 +6,7 @@ haproxy配置文件:
 为了使用 openapi 文档, 请把 haproxy_sw 中内容复制到 /etc/haproxy 目录中.
 
 ```bash
-root@ub20:~# tree -L 3 /etc/haproxy/
+root@ub20:/etc/haproxy# tree -L 4 /etc/haproxy/
 /etc/haproxy/
 ├── errors
 │   ├── 400.http
@@ -17,14 +17,27 @@ root@ub20:~# tree -L 3 /etc/haproxy/
 │   ├── 503.http
 │   └── 504.http
 ├── haproxy.cfg
-├── sw_func.html
-├── sw_func.json
-└── swagger-ui
-    └── 5.0.0
-        ├── swagger-ui-bundle.min.js
-        └── swagger-ui.min.css
+└── sw_openapi
+    ├── sw_func.html
+    ├── sw_func.json
+    └── swagger-ui
+        └── 5.0.0
+            ├── swagger-ui-bundle.min.js
+            └── swagger-ui.min.css
 
-3 directories, 12 files
+4 directories, 12 files
+```
+
+openapi的静态页面也可以使用 nginx 来部署.  
+
+```nginx
+
+        location /docs {
+            autoindex on;
+            alias /etc/haproxy/sw_openapi/;
+            index  index.html index.htm;
+        }
+
 ```
 
 

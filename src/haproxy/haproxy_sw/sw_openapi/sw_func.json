@@ -278,6 +278,166 @@
 					}
 				}
 			}
+        },
+        "/group_distinct_1h": {
+            "get":{
+                "tags":["rate_limit"],
+				"summary": "Group_distinct_1h_rate_limit_get ",
+				"operationId": "Group_distinct_1h_rate_limit_get",
+                "parameters": [
+                    {
+                      "name": "group",
+                      "in": "query",
+                      "description": "key use to group by",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                        "name": "distinct",
+                        "in": "query",
+                        "description": "key use to distinct",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Group_distinct_res"
+                                }
+							}
+						}
+					}
+				}
+			},
+            "post":{
+                "tags":["rate_limit"],
+				"summary": "Group_distinct_1h_rate_limit_incr ",
+				"operationId": "Group_distinct_1h_rate_limit_incr",
+                "parameters": [
+                    {
+                      "name": "group",
+                      "in": "query",
+                      "description": "key use to group by",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                        "name": "distinct",
+                        "in": "query",
+                        "description": "key use to distinct",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Group_distinct_res"
+                                }
+							}
+						}
+					}
+				}
+			}
+        },
+        "/group_distinct_1d": {
+            "get":{
+                "tags":["rate_limit"],
+				"summary": "Group_distinct_1d_rate_limit_get ",
+				"operationId": "Group_distinct_1d_rate_limit_get",
+                "parameters": [
+                    {
+                      "name": "group",
+                      "in": "query",
+                      "description": "key use to group by",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                        "name": "distinct",
+                        "in": "query",
+                        "description": "key use to distinct",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Group_distinct_res"
+                                }
+							}
+						}
+					}
+				}
+			},
+            "post":{
+                "tags":["rate_limit"],
+				"summary": "Group_distinct_1d_rate_limit_incr ",
+				"operationId": "Group_distinct_1d_rate_limit_incr",
+                "parameters": [
+                    {
+                      "name": "group",
+                      "in": "query",
+                      "description": "key use to group by",
+                      "required": true,
+                      "explode": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                        "name": "distinct",
+                        "in": "query",
+                        "description": "key use to distinct",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                          "type": "string"
+                        }
+                    }
+                  ],
+				"responses": {
+					"200": {
+						"description": "Successful Response",
+						"content": {
+							"application/json": {
+								"schema": {
+                                    "$ref": "#/components/schemas/Group_distinct_res"
+                                }
+							}
+						}
+					}
+				}
+			}
         }
     },
 
@@ -288,44 +448,53 @@
                 "properties": {
                     "ip": {
                         "type": "string",
-                        "example": "59.174.226.158"
+                        "example": "59.174.226.158",
+                        "description": "请求ip"
                     },
                     "port": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 12713
+                        "example": 12713,
+                        "description": "请求端口"
                     },
                     "date": {
                         "type": "string",
-                        "example": "2024-06-07T08:49:49+0000"
+                        "example": "2024-06-07T08:49:49+0000",
+                        "description": "请求时间"
                     },
                     "timestamp": {
                         "type": "string",
-                        "example": "1717750189"
+                        "example": "1717750189",
+                        "description": "请求时间戳"
                     },
                     "mykey": {
                         "type": "string",
-                        "example": "geetest1"
+                        "example": "geetest1",
+                        "description": "请求计数键"
                     },
                     "ttl": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 0
+                        "example": 0,
+                        "description": "请求计数剩余过期时间"
                     },
                     "idle": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 0
+                        "example": 0,
+                        "description": "请求计数间隔时间"
                     },
                     "counter": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数累计值"
                     },
                     "rate": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数速率"
                     }
                 }
             },
@@ -334,63 +503,76 @@
                 "properties":{
                     "ip": {
                         "type": "string",
-                        "example": "59.174.226.158"
+                        "example": "59.174.226.158",
+                        "description": "请求ip"
                     },
                     "port": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 12713
+                        "example": 12713,
+                        "description": "请求端口"
                     },
                     "date": {
                         "type": "string",
-                        "example": "2024-06-07T08:49:49+0000"
+                        "example": "2024-06-07T08:49:49+0000",
+                        "description": "请求时间"
                     },
                     "timestamp": {
                         "type": "string",
-                        "example": "1717750189"
+                        "example": "1717750189",
+                        "description": "请求时间戳"
                     },
                     "group": {
                         "type": "string",
-                        "example": "deviced1"
+                        "example": "deviced1",
+                        "description": "请求计数分组键"
                     },
                     "distinct": {
                         "type": "string",
-                        "example": "user1"
+                        "example": "user1",
+                        "description": "请求计数去重键"
                     },
                     "ttl": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 0
+                        "example": 0,
+                        "description": "请求计数剩余过期时间"
                     },
                     "group_pv": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数分组累计值"
                     },
                     "group_pv_rate": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数分组请求速率"
                     },
                     "group_uv": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数去重累计值"
                     },
                     "group_uv_rate": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数去重请求速率"
                     },
                     "combine_key_pv": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数组合累计值"
                     },
                     "combine_key_pv_rate": {
                         "type": "integer",
                         "format": "int64",
-                        "example": 1
+                        "example": 1,
+                        "description": "请求计数组合请求速率"
                     }
 
                 }

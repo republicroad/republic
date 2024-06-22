@@ -19,6 +19,8 @@ vscode 菜单栏的 **go** 选项
 | back                  | Ctrl + Alt + - /或 Alt + <-(leftarrow) | 返回原来位置                |     |
 | go to Reference       | Shift + F12                           | 查看变量在哪些地方被引用(包括调用和实现) |     |
 | go to implementations | Ctrl + F12                            | 查看变量实现的定义             |     |
+| **Format Document**   | Shift+Alt+F                           | 对代码文档格式化              |     |
+| word warp             | Alt+Z                                 | 代码折行展示                |     |
 
 ### vscode配置格式
 

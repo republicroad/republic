@@ -462,7 +462,7 @@ endOf(date('2022-11-14 15:45:12', 'day')); // 2022-11-14 23:59:59
 
 ## 数组(Array)
 
-Array represents a list of other data types (list of numbers, strings, booleans). It's declared by opening a square bracket, writing a list of desired data types, and closing it.
+数组表示其他数据类型的列表（数字、字符串、布尔值的列表）。它的声明方式首先是左方括号，依次按逗号分隔数据，然后写右方括号表示结束定义。
 
 ```c
 ['a', 'b', 'c'] // string array
@@ -472,9 +472,8 @@ Array represents a list of other data types (list of numbers, strings, booleans)
 ### 数组运算符
 ### 数组成员访问符
 
-Properties in the array can be accessed using dot syntax `.key` or `[key]`.
-
-For example:
+数组中的成员可以使用 `.key` 和 `[key]` 进行访问。  
+举个例子:
 
 ```c
 // Suppose customer.groups = ["admin", "user"]

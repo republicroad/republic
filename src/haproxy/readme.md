@@ -1,45 +1,71 @@
-# haproxy ratelimit(stick table)
 
-haproxy配置文件:
-[haproxy.cfg](haproxy_sw/haproxy.cfg)
+## haproxy slide window
 
-为了使用 openapi 文档, 请把 haproxy_sw 中内容复制到 /etc/haproxy 目录中.
+
+### 代码结构
 
 ```bash
-root@ub20:/etc/haproxy# tree -L 4 /etc/haproxy/
+(.venv) ryefccd@republic:~/workspace/brde$ tree -L 2 conf/haproxy/
+conf/haproxy/
+├── haproxy.cfg            # haproxy 配置文件
+├── haproxy_demo.cfg       # haproxy slide window 配置文件
+├── readme.md              # 自述文件
+└── sw_openapi             # haproxy 导出的 restful 接口的 openapi 文档
+    ├── swagger-ui         # openapi 接口结构页面渲染js和css依赖文件
+    ├── sw_func.html       # openapi(swagger) 页面入口
+    └── sw_func.json       # restful 接口的spec定义文件
+
+2 directory, 5 files
+
+```
+
+
+### 部署说明
+
+将 haproxy.cfg  文件 和 sw_openapi 文件夹复制到 /etc/haproxy 文件夹中.  
+**根据实际情况修改 haproxy 的监听端口**(bind :port).
+
+```bash
+frontend fe_api
+    bind :88
+    
+    use_backend rate_10s   if { path /rate_10s }  #### \{ 与 path 之间要空格, uri 与 \} 之间也要保空格
+    use_backend rate_1m    if { path /rate_1m  }
+    use_backend rate_5m    if { path /rate_5m  }
+    use_backend rate_1h    if { path /rate_1h  }
+    use_backend rate_1d    if { path /rate_1d  }
+    use_backend rate_7d    if { path /rate_7d  }
+    ...
+
+```
+
+
+最后结构如下所示:  
+
+
+```bash
+root@ub20:~# tree -L 2 /etc/haproxy/
 /etc/haproxy/
 ├── errors
-│   ├── 400.http
-│   ├── 403.http
-│   ├── 408.http
-│   ├── 500.http
-│   ├── 502.http
-│   ├── 503.http
-│   └── 504.http
+│   ├── 400.http
+│   ├── 403.http
+│   ├── 408.http
+│   ├── 500.http
+│   ├── 502.http
+│   ├── 503.http
+│   └── 504.http
 ├── haproxy.cfg
 └── sw_openapi
     ├── sw_func.html
     ├── sw_func.json
     └── swagger-ui
-        └── 5.0.0
-            ├── swagger-ui-bundle.min.js
-            └── swagger-ui.min.css
-
-4 directories, 12 files
 ```
 
-openapi的静态页面也可以使用 nginx 来部署.  
+最后执行 `systemctl reload haproxy` 即可重载服务.
 
-```nginx
 
-        location /docs {
-            autoindex on;
-            alias /etc/haproxy/sw_openapi/;
-            index  index.html index.htm;
-        }
 
-```
-
+### 测试步骤
 
 
 测试脚本:

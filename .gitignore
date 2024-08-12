@@ -4,5 +4,6 @@ lxd/lxd-ui-192.168.0.39.pfx
 lxd/lxd-ui-192.168.0.39.crt
 lang/c/mdbook/book/
 book
+.ipynb_checkpoints/
 Excalidraw/
 **/*.exe

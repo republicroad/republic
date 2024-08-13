@@ -20,3 +20,5 @@ ctrl + r          I-search backward，对repl循环中的历史命令进行搜�
 
 [How do I output lists as a table in Jupyter notebook?](https://stackoverflow.com/questions/35160256/how-do-i-output-lists-as-a-table-in-jupyter-notebook)
 [prettytable](https://pypi.org/project/prettytable/)
+
+[Pretty Jupyter](https://pretty-jupyter.readthedocs.io/en/latest/)

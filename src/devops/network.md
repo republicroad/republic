@@ -61,6 +61,12 @@ https://www.baeldung.com/linux/socat-command
 https://medium.com/@ria.banerjee005/a-guide-to-socat-for-penetration-testing-8b8db7b0458d  
 https://gtfobins.github.io/gtfobins/socat/  
 
+https://www.redhat.com/en/blog/getting-started-socat  
+https://medium.com/@girish1729/11-socat-command-lines-you-can-copy-paste-into-your-shell-cb162cfc8076  
+https://linuxcommandlibrary.com/man/socat  
+https://www.query.ai/resources/blogs/creating-a-secure-encrypted-channel-with-socat/  
+https://systemoverlord.com/2018/01/20/socat-as-a-handler-for-multiple-reverse-shells.html  
+https://learntheshell.com/cheatsheets/socat/  
 ## socat as server
 
 ```bash
@@ -82,3 +88,8 @@ socat  - TCP4:10.84.71.178:5778
 
 
 https://www.digitalocean.com/community/tutorials/how-to-use-netcat-to-establish-and-test-tcp-and-udp-connections#how-to-communicate-through-netcat  
+
+
+# tcpdump
+
+https://learntheshell.com/cheatsheets/tcpdump/  

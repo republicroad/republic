@@ -23,7 +23,7 @@
      "input": {}
      "log":"{"file":{"path":"/log/brde_datalog/DATA_LOG_6.log"},"offset":2693589}",
      "proj_id":"proj_e8033f581ead4852",
-     "shadow_output":"[{"performance":"6.851766ms","result":{"reason":"账号黑                        单","result":"reject"},"rule_id":"rule_5d87861d10b84380","rule_name":"多彩规则1"}]",
+     "shadow_output":"[{"performance":"6.851766ms","result":{"reason":"账号黑单","result":"reject"},"rule_id":"rule_5d87861d10b84380","rule_name":"多彩规则1"}]",
      "user_id":"82b3c08950464a23a72d3c5c6403730d"
      }
 ```

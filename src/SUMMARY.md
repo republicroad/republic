@@ -74,3 +74,5 @@
 - [windows开发环境](utility/readme.md)
 	- [windows_wsl2](utility/windows_wsl2.md)
 -  [zen-engine](zen-engine.md)
+- [数据处理](data/readme.md)
+	- [duckdb](data/duckdb.md)

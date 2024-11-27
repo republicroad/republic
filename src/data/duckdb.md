@@ -282,6 +282,34 @@ select id, unnest(j->'$[*].result.res')from tbl2;
 }
 ```
 
+```sql
+CREATE TABLE tbl3 (id varchar,j JSON);
+insert into tbl3 values ('{"store":{"book":[{"category":"reference","author":"Nigel Rees","title":"Sayings of the Century","price":8.95},{"category":"fiction","author":"Evelyn Waugh","title":"Sword of Honour","price":12.99},{"category":"fiction","author":"Herman Melville","title":"Moby Dick","isbn":"0-553-21311-3","price":8.99},{"category":"fiction","author":"J. R. R. Tolkien","title":"The Lord of the Rings","isbn":"0-395-19395-8","price":22.99}],"bicycle":{"color":"red","price":19.95}}}');
+```
+
+```sql
+select j->'$.store.book[*].author' from tbl3;
+
+select j->'$..author' from tbl3;
+
+select j->'$.store.*' from tbl3;
+
+select j->'$.store..price' from tbl3;
+
+select j->'$..book[2]' from tbl3;
+
+select j->'$..book[#-1]' from tbl3;
+```
+
 # [jsonpath](https://goessner.net/articles/JsonPath/  )
+
+不是所有的 jsonpath 路径都支持。支持的部分如下:
+
+1. $.store.book[*].author
+2. $..author
+3. $.store.*
+4. $.store..price
+5. $..book[2]
+6. $..book[#-1]
 
 [prestodb json](https://prestodb.io/docs/current/functions/json.html)  

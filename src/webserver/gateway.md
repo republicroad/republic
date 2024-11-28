@@ -41,21 +41,6 @@
 目前的架构基本上南北用流量网关接入, 微服务间东西流量用api网关来负载. 随着安全, 合规审计的之类的垂直需求愈加频繁的背景下, 东西南北网关融合的趋势愈加明显. 既想要流量网关的性能, 又想要api网关的灵活和扩展诉求, 随之而来的是云原生的网关, 对业务网关和流量网关以及*安全网关*的进行了高度集成. 显著地降低了部署和运维成本.
 
 
-
-### 网关异常流量识别(安全网关增强)
-
-- 协议破解检测
-- web环境检测
-- 小程序环境检测
-- app环境检测
-- 客户端请求签名  
-
-
-瑞数          botgate  
-威胁猎人   api安全管控平台  
-
-
-
 ## 参考资料
 
 [什么是API网关？](https://info.support.huawei.com/info-finder/encyclopedia/zh/API%E7%BD%91%E5%85%B3.html)  
@@ -67,6 +52,12 @@
 https://edgar615.github.io/api-gateway-flow.html  
 [交易系统: 百亿流量微服务网关的设计与实现](https://zhuanlan.zhihu.com/p/97985176)
 [亿级流量架构之网关设计思路,常见网关对比](https://cloud.tencent.com/developer/article/1908302)
+
+### 限流
+
+[redis + lua 限流 算法 滑动窗口 漏桶 令牌桶](https://www.cnblogs.com/lyc88/p/17800496.html "发布于 2023-10-31 15:58")  
+[shenyu gateway 限流 lua redis](https://github.com/lyc88/shenyu/tree/master/shenyu-plugin/shenyu-plugin-fault-tolerance/shenyu-plugin-ratelimiter/src/main/resources/META-INF/scripts)  
+
 
 #### 视频资料
 

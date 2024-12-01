@@ -1,6 +1,16 @@
 {
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    // "terminal.integrated.defaultProfile.windows": "Git Bash",
+    // MSYS2 UCRT // UCRT64 //  Git Bash
+    // "terminal.integrated.defaultProfile.windows": "UCRT642",
     "files.associations": {
-        "unistd.h": "c"
-    }
+        "unistd.h": "c",
+        "winsock2.h": "c",
+        "types.h": "c",
+        "stdio.h": "c",
+        "windows.h": "c",
+        "ws2tcpip.h": "c",
+        "timeb.h": "c",
+        "time.h": "c"
+    },
+    "terminal.integrated.env.windows": {}
 }

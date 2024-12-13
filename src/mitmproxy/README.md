@@ -71,7 +71,7 @@ mitmweb 浏览器界面的形式
 
   点击Options--Edit Options--选择map\_remote，填入替换资源。（这里的语法规则为：|http/https\://过滤内容|需要替换的URL|远程资源地址）当然我们在这里可以直接将过滤和需要替换的URL写成一个例如（|http/https\://过滤内容|远程资源地址）
 
-  如：|<https://static.geetest.com/v4/static/v1.7.1/js/gcaptcha4.js>|<http://devstatic.geetest.com/v4/static/v1.7.2/js/gcaptcha4.js>
+  如：|<https://xxxx.com/v4/static/vxx/js/gcaptcha4.js>|<http://xxxx.com/v4/static/vxx2/js/gcaptcha4.js>
 
 *   本地资源
 
@@ -86,7 +86,7 @@ mitmweb 浏览器界面的形式
 
 Option--Edit Options --modify\_headers
 
-例如配置：|static.geetest.com|Host|123.56.131.148，将static静态资源指向148服务器。同理我们可以将验证服务指向对应的服务，例如|api.geetest.com|Host|192.168.144.32
+例如配置：|api.xxxx.com|Host|123.56.131.148，将静态资源指向148服务器。同理我们可以将验证服务指向对应的服务，例如|api.xxx.com|Host|192.168.144.32
 再例如在平时的测试过程中会遇到服务更新，特别是有新的规则时，由于我们服务不可能做到完全同步更新，故分布式集群上就会同时存在“新旧服务”的情况。也就是会出现：
 
   “新服务问---旧服务答”

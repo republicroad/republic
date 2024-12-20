@@ -22,3 +22,31 @@ ctrl + r          I-search backward，对repl循环中的历史命令进行搜�
 [prettytable](https://pypi.org/project/prettytable/)
 
 [Pretty Jupyter](https://pretty-jupyter.readthedocs.io/en/latest/)
+
+
+
+## ssh
+
+https://askubuntu.com/questions/264046/how-to-run-the-ssh-server-on-a-port-other-than-22
+
+
+## network
+
+
+[How-to Install and Use Ping | Troubleshoot Linux Networks](https://ioflood.com/blog/install-ping-command-linux/#:~:text=Installing%20'Ping'%20with%20APT,'Reading%20package%20lists...)
+
+ifconfig
+apt install net-tools
+
+ping
+apt install iputils-ping
+
+
+## show image
+
+https://mljar.com/blog/jupyter-notebook-insert-image/
+
+
+## cheetsheet
+
+https://cheatography.com/tag/jupyter/#google_vignette  

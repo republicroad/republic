@@ -28,13 +28,19 @@ conf/haproxy/
 ```bash
 frontend fe_api
     bind :88
-    
-    use_backend rate_10s   if { path /rate_10s }  #### \{ 与 path 之间要空格, uri 与 \} 之间也要保空格
-    use_backend rate_1m    if { path /rate_1m  }
-    use_backend rate_5m    if { path /rate_5m  }
-    use_backend rate_1h    if { path /rate_1h  }
-    use_backend rate_1d    if { path /rate_1d  }
-    use_backend rate_7d    if { path /rate_7d  }
+
+    use_backend rate_10s   if { path /rate_10s }  #### \{ 与 path 之间要空格, uri 与 \} 之间也要保空格
+    use_backend rate_1m    if { path /rate_1m  }
+    use_backend rate_5m    if { path /rate_5m  }
+    use_backend rate_1h    if { path /rate_1h  }
+    use_backend rate_1d    if { path /rate_1d  }
+    use_backend rate_7d    if { path /rate_7d  }
+
+    use_backend group_distinct_1m  if { path /group_distinct_1m }
+    use_backend group_distinct_5m  if { path /group_distinct_5m }
+    use_backend group_distinct_1h  if { path /group_distinct_1h }
+    use_backend group_distinct_1d  if { path /group_distinct_1d }
+    use_backend group_distinct_7d  if { path /group_distinct_7d }
     ...
 
 ```
@@ -72,14 +78,14 @@ root@ub20:~# tree -L 2 /etc/haproxy/
 
 ```bash
 # 在最近10s的窗口移动步长, 30s窗口长度之内做 fccdabc 值进行频率计数 
-curl "http://127.0.0.1/rate_10s?mykey=fccdabc"
+curl "http://127.0.0.1/rate_10s?v=fccdabc"
 # 在最近1m的窗口移动步长, 3m窗口长度之内做 fccdabc 值进行频率计数 
-curl "http://127.0.0.1/rate_1m?mykey=fccdabc"
+curl "http://127.0.0.1/rate_1m?v=fccdabc"
 # 在最近1h的窗口移动步长, 3h窗口长度之内做 fccdabc 值进行频率计数 
-curl "http://127.0.0.1/rate_1h?mykey=fccdabc"
+curl "http://127.0.0.1/rate_1h?v=fccdabc"
 
 # 对mykey进行查看, 查看当前的剩余过期时间ttl和上次计数修改时间
-curl -i -v -XGET "http://127.0.0.1/?mykey=fccdabc"
+curl -i -v -XGET "http://127.0.0.1/?v=fccdabc"
 ```
 
 以后可以在修改数据前使用 haproxy 的变量把ttl和上次计数修改时间记录下来. 最后和当前的最新计数返回. 这些信息有助于去记录数据的分布.
@@ -88,10 +94,10 @@ curl -i -v -XGET "http://127.0.0.1/?mykey=fccdabc"
 压测命令:
 
 ```bash
-wrk -t12 -c400 -d30s --latency "http://10.84.71.214/rate_10s?mykey=fccdabc"
+wrk -t12 -c400 -d30s --latency "http://10.84.71.214/rate_10s?v=fccdabc"
 
 # 对照组
-wrk -t12 -c400 -d30s --latency "http://10.84.71.214/?mykey=fccdabc"
+wrk -t12 -c400 -d30s --latency "http://10.84.71.214/?v=fccdabc"
 ```
 
 
@@ -110,19 +116,19 @@ watch -n 1 'echo "show table rate_10s" | socat unix:/run/haproxy/admin.sock -'
 测试脚本:
 
 ```bash
-curl "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd1"
+curl "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd1"
 ...
 
-curl "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd2"
+curl "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd2"
 ...
 
-curl "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd3"
+curl "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd3"
 ...
 
-curl "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd4"
+curl "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd4"
 ...
 
-curl "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd5"
+curl "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd5"
 ...
 ```
 
@@ -146,7 +152,7 @@ Every 1.0s: echo "show table group_distinct_1m" | sudo socat unix:/run/haproxy/a
 压测命令:
 
 ```bash
-wrk -t12 -c400 -d30s --latency "http://150.158.144.155:8888/group_distinct_1m?group=deviced1&distinct=fccd1"
+wrk -t12 -c400 -d30s --latency "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd1"
 ```
 
 ### roadmap

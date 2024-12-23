@@ -54,7 +54,6 @@
 	- [sql](database/sql.md)
 	- [pg_trigger](database/pg_trigger.md)
 	- [postgresql应用技巧](database/postgresql应用技巧.md)
-	- [duckdb](database/duckdb.md)
 - [devops](devops/README.md)
 	- [package_manager](devops/package_manager.md)
 	- [system_tools](devops/system_tools.md)

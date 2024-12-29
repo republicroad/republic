@@ -12,7 +12,7 @@
 ## nginx
 
 [nginx 配置实践](nginx/index.md)  
-[nginx压测](nginx/nginx压测.md)
+[nginx压测](nginx/nginx压测.md)  
 
 
 ## apache

@@ -10,10 +10,7 @@
 ```
 
 ## jupyter
-
-
 ## pandas
-
 
 # ELT
 

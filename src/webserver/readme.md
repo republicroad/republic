@@ -7,11 +7,11 @@
 ## haproxy
 
 
-[基于haproxy实现的滑动计数示例](./haproxy/readme.md)  
+[基于haproxy实现的滑动计数示例](haproxy/index.md)  
 
 ## nginx
 
-[nginx 配置实践](nginx/readme.md)  
+[nginx 配置实践](nginx/index.md)  
 [nginx压测](nginx/nginx压测.md)
 
 

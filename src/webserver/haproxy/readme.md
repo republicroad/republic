@@ -1,3 +1,6 @@
+# haproxy
+
+基于haproxy实现的滑动计数示例
 
 ## haproxy slide window
 
@@ -18,7 +21,6 @@ conf/haproxy/
 2 directory, 5 files
 
 ```
-
 
 ### 部署说明
 
@@ -155,7 +157,14 @@ Every 1.0s: echo "show table group_distinct_1m" | sudo socat unix:/run/haproxy/a
 wrk -t12 -c400 -d30s --latency "http://150.158.144.155:88/group_distinct_1m?group=deviced1&v=fccd1"
 ```
 
-### roadmap
+
+## haproxy config
+
+```cfg
+{{#include haproxy.cfg}}
+```
+
+## roadmap
 
 现在是使用 haproxy 来进行计数, 目前用的都是 inc, 如果以后 sum 的场景, 这个就需要 add 操作.  
 [sc-add-gpc](https://www.haproxy.com/documentation/haproxy-configuration-manual/latest/#4-sc-add-gpc)  

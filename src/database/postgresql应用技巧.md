@@ -23,7 +23,7 @@
 
 
 
-### pgbouncer
+## pgbouncer
 
 [how-achieve-postgresql-high-availability-pgbouncer](https://severalnines.com/blog/how-achieve-postgresql-high-availability-pgbouncer/)
 [pgBouncer Setup, Extended Architecture, Use-cases and leveraging SO_REUSEPORT](https://www.enterprisedb.com/postgres-tutorials/pgbouncer-setup-extended-architecture-use-cases-and-leveraging-soreuseport)

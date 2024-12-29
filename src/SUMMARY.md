@@ -77,4 +77,3 @@
 - [my designs](designs/readme.md)
 	- [zen-engine](designs/zen-engine.md)
 	- [zen-expression](designs/zen-expression.md)
-	- [sqlalchemy](designs/sqlalchemy.md)

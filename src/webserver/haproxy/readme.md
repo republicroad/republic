@@ -161,33 +161,36 @@ wrk -t12 -c400 -d30s --latency "http://150.158.144.155:88/group_distinct_1m?grou
 [sc-add-gpc](https://www.haproxy.com/documentation/haproxy-configuration-manual/latest/#4-sc-add-gpc)  
 [sc-inc-gpc](https://www.haproxy.com/documentation/haproxy-configuration-manual/latest/#4-sc-inc-gpc)  
 
-
 #### sc-add-gpc
 
 ```shell
 backend rolling_sum10s
-    stick-table type binary len 16 size 1m expire 20s store gpc(1),gpc_rate(1,20s)   # ,gpc1,gpc1_rate(10s)
+    stick-table type binary len 16 size 1g expire 20s store gpc(1),gpc_rate(1,20s)   # ,gpc1,gpc1_rate(10s)
     acl is_post method POST
 
     # 在 sc-inc-gpc0 之前获取 ttl(expire) 和 idle 信息.
 
-    http-request set-var(txn.mykey) url_param(mykey)
+    http-request set-var(txn.v) url_param(v)
     http-request set-var(txn.num) url_param(num)
-    http-request set-var(txn._mykey) var(txn.mykey),digest(md5)
-    http-request set-var(txn.keyttl) var(txn._mykey),table_expire
+    http-request set-var(txn._v) var(txn.v),digest(md5)
+    http-request set-var(txn.keyttl) var(txn._v),table_expire
     http-request set-var(txn.keyttl) int(0) unless { var(txn.keyttl) -m found }   ## 如果前面没有设置 txn.keyttl table 中没有这个记录, 是第一次出现, 这里进行初始化.
-    http-request set-var(txn.keyidle) var(txn._mykey),table_idle
+    http-request set-var(txn.keyidle) var(txn._v),table_idle
     http-request set-var(txn.keyidle) int(0) unless { var(txn.keyidle) -m found }  ## 如果前面没有设置 txn.keyttl table 中没有这个记录, 是第一次出现, 这里进行初始化.
     # stick-table  type string  size 1m  expire 30s  store gpc0,gpc0_rate(10s),gpc1,gpc1_rate(10s)
     # 在 sc-inc-gpc0 之后, table key 的 ttl 和 idle 时间会重置.
     #  track-scX 和 sc-inc-gpc0(X) 里面的 X 是 sc0, sc1, sc2 中的一个. 
-    http-request track-sc0 var(txn._mykey) #if is_post  # track-sc0 会刷新 idle 和 ttl 的值.
+    http-request track-sc0 var(txn._v) #if is_post  # track-sc0 会刷新 idle 和 ttl 的值.
     #http-request sc-inc-gpc0(0) if is_post  # sc-inc-xxx 对键对应的值进行累加
     http-request sc-add-gpc(0,0) int(10)  # if is_post  # var(txn.num)
-    http-request set-var(txn.counter) var(txn._mykey),table_gpc(0,)    # table_gpc0
+    http-request set-var(txn.counter) var(txn._v),table_gpc(0,)    # table_gpc0
     http-request set-var(txn.counter) int(0) unless { var(txn.counter) -m found }
-    http-request set-var(txn.rate) var(txn._mykey),table_gpc_rate(0,)
+    http-request set-var(txn.rate) var(txn._v),table_gpc_rate(0,)
     http-request set-var(txn.rate) int(0) unless { var(txn.rate) -m found }
-    http-request return status 200 content-type application/json lf-string '{"counter":%[var(txn.rate)],"mykey":"%[var(txn.mykey)]","ttl":%[var(txn.keyttl)],"idle":%[var(txn.keyidle)],"ip": "%[src]","port": %cp,"date":"%[date,utime(%Y-%m-%dT%H:%M:%S%z)]", "timestamp":"%[date]"}' hdr Access-Control-Allow-Origin "*"
+    http-request return status 200 content-type application/json lf-string '{"counter":%[var(txn.rate)],"v":"%[var(txn.v)]","ttl":%[var(txn.keyttl)],"idle":%[var(txn.keyidle)],"ip": "%[src]","port": %cp,"date":"%[date,utime(%Y-%m-%dT%H:%M:%S%z)]", "timestamp":"%[date]"}' hdr Access-Control-Allow-Origin "*"
 
+```
+
+```shell
+curl -XPOST "http://10.84.71.214:88/rolling_sum10s?v=abcdef&num=10"
 ```

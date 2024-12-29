@@ -1,0 +1,100 @@
+#                                    __   __  __
+#                                    \ \ / / / /
+#                                     \ V / / /
+#                                      \_/  \/
+#
+#                                    V E C T O R
+#                                   Configuration
+#
+# ------------------------------------------------------------------------------
+# Website: https://vector.dev
+# Docs: https://vector.dev/docs
+# Chat: https://chat.vector.dev
+# ------------------------------------------------------------------------------
+
+# [sources.my_file_source.multiline]
+# start_pattern = '^\[[0-9]{4}-[0-9]{2}-[0-9]{2}'
+# mode = "halt_before"
+# condition_pattern = '^\[[0-9]{4}-[0-9]{2}-[0-9]{2}'
+# timeout_ms = 1000
+
+# Change this to use a non-default directory for Vector data storage:
+# data_dir: "/var/lib/vector"
+
+# Random Syslog-formatted logs
+sources:
+  dummy_logs:
+    type: "demo_logs"
+    format: "syslog"
+    interval: 1
+  logfile:
+    type: "file"
+    include: ["/tmp/tmplog/*.log"]  # "/var/log/**/*.log"
+    start_at_beginning: true
+    multiline:
+      start_pattern: '^\[[0-9]{4}-[0-9]{2}-[0-9]{2}'
+      mode: "halt_before"
+      condition_pattern: '^\[[0-9]{4}-[0-9]{2}-[0-9]{2}'
+      timeout_ms: 1000
+
+
+# Parse Syslog logs
+# See the Vector Remap Language reference for more info: https://vrl.dev
+transforms:
+  parse_logs:
+    type: "remap"
+    inputs: ["dummy_logs"]
+    source: |
+      . = parse_syslog!(string!(.message))
+
+# Print parsed logs to stdout
+sinks:
+  print:
+    type: "console"
+    inputs: ["logfile"]  # logfile   parse_logs
+    encoding:
+      codec: "json"
+      json:
+        pretty: true
+
+  brdelog_openobserve:
+    type: "http"
+    inputs: ["logfile"]
+    uri: "http://localhost:5080/api/default/brdelog/_json"  # brdelog 是 stream 也就是es中的 documents  # "http://localhost:5080/api/default/default/_json"
+    method: "post"
+    auth:
+      strategy: "basic"
+      user: "wanghao@geetest.com"
+      password: "enter your password"
+    compression: "gzip"
+    encoding:
+      codec: "json"
+      timestamp_format: "rfc3339"
+    healthcheck:
+      enabled: true
+
+  osslog:
+    type: aws_s3
+    inputs:
+      - logfile
+    bucket: "BUCKNET_NAME"
+    endpoint: "https://BUCKNET_NAME.oss-cn-shanghai.aliyuncs.com/brdelog/" # 记得要尾斜杠，否则会和后面的拼接成一个长字符串文件夹 #"s3://BUCKNET_NAME.oss-cn-shanghai.aliyuncs.com/BUCKNET_NAME/brde/" # "https://BUCKNET_NAME.oss-cn-shanghai.aliyuncs.com/fccdjny123/"  # https://BUCKNET_NAME.oss-cn-shanghai.aliyuncs.com/vector_test/  "BUCKNET_NAME.oss-cn-shanghai.aliyuncs.com/vector_test/"
+    region: "oss-cn-shanghai"
+    auth:
+      access_key_id: "enter your ACCESS_KEY_id"
+      secret_access_key: "enter your ACCESS_KEY"
+      #region: "oss-cn-shanghai"
+    encoding:
+      codec: "raw_message"
+    timezone: "Asia/Shanghai"
+    key_prefix: "date=%F/%H/%M/"  # "date=%F/hour=%H/"  # 这里可以加入机器id作为目录区分.
+    batch:
+      timeout_secs: 60
+    healthcheck:
+        enabled: false
+# Vector's GraphQL API (disabled by default)
+# Uncomment to try it out with the `vector top` command or
+# in your browser at http://localhost:8686
+# api:
+#   enabled: true
+#   address: "127.0.0.1:8686"

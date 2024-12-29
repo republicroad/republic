@@ -77,6 +77,7 @@
 	- [webserver_benchmark](webserver/webserver_benchmark.md)
 - [数据处理](data/readme.md)
 	- [duckdb](data/duckdb.md)
+	- [vector](data/vector/README.md)
 - [utility](utility/readme.md)
 	- [windows_wsl2](utility/windows_wsl2.md)
 	- [passstore(密码管理)](utility/passstore.md)

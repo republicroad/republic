@@ -1,0 +1,1089 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "slide window function api",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://150.158.144.155:88/"
+    },
+    {
+      "url": "http://10.84.71.214:88/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "rate_limit",
+      "description": "rate_limit func api"
+    },
+    {
+      "name": "sum_func",
+      "description": "sum func api"
+    }
+  ],
+  "paths": {
+    "/rate_10s": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_10s_limit_get",
+        "operationId": "Rate_10s_limit_get",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_10s_limit_incr",
+        "operationId": "Rate_10s_limit_incr",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rate_1m": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_1m_limit_get",
+        "operationId": "Rate_1m_limit_get",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_1m_limit_incr",
+        "operationId": "Rate_1m_limit_incr",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rate_5m": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_5m_limit_get",
+        "operationId": "Rate_5m_limit_get",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_5m_limit_incr",
+        "operationId": "Rate_5m_limit_incr",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rate_1h": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_1h_limit_get",
+        "operationId": "Rate_1h_limit_get",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_1h_limit_incr",
+        "operationId": "Rate_1h_limit_incr",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rate_1d": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_1d_limit_get",
+        "operationId": "Rate_1d_limit_get",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_1d_limit_incr",
+        "operationId": "Rate_1d_limit_incr",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rate_7d": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_7d_limit_get",
+        "operationId": "Rate_7d_limit_get",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Rate_7d_limit_incr",
+        "operationId": "Rate_7d_limit_incr",
+        "parameters": [
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to incr rate",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rate_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rolling_sum10s": {
+      "get": {
+        "tags": [
+          "sum_func"
+        ],
+        "summary": "Rolling_sum_10s_get ",
+        "operationId": "Rolling_sum_10s_get",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "key use to count",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "num",
+            "in": "query",
+            "description": "key use to sum",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "sum_func"
+        ],
+        "summary": "Rolling_sum_10s ",
+        "operationId": "Rolling_sum_10s",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "description": "key use to count",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "num",
+            "in": "query",
+            "description": "key use to sum",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group_distinct_1m": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_1m_rate_limit_get ",
+        "operationId": "Group_distinct_1m_rate_limit_get",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_1m_rate_limit_incr ",
+        "operationId": "Group_distinct_1m_rate_limit_incr",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group_distinct_5m": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_5m_rate_limit_get ",
+        "operationId": "Group_distinct_5m_rate_limit_get",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_5m_rate_limit_incr ",
+        "operationId": "Group_distinct_5m_rate_limit_incr",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group_distinct_1h": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_1h_rate_limit_get ",
+        "operationId": "Group_distinct_1h_rate_limit_get",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_1h_rate_limit_incr ",
+        "operationId": "Group_distinct_1h_rate_limit_incr",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group_distinct_1d": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_1d_rate_limit_get ",
+        "operationId": "Group_distinct_1d_rate_limit_get",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_1d_rate_limit_incr ",
+        "operationId": "Group_distinct_1d_rate_limit_incr",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group_distinct_7d": {
+      "get": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_7d_rate_limit_get ",
+        "operationId": "Group_distinct_7d_rate_limit_get",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rate_limit"
+        ],
+        "summary": "Group_distinct_7d_rate_limit_incr ",
+        "operationId": "Group_distinct_7d_rate_limit_incr",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "key use to group by",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "description": "key use to distinct",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group_distinct_res"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Rate_res": {
+        "type": "object",
+        "properties": {
+          "counter": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1,
+            "description": "请求计数累计值"
+          },
+          "v": {
+            "type": "string",
+            "example": "geetest1",
+            "description": "请求计数键"
+          },
+          "ttl": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "请求计数剩余过期时间"
+          },
+          "idle": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "请求计数间隔时间"
+          },
+          "date": {
+            "type": "string",
+            "example": "2024-06-07T08:49:49+0000",
+            "description": "请求时间"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "1717750189",
+            "description": "请求时间戳"
+          },
+          "ip": {
+            "type": "string",
+            "example": "59.174.226.158",
+            "description": "请求ip"
+          },
+          "port": {
+            "type": "integer",
+            "format": "int64",
+            "example": 12713,
+            "description": "请求端口"
+          }
+        }
+      },
+      "Group_distinct_res": {
+        "type": "object",
+        "properties": {
+          "gpv": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1,
+            "description": "请求计数分组请求速率"
+          },
+          "pv": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1,
+            "description": "请求计数分组去重请求速率"
+          },
+          "uv": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1,
+            "description": "请求计数去重请求速率"
+          },
+          "gidle": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "请求计数间隔时间"
+          },
+          "vidle": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "同一分组去重请求计数间隔时间"
+          },
+          "group": {
+            "type": "string",
+            "example": "deviced1",
+            "description": "请求计数分组键"
+          },
+          "v": {
+            "type": "string",
+            "example": "user1",
+            "description": "请求计数去重键"
+          },
+          "ttl": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "请求计数剩余过期时间"
+          },
+          "date": {
+            "type": "string",
+            "example": "2024-06-07T08:49:49+0000",
+            "description": "请求时间"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "1717750189",
+            "description": "请求时间戳"
+          },
+          "ip": {
+            "type": "string",
+            "example": "59.174.226.158",
+            "description": "请求ip"
+          },
+          "port": {
+            "type": "integer",
+            "format": "int64",
+            "example": 12713,
+            "description": "请求端口"
+          }
+        }
+      },
+      "Rolling_sum_res": {
+        "type": "object",
+        "properties": {
+          "ip": {
+            "type": "string",
+            "example": "59.174.226.158",
+            "description": "请求ip"
+          },
+          "port": {
+            "type": "integer",
+            "format": "int64",
+            "example": 12713,
+            "description": "请求端口"
+          },
+          "date": {
+            "type": "string",
+            "example": "2024-06-07T08:49:49+0000",
+            "description": "请求时间"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "1717750189",
+            "description": "请求时间戳"
+          },
+          "mykey": {
+            "type": "string",
+            "example": "geetest1",
+            "description": "请求计数键"
+          },
+          "ttl": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "请求计数剩余过期时间"
+          },
+          "idle": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0,
+            "description": "请求计数间隔时间"
+          },
+          "counter": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1,
+            "description": "请求计数累计值"
+          }
+        }
+      }
+    }
+  }
+}

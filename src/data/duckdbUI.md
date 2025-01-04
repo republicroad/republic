@@ -34,6 +34,9 @@ https://dbeaver.io/download/
 
 	![](attach/img_v3_02i5_0951a42c-094f-488e-8798-15e5517c3f5g.jpg)
 
+	删除原来的默认配置(这些配置需要下载, 如果下载慢, 就删除这些默认配置手动导入 duckdb 的 jar 包即可)
+
+	![](attach/Pasted%20image%2020250104104645.png)
 
 	![](attach/img_v3_02i5_20cb16d9-9039-49e9-b715-09d2c585e71g.jpg)
 

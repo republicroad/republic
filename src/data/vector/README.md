@@ -1,5 +1,9 @@
 # Vector Configuration
 
+vector 是一个集日志, metrics 功能于一身, 充当 agent, server和消费者多种角色于一体的数据搜集工具。可以用于搜集程序日志，搜集机器，容器运行指标，将结果进行转化处理后输出至下游对象存储，clickhose, influxdb, openobserve(es) 等系统的工具。
+
+在我们的业务中，主要用来搜集程序运行日志，业务数据日志，以及机器监控指标的任务。尤其是在多个vpc内进行相关日志和指标的搜集，中继，持久化等任务。
+
 ## config files
 
 

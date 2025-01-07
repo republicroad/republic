@@ -393,3 +393,28 @@ ORDER BY date;
 计算结果
 
 ![](attach/Pasted%20image%2020241223143211.png)
+
+
+
+## Excel文件导入/导出
+
+#### Excel导出
+
+```sql
+# 安装并导入扩展
+INSTALL spatial;
+LOAD spatial;
+
+# 导出数据
+COPY (SELECT * FROM regs) TO 'output.xlsx' WITH (FORMAT GDAL, DRIVER 'xlsx');
+```
+
+#### Excel导入
+```sql
+# 直接读取数据
+SELECT * FROM st_read('output.xlsx');
+
+# 读取数据并创建表格导入数据
+CREATE TABLE new_tbl AS SELECT * FROM st_read('output.xlsx');
+select * from new_tbl;
+```

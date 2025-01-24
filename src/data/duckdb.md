@@ -15,6 +15,84 @@
 ![](attach/Pasted%20image%2020241223142141.png)
 
 
+# 文件格式
+
+## json
+
+### json 导入
+
+### json 导出
+
+
+## csv
+### csv 导入
+
+### csv 导出
+
+## Excel
+
+### Excel导入
+```sql
+# 直接读取数据
+SELECT * FROM st_read('output.xlsx');
+
+# 读取数据并创建表格导入数据
+CREATE TABLE new_tbl AS SELECT * FROM st_read('output.xlsx');
+select * from new_tbl;
+```
+
+### Excel导出
+
+```sql
+# 安装并导入扩展
+INSTALL spatial;
+LOAD spatial;
+
+# 导出数据
+COPY (SELECT * FROM regs) TO 'output.xlsx' WITH (FORMAT GDAL, DRIVER 'xlsx');
+```
+
+
+## parquet 
+### parquet 导入
+
+### parquet 导出
+
+
+
+# 对象存储
+
+## ali oss
+
+兼容 s3 协议的对象存储使用如下配置访问:
+
+```sql
+
+```SQL
+-- 配置 决策引擎日志访问权限
+CREATE PERSISTENT SECRET oss_brde (
+    TYPE S3,
+    KEY_ID 'OSS ACCESS ID',  
+    SECRET 'OSS ACCESS KEY',
+    endpoint 'oss-cn-shanghai.aliyuncs.com',
+    REGION 'oss-cn-shanghai',
+    SCOPE 's3://bucket_name'
+);
+
+-- 查询 secret 配置, 此时应该看到 name(第一列) 为 oss_brde 的配置.
+select * from duckdb_secrets(); 
+
+-- 删除 secret 配置
+DROP PERSISTENT SECRET oss_brde;
+```
+
+配置完成后即可访问 ali oss 上的数据:
+
+```sql
+select * from read_json('s3://brde/area_base_demo.json');
+```
+
+
 # load data
 
 数据明细结构如下所示:
@@ -328,7 +406,7 @@ select j->'$..book[#-1]' from tbl3;
 [prestodb json](https://prestodb.io/docs/current/functions/json.html)  
 
 
-## 滑动窗口计算
+# 滑动窗口计算
 
 #### 测试数据
 ```json
@@ -398,26 +476,3 @@ ORDER BY date;
 
 
 
-
-## Excel文件导入/导出
-
-#### Excel导出
-
-```sql
-# 安装并导入扩展
-INSTALL spatial;
-LOAD spatial;
-
-# 导出数据
-COPY (SELECT * FROM regs) TO 'output.xlsx' WITH (FORMAT GDAL, DRIVER 'xlsx');
-```
-
-#### Excel导入
-```sql
-# 直接读取数据
-SELECT * FROM st_read('output.xlsx');
-
-# 读取数据并创建表格导入数据
-CREATE TABLE new_tbl AS SELECT * FROM st_read('output.xlsx');
-select * from new_tbl;
-```

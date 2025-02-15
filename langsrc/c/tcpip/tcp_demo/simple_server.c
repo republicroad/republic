@@ -1,3 +1,5 @@
+// 这是一个在linux和windows下都可以使用 gcc 编译运行的系统.
+
 #include <sys/types.h>
 #if defined (__WIN32__)
 	#include <winsock2.h>
@@ -10,6 +12,7 @@
 
 void init(void)
 {
+	// 判断是否是windows 系统
 	#if defined (__WIN32__)
 		WSADATA wsadata;
 		int iResult = WSAStartup( MAKEWORD( 2, 2 ), &wsadata );

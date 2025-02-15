@@ -1,9 +1,10 @@
+// https://gcc.gnu.org/onlinedocs/cpp/Predefined-Macros.html
 #include<stdio.h>
 #include<stdlib.h>
 //incompatible implicit declaration of built-in function 'exit
 #define WINXX 0
 
-int getTimeOfDay(void)
+int predefined_macros_test(void)
 {
     // #if defined(WINXX)
     // printf("defined(WINXX) && WINXX\n");
@@ -28,6 +29,6 @@ int getTimeOfDay(void)
 
 int main(){
 
-    getTimeOfDay();
+    predefined_macros_test();
     return 0;
 }

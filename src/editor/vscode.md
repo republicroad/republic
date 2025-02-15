@@ -58,8 +58,6 @@ windows上进行c的开发需要安装c/c++的编译器和调试器.
 #### 运行程序
 
 代码如下:
-[学生成绩管理系统](../lang/c/c_concepts.md#学生成绩管理系统)
-
 
 ![](attach/Pasted%20image%2020240221181400.png)
 

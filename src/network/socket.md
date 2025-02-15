@@ -107,6 +107,9 @@ $ ./client.exe
 
 此代码可以在理解后补充注释.
 
+![](../../langsrc/c/tcpip/tcp_demo/simple_client.c)
+
+
 ```simple_server.c 
 // 这是一个在linux和windows下都可以使用 gcc 编译运行的系统.
 #include <sys/types.h>
@@ -415,3 +418,18 @@ int main( void )
 
 [**TCP Operational Overview and the TCP Finite State Machine (FSM)**](http://www.tcpipguide.com/free/t_TCPOperationalOverviewandtheTCPFiniteStateMachineF-2.htm)
 [tcpipguide](http://www.tcpipguide.com/index.htm)
+
+
+
+![](../../langsrc/c/tcpip/tcp_demo/simple_server.c)
+
+```
+{{#include ../../langsrc/c/tcpip/tcp_demo/simple_server.c}}
+```
+
+
+![](../../langsrc/c/tcpip/tcp_demo/simple_client.c)
+
+```
+{{#include ../../langsrc/c/tcpip/tcp_demo/simple_client.c}}
+```

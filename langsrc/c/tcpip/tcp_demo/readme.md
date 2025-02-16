@@ -8,8 +8,8 @@
 
 ```bash
 # 编译服务端
-gcc  -o server.exe  simple_server.c  -lWs2_32  # windows
-gcc  -o server.exe  simple_server.c            # linux
+gcc  -o server.exe  simple_server.c  -lWs2_32  # windows
+gcc  -o server.exe  simple_server.c            # linux
 # 运行服务端
 $ ./server.exe
 
@@ -20,8 +20,8 @@ $ ./server.exe
 
 ```bash
 # 编译客户端
-gcc  -o client.exe  simple_client.c  -lWs2_32  # windows
-gcc  -o client.exe  simple_client.c            # linux
+gcc  -o client.exe  simple_client.c  -lWs2_32  # windows
+gcc  -o client.exe  simple_client.c            # linux
 # 运行客户端
 $ ./client.exe  
 

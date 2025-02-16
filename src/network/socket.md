@@ -77,6 +77,10 @@ UDP 并不比明信片更可靠。事实上，你可能会认为它不太可靠�
 
 ## tcp server client demo
 
+tcp通信过程如图所示:
+
+![](attach/export_0ke6.png)
+
 这是一个在linux和windows下都可以使用 gcc 编译 tcp 服务端和客户端示例.
 主要演示建立连接，客户端和服务端通信，关闭连接的过程.
 

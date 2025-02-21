@@ -3,13 +3,13 @@
 
 ## libc
 
-[C_standard_library Implementations](https://en.wikipedia.org/wiki/C_standard_library#Implementations)
-[Writing C software without the standard library](https://gist.github.com/tcoppex/443d1dd45f873d96260195d6431b0989)
-[forcing-elf-binary-to-use-another-libc-so](https://stackoverflow.com/questions/38590573/forcing-elf-binary-to-use-another-libc-so)
-[Multiple glibc libraries on a single host](https://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host)
-[how-to-run-new-software-without-updating-glibc](https://unix.stackexchange.com/questions/62940/how-to-run-new-software-without-updating-glibc)
-[how-to-chroot-to-provide-a-new-glibc-version-to-an-app](https://unix.stackexchange.com/questions/202966/how-to-chroot-to-provide-a-new-glibc-version-to-an-app)
-[glibc-improvements-and-what-to-expect-in-future-linux-distributions](https://www.linaro.org/blog/glibc-improvements-and-what-to-expect-in-future-linux-distributions/)
+[C_standard_library Implementations](https://en.wikipedia.org/wiki/C_standard_library#Implementations)  
+[Writing C software without the standard library](https://gist.github.com/tcoppex/443d1dd45f873d96260195d6431b0989)  
+[forcing-elf-binary-to-use-another-libc-so](https://stackoverflow.com/questions/38590573/forcing-elf-binary-to-use-another-libc-so)  
+[Multiple glibc libraries on a single host](https://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host)  
+[how-to-run-new-software-without-updating-glibc](https://unix.stackexchange.com/questions/62940/how-to-run-new-software-without-updating-glibc)  
+[how-to-chroot-to-provide-a-new-glibc-version-to-an-app](https://unix.stackexchange.com/questions/202966/how-to-chroot-to-provide-a-new-glibc-version-to-an-app)  
+[glibc-improvements-and-what-to-expect-in-future-linux-distributions](https://www.linaro.org/blog/glibc-improvements-and-what-to-expect-in-future-linux-distributions/)  
 https://news.ycombinator.com/item?id=29479769
 
 ### glibc backward compatibility

@@ -1,3 +1,5 @@
+// 这是一个在linux和windows下都可以使用 gcc 编译运行的系统.
+
 #include <sys/types.h>
 #if defined (__WIN32__)
 	#include <winsock2.h>
@@ -10,6 +12,7 @@
 
 void init(void)
 {
+	// 判断是否是windows 系统
 	#if defined (__WIN32__)
 		WSADATA wsadata;
 		int iResult = WSAStartup( MAKEWORD( 2, 2 ), &wsadata );
@@ -32,7 +35,7 @@ int main( void )
 	int s;
 	int s1;
 	int rc;
-	char buf[ 1 ];
+	char buf[ 20 ];
 
 	init();
 	local.sin_family = AF_INET;
@@ -62,13 +65,14 @@ int main( void )
 		perror( "accept call failed" );
 		exit( 1 );
 	}
-	rc = recv( s1, buf, 1, 0 );
+	rc = recv( s1, buf, 4, 0 );
 	if ( rc <= 0 )
 	{
 		perror( "recv call failed" );
 		exit( 1 );
 	}
-	printf( "%c\n", buf[ 0 ] );
+	// printf( "%c\n", buf[ 0 ] );
+	printf( "%s\n", buf );
 	rc = send( s1, "2", 1, 0 );
 	if ( rc <= 0 )
 		perror( "send call failed" );

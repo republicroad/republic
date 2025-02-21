@@ -1,10 +1,8 @@
 
-# c concepts
-
+# c核心概念
 
 ## c types
 
-2023-01-21
 ```c
 
 #include <stdio.h>
@@ -189,8 +187,6 @@ int main()
 
 ## 传参模式
 
-~~因为c语言的函数传参本质就是 call by value, 把参数的值拷贝一份传入函数. 在需要进行原地修改的场景时, 那么需要把变量本身传递进去, 这样就有了保持变量本身的概念----指针.~~
-
 c语言的函数传参会把每个实参都拷一份放在函数定义的形参空间中. 正因为如此, 为了对原有的值进行操作, 所以引入变量的引用(地址, 指针)的概念来进行原地修改.
 
 ### Call by Vaue 
@@ -313,19 +309,3 @@ a = 20 b = 10
 
 参考: [difference-between-call-by-value-and-call-by-reference](https://www.geeksforgeeks.org/difference-between-call-by-value-and-call-by-reference/)
 
-
-##  学生成绩管理系统
-
-
-[student-management-system-in-c](https://github.com/inside-the-div/student-management-system-in-c)
-
-[SMS](https://github.com/ripgamer/SMS)
-
-使用此程序进行演示:
-![](../../../langsrc/c/mysms.c)
-
-
-包含源码:
-```
-{{#include ../../../langsrc/c/mysms_linux.c}}
-```

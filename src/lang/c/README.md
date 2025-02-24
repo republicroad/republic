@@ -15,6 +15,17 @@
 [Writing and Using Your Own C Libraries](https://diveintosystems.org/book/C2-C_depth/advanced_writing_libraries.html)
 
 
+### compile
+
+https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html
+
+1. [the preprocessor](https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html#cpp) (expands #'s)
+2. [the compiler](https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html#comp) (produces .s or .o files)
+3. [the assembler](https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html#assemb) (produces .o files from .s files)
+4. [the link editor](https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html#link) (produces a.out files)
+5. [the runtime linker](https://www.cs.swarthmore.edu/~newhall/unixhelp/compilecycle.html#runtime) (loads and links shared libraries used by a.out)
+
+
 ## 资料链接
 
 [learn c](https://github.com/abhayanigam/Learn_C)

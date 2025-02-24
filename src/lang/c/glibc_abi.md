@@ -12,6 +12,8 @@
 [glibc-improvements-and-what-to-expect-in-future-linux-distributions](https://www.linaro.org/blog/glibc-improvements-and-what-to-expect-in-future-linux-distributions/)  
 https://news.ycombinator.com/item?id=29479769
 
+###  glibc
+[Working with `glibc`](https://sys.readthedocs.io/en/latest/doc/03_glibc.html#working-with-glibc)
 ### glibc backward compatibility
 
 [how-the-gnu-c-library-handles-backward-compatibility](https://developers.redhat.com/blog/2019/08/01/how-the-gnu-c-library-handles-backward-compatibility)

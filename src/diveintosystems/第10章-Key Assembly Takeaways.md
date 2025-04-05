@@ -41,19 +41,14 @@ Table 1. C functions with Length Specifiers
 This book offers just a taste of some of the most popular assembly languages in use. For more in-depth understanding of assembly, we encourage you to check out the ISA specifications:
 
 - [Intel 64 and IA32 Manuals](https://software.intel.com/en-us/articles/intel-sdm#architecture)
-    
 - [ARM Cortex-A Programmer’s Guide](https://developer.arm.com/docs/den0024/a/preface)
-    
 
 The following free resources may also be useful for those who are interested in learning 32-bit assembly:
 
 - [IA32 Programming Web Aside](http://csapp.cs.cmu.edu/3e/waside/waside-ia32.pdf) (Randal Bryant and David O’Hallaron)
-    
 - [32-bit ARM Assembly](https://azeria-labs.com/writing-arm-assembly-part-1/) (Azeria Labs)
-    
 
 The following books also feature in-depth discussions of assembly; these aren’t free, but they are great resources for further reading:
 
 - Intel systems: [_Computer Systems: A Programmer’s Perspective_](http://csapp.cs.cmu.edu/) (Randal Bryant and David O’Hallaron)
-    
 - ARMv8: [_Computer Organization and Design_](https://textbooks.elsevier.com/web/product_details.aspx?isbn=9780128017333) (David Patterson and John Hennessy)

@@ -74,9 +74,9 @@ InstalledDir: C:/Users/RYefccd/.zvm/master
 ### 依赖库搜索路径与系统搜索路径
 
 
-```hello.c
-
-#include <stdio.h> int main(int argc, char **argv) 
+```c
+#include <stdio.h>
+int main(int argc, char **argv) 
 { 
 	printf("Hello world\n"); 
 	return 0; 
@@ -85,13 +85,16 @@ InstalledDir: C:/Users/RYefccd/.zvm/master
 
 
 ```bash
-$ zig build-exe --c-source hello.c --library c $ ./hello Hello world
+$ zig build-exe hello.c --library c 
+$ ./hello  
+Hello world
 ```
 
 加入 --verbose-cc 可以查看真个编译的命令输出
 
 ```bash
-zig build-exe --c-source hello.c --library c --verbose-cc 
+zig build-exe hello.c --library c --verbose-cc 
+
 zig cc -MD -MV -MF zig-cache/tmp/42zL6fBH8fSo-hello.o.d -nostdinc -fno-spell-checking -isystem /home/andy/dev/zig/build/lib/zig/include -isystem /home/andy/dev/zig/build/lib/zig/libc/include/x86_64-linux-gnu -isystem /home/andy/dev/zig/build/lib/zig/libc/include/generic-glibc -isystem /home/andy/dev/zig/build/lib/zig/libc/include/x86_64-linux-any -isystem /home/andy/dev/zig/build/lib/zig/libc/include/any-linux-any -march=native -g -fstack-protector-strong --param ssp-buffer-size=4 -fno-omit-frame-pointer -o zig-cache/tmp/42zL6fBH8fSo-hello.o -c hello.c -fPIC
 ```
 
@@ -150,8 +153,9 @@ Available libcs:
 注意, `--library c`意味着不使用任何的系统文件. 
 
 ```bash
-$ zig build-exe --c-source hello.c --library c 
-$ ./hello Hello world 
+$ zig build-exe hello.c --library c 
+$ ./hello 
+Hello world 
 $ ldd ./hello 
 	linux-vdso.so.1 (0x00007ffd03dc9000) 
 	libc.so.6 => /lib/libc.so.6 (0x00007fc4b62be000) 
@@ -165,7 +169,7 @@ $ ldd ./hello
 glibc 不支持静态构建, 但[musl](https://www.musl-libc.org/)却支持静态构建(golang默认支持静态构建).
 
 ```bash
-$ zig build-exe --c-source hello.c --library c -target x86_64-linux-musl 
+$ zig build-exe hello.c --library c -target x86_64-linux-musl   
 $ ./hello Hello world 
 $ ldd hello not a dynamic executable
 ```
@@ -175,7 +179,7 @@ $ ldd hello not a dynamic executable
 这意味着此功能可在任何平台上使用。Windows 和 macOS 用户可以为上述任何目标平台构建 Zig 和 C 代码，并链接到 libc。同样，代码也可以针对其他架构进行交叉编译：
 
 ```bash
-$ zig build-exe --c-source hello.c --library c -target aarch64v8-linux-gnu 
+$ zig build-exe hello.c --library c -target aarch64v8-linux-gnu 
 $ file hello 
 hello: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 2.0.0, with debug_info, not stripped
 ```

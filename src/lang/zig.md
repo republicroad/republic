@@ -76,6 +76,11 @@ https://cookbook.ziglang.cc/14-01-sqlite.html
 
 ### zig build-exe
 
+[请下载下列示例程序:](https://republicroad.github.io/republic/diveintosystems/%E7%AC%AC2%E7%AB%A0-%E6%B7%B1%E5%85%A5C%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/2.9.%20%E9%AB%98%E7%BA%A7C%E8%AF%AD%E8%A8%80%E6%A6%82%E5%BF%B5/2.9.5.%20%E7%BC%96%E8%AF%91,%20%E9%93%BE%E6%8E%A5%E5%92%8CC%E5%BA%93%E4%BD%BF%E7%94%A8.html)
+- [`myprog.c`](https://diveintosystems.org/book/C2-C_depth/_attachments/myprog.c) 主程序
+- [`mylib.h`](https://diveintosystems.org/book/C2-C_depth/_attachments/mylib.h) 库头文件
+- [`mylib.c`](https://diveintosystems.org/book/C2-C_depth/_attachments/mylib.c) 库实现文件
+
 使用此命令构建可执行文件. 可以支持 zig 文件，c/c++文件, 以及编译器的构建的中间文件.
 
 ```bash

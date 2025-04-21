@@ -1,6 +1,16 @@
 
 # zig
 
+## install
+
+### zig official
+
+https://zig.guide/getting-started/installation  
+
+### zvm
+
+https://github.com/tristanisham/zvm  
+
 ## started
 
 [Getting Started](https://ziglang.org/learn/getting-started/)  
@@ -13,20 +23,6 @@
 book:  
 [zig-cookbook](https://cookbook.ziglang.cc/)  
 [zig-book](https://pedropark99.github.io/zig-book/)
-## install
-
-### zig official
-
-https://zig.guide/getting-started/installation  
-
-### zvm
-
-https://github.com/tristanisham/zvm  
-
-
-## build
-
-[Zig 构建系统](https://ziglang.org/learn/build-system/#installing-artifacts)
 
 初始化项目
 
@@ -39,7 +35,6 @@ info: created build.zig.zon
 info: created src\main.zig
 info: created src\root.zig
 info: see `zig build --help` for a menu of options
-
 ```
 
 
@@ -56,6 +51,216 @@ info: see `zig build --help` for a menu of options
 构建项目
 
 >  zig build
+>  
+
+
+## build
+
+[Zig Build System](https://ziglang.org/learn/build-system/#installing-artifacts)  
+[Zig 构建系统](https://ziglang.org/zh-CN/learn/build-system/)  
+[何时使用 Zig 构建系统？](https://ziglang.org/zh-CN/learn/build-system/#build-system)
+
+
+### zig build-exe
+
+使用此命令构建可执行文件. 可以支持 zig 文件，c/c++文件, 以及编译器的构建的中间文件.
+
+```bash
+$ zig build-exe  --verbose-cc myprog.c mylib.c -lc
+$ ./myprog 
+Enter two float values: 1 
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+
+### zig build-lib
+
+使用 build-lib 构建静态库文件和动态共享库文件.
+
+静态库
+```bash
+$ zig build-lib mylib.c -lc
+$ file libmylib.a 
+libmylib.a: current ar archive
+```
+
+等价的gcc命令:
+
+```bash
+gcc -o mylib.o -c mylib.c
+# 要构建静态库，请使用归档器 (`ar`)：
+ar -rcs libmylib.a mylib.o
+```
+
+动态共享库
+
+```bash
+$ zig build-lib mylib.c -lc -dynamic
+$ file libmylib.so 
+libmylib.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
+```
+
+等价的gcc命令:
+
+```bash
+gcc -fPIC -o mylib.o -c mylib.c
+gcc -shared -o libmylib.so mylib.o
+```
+
+库文件如何使用:
+
+```bash
+$ zig build-exe  --verbose-cc myprog.c -lc -lmylib -L.
+$ readelf -d myprog
+
+Dynamic section at offset 0x7c0 contains 25 entries:
+  标记        类型                         名称/值
+ 0x000000000000001d (RUNPATH)            Library runpath: [.]
+ 0x0000000000000001 (NEEDED)             共享库：[./libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            标志： NOW
+ ...
+ $ ./myprog 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+```bash
+$ zig build-exe --verbose-cc myprog.c -search_static_first -lc -lmylib -L. 
+$ readelf -d myprog
+
+Dynamic section at offset 0x7d0 contains 24 entries:
+  标记        类型                         名称/值
+ 0x000000000000001d (RUNPATH)            Library runpath: [.]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            标志： NOW
+ 0x0000000000000015 (DEBUG)              0x0
+...
+$ ./myprog 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+
+```
+
+
+得到静态库和动态库以后可以通过c/c++的abi给其他语言调用.
+[Use both static and dynamically linked libraries in gcc](https://stackoverflow.com/a/809821)  
+[Telling gcc directly to link a library statically](https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically)
+
+链接静态库:
+-l 默认优先链接动态库, 如果要链接静态库，请指定 `-l:libxxx.a` 即可
+```bash
+$ gcc myprog.c -lc -L. -l:libmylib.a
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffca859d000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000717456000000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000717456420000)
+$ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+将整个可执行文件静态编译:
+```bash
+$ gcc myprog.c -lmylib -L. -static
+$ ldd a.out 
+        不是动态可执行文件
+$ readelf -d a.out 
+
+There is no dynamic section in this file.
+
+$ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+链接动态库:
+```bash
+$ gcc myprog.c -lmylib -L.
+$ ./a.out 
+./a.out: error while loading shared libraries: libmylib.so: cannot open shared object file: No such file or directory
+$ LD_LIBRARY_PATH=. ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+
+### zig build-obj
+
+生成编译文件, 类似于 `gcc -c`生成的`.o`文件
+
+```bash
+$ zig build-obj mylib.c -lc
+$ file mylib.o
+mylib.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), with debug_info, not stripped
+```
+
+等价的 gcc 命令如下所示:
+
+```bash
+$ gcc -c mylib.c -o mylib_gcc.o
+$ file mylib_gcc.o 
+mylib_gcc.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+$ file mylib.o
+mylib.o: ELF 64-bit LSB relocatable, x86-64, version 1 (SYSV), not stripped
+$ md5sum mylib_gcc.o 
+d59f037c79ece46ef2d2162a2d664678  mylib_gcc.o
+$ md5sum mylib.o 
+d59f037c79ece46ef2d2162a2d664678  mylib.o
+```
+
+
+### zig build
+
+基本的命令 `zig build-exe`、`zig build-lib`、`zig build-obj` 和 `zig test` 通常已经足够。然而，有时项目需要另一层抽象来管理从源代码构建的复杂性。
+
+hello.zig
+```zig
+const std = @import("std"); 
+pub fn main() !void { 
+	std.debug.print("Hello World!\n", .{}); 
+}
+```
+
+
+build.zig
+```zig
+const std = @import("std");
+
+pub fn build(b: *std.Build) void {
+    const exe = b.addExecutable(.{
+        .name = "hello",
+        .root_source_file = b.path("hello.zig"),
+        .target = b.graph.host,
+    });
+
+    b.installArtifact(exe);
+
+    const run_exe = b.addRunArtifact(exe);
+
+    const run_step = b.step("run", "Run the application");
+    run_step.dependOn(&run_exe.step);
+}
+```
+
+可以使用专门的 build 脚本来完成复杂的项目构建. 这样方便管理构建的整个声明周期.
+
+> zig build run --summary all
+
 
 ## as c compiler
 
@@ -182,4 +387,55 @@ $ ldd hello not a dynamic executable
 $ zig build-exe hello.c --library c -target aarch64v8-linux-gnu 
 $ file hello 
 hello: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 2.0.0, with debug_info, not stripped
+```
+
+
+### python wheel musl
+
+manylinux 支持新的 musl libc.
+
+[PEP 656 – Platform Tag for Linux Distributions Using Musl](https://peps.python.org/pep-0656/)  
+[Wheels for musl (Alpine)](https://discuss.python.org/t/wheels-for-musl-alpine/7084)  
+
+
+
+## c compile and link
+
+
+静态库,  动态库与 -fPIC 编译细节探索:
+```bash
+$ gcc -o mylib.o -c mylib.c
+$ ar -rcs libmylib.a mylib.o
+$ gcc myprog.c -lmylib -L.
+$ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+静态库使用 -fPIC 也可以运行, 有什么区别?
+```bash
+$ gcc -fPIC -o mylib.o -c mylib.c
+$ ar -rcs libmylib.a mylib.o
+$ gcc myprog.c  -lmylib -L.
+$ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+编译动态库不使用 -fPIC 会有明确的错误提示: 
+```bash
+$ gcc -o mylib.o -c mylib.c
+$ gcc -shared -o libmylib.so mylib.o
+/usr/bin/ld: mylib.o: warning: relocation against `total_times' in read-only section `.text'
+/usr/bin/ld: mylib.o: relocation R_X86_64_PC32 against symbol `total_times' can not be used when making a shared object; recompile with -fPIC
+/usr/bin/ld: final link failed: bad value
+collect2: error: ld returned 1 exit status
+```
+动态库的正确使用模式:
+```bash
+$ gcc -fPIC -o mylib.o -c mylib.c
+$ gcc -shared -o libmylib.so mylib.o
 ```

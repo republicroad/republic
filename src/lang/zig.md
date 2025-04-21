@@ -14,6 +14,9 @@ https://github.com/tristanisham/zvm
 ## started
 
 [Getting Started](https://ziglang.org/learn/getting-started/)  
+https://ziglang.org/learn/overview/  
+https://ziglang.org/zh-CN/learn/samples/
+
 [zig.guide](https://zig.guide/)
 [zig.show/](https://zig.show/)  
 
@@ -23,6 +26,12 @@ https://github.com/tristanisham/zvm
 book:  
 [zig-cookbook](https://cookbook.ziglang.cc/)  
 [zig-book](https://pedropark99.github.io/zig-book/)
+
+
+https://zig-by-example.com/  
+https://github.com/zigcc/awesome-zig  
+
+
 
 初始化项目
 
@@ -54,12 +63,16 @@ info: see `zig build --help` for a menu of options
 >  
 
 
+### example
+
+https://rischmann.fr/blog/how-i-built-zig-sqlite  
+https://cookbook.ziglang.cc/14-01-sqlite.html  
+
 ## build
 
 [Zig Build System](https://ziglang.org/learn/build-system/#installing-artifacts)  
 [Zig 构建系统](https://ziglang.org/zh-CN/learn/build-system/)  
 [何时使用 Zig 构建系统？](https://ziglang.org/zh-CN/learn/build-system/#build-system)
-
 
 ### zig build-exe
 
@@ -73,7 +86,6 @@ Enter two float values: 1
 1.000000 and 2.000000
 2.000000 is the biggest
 ```
-
 
 ### zig build-lib
 
@@ -152,8 +164,7 @@ Enter two float values: 1
 
 
 得到静态库和动态库以后可以通过c/c++的abi给其他语言调用.
-[Use both static and dynamically linked libraries in gcc](https://stackoverflow.com/a/809821)  
-[Telling gcc directly to link a library statically](https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically)
+
 
 链接静态库:
 -l 默认优先链接动态库, 如果要链接静态库，请指定 `-l:libxxx.a` 即可
@@ -199,6 +210,8 @@ Enter two float values: 1
 ```
 
 
+[Use both static and dynamically linked libraries in gcc](https://stackoverflow.com/a/809821)  
+[Telling gcc directly to link a library statically](https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically)
 ### zig build-obj
 
 生成编译文件, 类似于 `gcc -c`生成的`.o`文件
@@ -222,7 +235,6 @@ d59f037c79ece46ef2d2162a2d664678  mylib_gcc.o
 $ md5sum mylib.o 
 d59f037c79ece46ef2d2162a2d664678  mylib.o
 ```
-
 
 ### zig build
 
@@ -439,3 +451,26 @@ collect2: error: ld returned 1 exit status
 $ gcc -fPIC -o mylib.o -c mylib.c
 $ gcc -shared -o libmylib.so mylib.o
 ```
+
+
+
+
+
+## 参考资料
+
+
+https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html  
+https://www.akkadia.org/drepper/dsohowto.pdf  
+
+
+### -fPIC
+
+[Why does gcc not implicitly supply the -fPIC flag when compiling static libraries on x86_64](https://stackoverflow.com/questions/3961446/why-does-gcc-not-implicitly-supply-the-fpic-flag-when-compiling-static-librarie)  
+[What, if any, are the implications of compiling objects with gcc -fPIC flag if they get used in executables?](https://stackoverflow.com/questions/1165593/what-if-any-are-the-implications-of-compiling-objects-with-gcc-fpic-flag-if-t)  
+[Is -fPIC implied on modern platforms](https://stackoverflow.com/questions/50131568/is-fpic-implied-on-modern-platforms)  
+[Is -fPIC for shared libraries ONLY?](https://stackoverflow.com/questions/49503475/is-fpic-for-shared-libraries-only)  
+
+[Does one still need to use -fPIC when compiling with GCC?](https://stackoverflow.com/questions/20637310/does-one-still-need-to-use-fpic-when-compiling-with-gcc)  
+[What does -fPIC mean when building a shared library?](https://stackoverflow.com/questions/966960/what-does-fpic-mean-when-building-a-shared-library)  
+[What is the -fPIE option for position-independent executables in gcc and ld?](https://stackoverflow.com/questions/2463150/what-is-the-fpie-option-for-position-independent-executables-in-gcc-and-ld)  
+[How can I tell, with something like objdump, if an object file has been built with -fPIC?](https://stackoverflow.com/questions/1340402/how-can-i-tell-with-something-like-objdump-if-an-object-file-has-been-built-wi)  

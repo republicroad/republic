@@ -1,32 +1,38 @@
 
 # zig
 
+
+[有了 C++、D 和 Rust，为什么还需要 Zig？](https://ziglang.org/zh-CN/learn/why_zig_rust_d_cpp/)
+
 ## install
 
 ### zig official
 
-https://zig.guide/getting-started/installation  
+通过官方来安装zig, :
+
+[zig快速入门](https://ziglang.org/zh-CN/learn/getting-started/#direct)
+[zig版本下载页](https://ziglang.org/zh-CN/download/)  
 
 ### zvm
 
+通过 zvm 来管理和安装不同的zig版本, 这个需要翻墙, 否则速度特别慢.
 https://github.com/tristanisham/zvm  
 
 ## started
 
-[Getting Started](https://ziglang.org/learn/getting-started/)  
+[代码范例](https://ziglang.org/zh-CN/learn/samples/)
+[Getting Started](https://ziglang.org/zh-CN/learn/getting-started/)  
 https://ziglang.org/learn/overview/  
-https://ziglang.org/zh-CN/learn/samples/
-
+https://ziglang.org/zh-CN/learn/samples/  
+https://ziglang.org/documentation/0.14.0/std/  
 [zig.guide](https://zig.guide/)
 [zig.show/](https://zig.show/)  
 
-[有了 C++、D 和 Rust，为什么还需要 Zig？](https://ziglang.org/zh-CN/learn/why_zig_rust_d_cpp/)
-[代码范例](https://ziglang.org/zh-CN/learn/samples/)
 
 book:  
 [zig-cookbook](https://cookbook.ziglang.cc/)  
 [zig-book](https://pedropark99.github.io/zig-book/)
-
+[Zig Language Reference](https://ziglang.org/documentation/master/)
 
 https://zig-by-example.com/  
 https://github.com/zigcc/awesome-zig  

@@ -177,8 +177,28 @@ Enter two float values: 1
 得到静态库和动态库以后可以通过c/c++的abi给其他语言调用.
 
 
-链接静态库:
--l 默认优先链接动态库, 如果要链接静态库，请指定 `-l:libxxx.a` 即可
+[链接静态库](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html-single/developer_guide/index#gcc-using-libraries_using-both-static-dynamic-library-gcc):
+- 方法1: -l 默认优先链接动态库, 如果要链接静态库，请指定 `-l:libxxx.a` 即可
+- 方法2: 使用-Wl,-Bstatic -lxxx 链接静态库
+```bash
+gcc ... -Wl,-Bstatic -lfirst -Wl,-Bdynamic -lsecond ...
+```
+	这个命令使用静态链接链接 first 库, 使用动态链接链接 second 库.
+
+```bash
+$ gcc myprog.c -L. -Wl,-Bstatic -lmylib
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffca859d000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000717456000000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000717456420000)
+$ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+这个windows上无法执行.
 ```bash
 $ gcc myprog.c -lc -L. -l:libmylib.a
 $ ldd a.out 
@@ -186,6 +206,20 @@ $ ldd a.out
         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000717456000000)
         /lib64/ld-linux-x86-64.so.2 (0x0000717456420000)
 $ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+```
+
+windows上可以运行:
+```bash
+$ gcc myprog.c -L. -l:libmylib.a
+$ gcc myprog.c -L. -Wl,-Bstatic -l:libmylib.a
+$ gcc myprog.c -L. -Wl,-Bstatic -lmylib
+$ gcc myprog.c -L. -lmylib
+
+$ ./myprog.out 
 Enter two float values: 1
 2
 1.000000 and 2.000000
@@ -464,24 +498,3 @@ $ gcc -shared -o libmylib.so mylib.o
 ```
 
 
-
-
-
-## 参考资料
-
-
-https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html  
-https://www.akkadia.org/drepper/dsohowto.pdf  
-
-
-### -fPIC
-
-[Why does gcc not implicitly supply the -fPIC flag when compiling static libraries on x86_64](https://stackoverflow.com/questions/3961446/why-does-gcc-not-implicitly-supply-the-fpic-flag-when-compiling-static-librarie)  
-[What, if any, are the implications of compiling objects with gcc -fPIC flag if they get used in executables?](https://stackoverflow.com/questions/1165593/what-if-any-are-the-implications-of-compiling-objects-with-gcc-fpic-flag-if-t)  
-[Is -fPIC implied on modern platforms](https://stackoverflow.com/questions/50131568/is-fpic-implied-on-modern-platforms)  
-[Is -fPIC for shared libraries ONLY?](https://stackoverflow.com/questions/49503475/is-fpic-for-shared-libraries-only)  
-
-[Does one still need to use -fPIC when compiling with GCC?](https://stackoverflow.com/questions/20637310/does-one-still-need-to-use-fpic-when-compiling-with-gcc)  
-[What does -fPIC mean when building a shared library?](https://stackoverflow.com/questions/966960/what-does-fpic-mean-when-building-a-shared-library)  
-[What is the -fPIE option for position-independent executables in gcc and ld?](https://stackoverflow.com/questions/2463150/what-is-the-fpie-option-for-position-independent-executables-in-gcc-and-ld)  
-[How can I tell, with something like objdump, if an object file has been built with -fPIC?](https://stackoverflow.com/questions/1340402/how-can-i-tell-with-something-like-objdump-if-an-object-file-has-been-built-wi)  

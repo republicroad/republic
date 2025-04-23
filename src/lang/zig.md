@@ -3,6 +3,8 @@
 
 
 [有了 C++、D 和 Rust，为什么还需要 Zig？](https://ziglang.org/zh-CN/learn/why_zig_rust_d_cpp/)
+[zig-book 中文版](https://republicroad.github.io/zig-book-cn/zh/1.Zig%20%E7%AE%80%E4%BB%8B.html)  
+https://republicroad.github.io/zig-book-cn/  
 
 ## install
 

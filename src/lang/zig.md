@@ -498,3 +498,7 @@ $ gcc -shared -o libmylib.so mylib.o
 ```
 
 
+
+### runpath
+
+https://ziggit.dev/t/why-zig-adds-dynamic-library-path-into-final-executable/4688  

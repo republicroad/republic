@@ -137,7 +137,7 @@ gcc -shared -o libmylib.so mylib.o
 
 得到静态库和动态库以后可以通过c/c++的abi给其他语言调用.
 
-#### 库文件使用
+#### 库文件在zig使用
 
 build-exe如何使用动态共享库:
 
@@ -182,6 +182,8 @@ Enter two float values: 1
 
 ```
 
+#### 库文件在gcc使用
+
 gcc如何使用动态库
 ```bash
 $ gcc myprog.c -lmylib -L.
@@ -196,6 +198,8 @@ Enter two float values: 1
 
 
 注意, zig build-exe 构建的可执行程序可以直接运行，而 gcc 构建的程序可执行程序在运行时报错. 需要使用 `LD_LIBRARY_PATH=. ./a.out` 来运行程序.
+
+todo: 这里的ldd a.out 应该输出 -lmylib 无法找到.
 ```bash
 $ ldd a.out 
         linux-vdso.so.1 (0x00007ffcf6144000)
@@ -228,8 +232,15 @@ Dynamic section at offset 0x7c0 contains 25 entries:
 ```
 
 
-gcc如何使用静态库:
+todo: 增加 gcc rpath 配置
+> `gcc -L. -I. -Wl,--enable-new-dtags -Wl,-rpath='$ORIGIN' -Wall -o test main.c -lfoo`
 
+> gcc myprog.c -L. -I. -Wl,--enable-new-dtags -Wl,-rpath='$ORIGIN' -Wall  -lmylib
+> gcc myprog.c -L. -I. -Wl,--enable-new-dtags -Wl,-rpath='.' -Wall  -lmylib
+
+
+gcc如何使用静态库:
+ 
 zig build-lib 默认构建的静态库在有全局变量时会添加 ubsan 相关检测标记，导致符号链接失败. 
 
 ```bash
@@ -281,7 +292,6 @@ $ nm libmylib.a
 zig build-lib mylib.c -lc -fubsan-rt
 gcc myprog.c libmylib.a -L.
 ```
-
 
 
 [Use both static and dynamically linked libraries in gcc](https://stackoverflow.com/a/809821)  
@@ -513,59 +523,3 @@ $ file hello
 hello: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 2.0.0, with debug_info, not stripped
 ```
 
-
-### python wheel musl
-
-manylinux 支持新的 musl libc.
-
-[PEP 656 – Platform Tag for Linux Distributions Using Musl](https://peps.python.org/pep-0656/)  
-[Wheels for musl (Alpine)](https://discuss.python.org/t/wheels-for-musl-alpine/7084)  
-
-
-
-## c compile and link
-
-
-静态库,  动态库与 -fPIC 编译细节探索:
-```bash
-$ gcc -o mylib.o -c mylib.c
-$ ar -rcs libmylib.a mylib.o
-$ gcc myprog.c -lmylib -L.
-$ ./a.out 
-Enter two float values: 1
-2
-1.000000 and 2.000000
-2.000000 is the biggest
-```
-静态库使用 -fPIC 也可以运行, 有什么区别?
-```bash
-$ gcc -fPIC -o mylib.o -c mylib.c
-$ ar -rcs libmylib.a mylib.o
-$ gcc myprog.c  -lmylib -L.
-$ ./a.out 
-Enter two float values: 1
-2
-1.000000 and 2.000000
-2.000000 is the biggest
-```
-
-编译动态库不使用 -fPIC 会有明确的错误提示: 
-```bash
-$ gcc -o mylib.o -c mylib.c
-$ gcc -shared -o libmylib.so mylib.o
-/usr/bin/ld: mylib.o: warning: relocation against `total_times' in read-only section `.text'
-/usr/bin/ld: mylib.o: relocation R_X86_64_PC32 against symbol `total_times' can not be used when making a shared object; recompile with -fPIC
-/usr/bin/ld: final link failed: bad value
-collect2: error: ld returned 1 exit status
-```
-动态库的正确使用模式:
-```bash
-$ gcc -fPIC -o mylib.o -c mylib.c
-$ gcc -shared -o libmylib.so mylib.o
-```
-
-
-
-### runpath
-
-https://ziggit.dev/t/why-zig-adds-dynamic-library-path-into-final-executable/4688  

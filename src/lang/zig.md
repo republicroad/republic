@@ -102,7 +102,7 @@ Enter two float values: 1
 
 ### zig build-lib
 
-使用 build-lib 构建静态库文件和动态共享库文件.
+使用 build-lib 构建静态库文件和动态共享库文件. 默认情况下 build-lib 生成的是静态库, 需要使用 `-dynamic` 才会生成动态共享库.
 
 静态库
 ```bash
@@ -134,7 +134,12 @@ gcc -fPIC -o mylib.o -c mylib.c
 gcc -shared -o libmylib.so mylib.o
 ```
 
-库文件如何使用:
+
+得到静态库和动态库以后可以通过c/c++的abi给其他语言调用.
+
+#### 库文件使用
+
+build-exe如何使用动态共享库:
 
 ```bash
 $ zig build-exe  --verbose-cc myprog.c -lc -lmylib -L.
@@ -154,6 +159,8 @@ Enter two float values: 1
 1.000000 and 2.000000
 2.000000 is the biggest
 ```
+
+build-exe如何使用静态库:
 
 ```bash
 $ zig build-exe --verbose-cc myprog.c -search_static_first -lc -lmylib -L. 
@@ -175,76 +182,7 @@ Enter two float values: 1
 
 ```
 
-
-得到静态库和动态库以后可以通过c/c++的abi给其他语言调用.
-
-
-[链接静态库](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html-single/developer_guide/index#gcc-using-libraries_using-both-static-dynamic-library-gcc):
-- 方法1: -l 默认优先链接动态库, 如果要链接静态库，请指定 `-l:libxxx.a` 即可
-- 方法2: 使用-Wl,-Bstatic -lxxx 链接静态库
-```bash
-gcc ... -Wl,-Bstatic -lfirst -Wl,-Bdynamic -lsecond ...
-```
-	这个命令使用静态链接链接 first 库, 使用动态链接链接 second 库.
-
-```bash
-$ gcc myprog.c -L. -Wl,-Bstatic -lmylib
-$ ldd a.out 
-        linux-vdso.so.1 (0x00007ffca859d000)
-        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000717456000000)
-        /lib64/ld-linux-x86-64.so.2 (0x0000717456420000)
-$ ./a.out 
-Enter two float values: 1
-2
-1.000000 and 2.000000
-2.000000 is the biggest
-```
-
-这个windows上无法执行.
-```bash
-$ gcc myprog.c -lc -L. -l:libmylib.a
-$ ldd a.out 
-        linux-vdso.so.1 (0x00007ffca859d000)
-        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000717456000000)
-        /lib64/ld-linux-x86-64.so.2 (0x0000717456420000)
-$ ./a.out 
-Enter two float values: 1
-2
-1.000000 and 2.000000
-2.000000 is the biggest
-```
-
-windows上可以运行:
-```bash
-$ gcc myprog.c -L. -l:libmylib.a
-$ gcc myprog.c -L. -Wl,-Bstatic -l:libmylib.a
-$ gcc myprog.c -L. -Wl,-Bstatic -lmylib
-$ gcc myprog.c -L. -lmylib
-
-$ ./myprog.out 
-Enter two float values: 1
-2
-1.000000 and 2.000000
-2.000000 is the biggest
-```
-
-将整个可执行文件静态编译:
-```bash
-$ gcc myprog.c -lmylib -L. -static
-$ ldd a.out 
-        不是动态可执行文件
-$ readelf -d a.out 
-
-There is no dynamic section in this file.
-
-$ ./a.out 
-Enter two float values: 1
-2
-1.000000 and 2.000000
-2.000000 is the biggest
-```
-
-链接动态库:
+gcc如何使用动态库
 ```bash
 $ gcc myprog.c -lmylib -L.
 $ ./a.out 
@@ -255,6 +193,95 @@ Enter two float values: 1
 1.000000 and 2.000000
 2.000000 is the biggest
 ```
+
+
+注意, zig build-exe 构建的可执行程序可以直接运行，而 gcc 构建的程序可执行程序在运行时报错. 需要使用 `LD_LIBRARY_PATH=. ./a.out` 来运行程序.
+```bash
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffcf6144000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007735dfe00000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007735e014c000)
+$ readelf -d a.out 
+
+Dynamic section at offset 0x3bcf8 contains 28 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x0000000000000001 (NEEDED)             共享库：[ld-linux-x86-64.so.2]
+ 0x000000000000000c (INIT)               0x2000
+ 0x000000000000000d (FINI)               0x30660
+ 0x0000000000000019 (INIT_ARRAY)         0x3c2d0
+ 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)
+```
+zig build-exe 会自动的给运行时程序添加 runpath, 方便运行程序找到非系统路径中的动态共享库. 注意，库搜索的优先级顺序:
+rpath  > LD_LIBRARY_PATH > runpath > /usr/local/lib > /usr/lib > /lib > ld.so.conf.d/*
+```bash
+$ readelf -d myprog
+
+Dynamic section at offset 0x7c0 contains 25 entries:
+  标记        类型                         名称/值
+ 0x000000000000001d (RUNPATH)            Library runpath: [.]
+ 0x0000000000000001 (NEEDED)             共享库：[./libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            标志： NOW
+ ...
+```
+
+
+gcc如何使用静态库:
+
+zig build-lib 默认构建的静态库在有全局变量时会添加 ubsan 相关检测标记，导致符号链接失败. 
+
+```bash
+$ zig build-lib mylib.c -lc
+$ gcc myprog.c -lmylib -L.
+/usr/bin/ld: ./libmylib.a(/home/ryefccd/.cache/zig/o/716ba062456398fc264fc49631553d67/mylib.o): in function `bigger':
+/home/ryefccd/docs/republic/langsrc/zig/c/mylib.c:20: undefined reference to `__ubsan_handle_add_overflow'
+collect2: error: ld returned 1 exit status
+
+$ nm libmylib.a
+
+/home/ryefccd/.cache/zig/o/716ba062456398fc264fc49631553d67/mylib.o:
+0000000000000000 T bigger
+0000000000000000 B total_times
+                 U __ubsan_handle_add_overflow
+
+```
+
+
+加入 `-fubsan-rt` 命令行选项后, 生成的静态库中包含一个 ubsan_rt.o 对象文件.
+可以被 gcc 静态链接
+```bash
+$ zig build-lib mylib.c -lc -fubsan-rt
+$ gcc myprog.c -lmylib -L.
+$ ./a.out 
+Enter two float values: 1
+2
+1.000000 and 2.000000
+2.000000 is the biggest
+
+$ nm libmylib.a
+
+/home/ryefccd/.cache/zig/o/716ba062456398fc264fc49631553d67/mylib.o:
+0000000000000000 T bigger
+0000000000000000 B total_times
+                 U __ubsan_handle_add_overflow
+
+/home/ryefccd/.cache/zig/o/8a5e029d67189932d0d94221a6a6319b/ubsan_rt.o:
+                 U abort
+0000000000000ba6 r __anon_10184
+0000000000000bc1 r __anon_10197
+00000000000000e3 r __anon_10201
+0000000000000bcb r __anon_10207
+...
+```
+
+因为 gcc ... -lxxx 这种方式是优先链接动态库，没有动态库就去链接静态库，如果需要手动指定静态库可以手动指定静态库文件:
+```bash
+zig build-lib mylib.c -lc -fubsan-rt
+gcc myprog.c libmylib.a -L.
+```
+
 
 
 [Use both static and dynamically linked libraries in gcc](https://stackoverflow.com/a/809821)  
@@ -282,6 +309,44 @@ d59f037c79ece46ef2d2162a2d664678  mylib_gcc.o
 $ md5sum mylib.o 
 d59f037c79ece46ef2d2162a2d664678  mylib.o
 ```
+
+#### -fPIC vs -fno-PIC
+
+和elf格式汇总的 GOT 表有关.
+当target为如下 x86_64-linux-gnu 和 x86_64-linux-musl 有如下行为, x86_64-linux-gnu 架构需要生成位置无关代码(position independent code)， 
+
+x86_64-linux-gnu:
+```bash
+$ zig build-obj -lc -fno-PIC mylib.c -target x86_64-linux-gnu
+error: unable to create module 'mylib': the selected target requires position independent code
+$ zig build-obj -lc -fPIC mylib.c -target x86_64-linux-gnu
+$ readelf --relocs mylib.o | egrep '(GOT|PLT|JU?MP_SLOT)'
+000000000015  000f0000002a R_X86_64_REX_GOTP 0000000000000000 total_times - 4
+000000000040  001000000004 R_X86_64_PLT32    0000000000000000 __ubsan_handle_ad[...] - 4
+00000000004a  000f0000002a R_X86_64_REX_GOTP 0000000000000000 total_times - 4
+$ 
+$ zig build-obj -lc  mylib.c 
+$ readelf --relocs mylib.o | egrep '(GOT|PLT|JU?MP_SLOT)'
+000000000015  000f0000002a R_X86_64_REX_GOTP 0000000000000000 total_times - 4
+000000000040  001000000004 R_X86_64_PLT32    0000000000000000 __ubsan_handle_ad[...] - 4
+00000000004a  000f0000002a R_X86_64_REX_GOTP 0000000000000000 total_times - 4
+```
+
+
+x86_64-linux-musl:
+
+```bash
+$ zig build-obj -lc -fno-PIC mylib.c -target x86_64-linux-musl
+$ readelf --relocs mylib.o | egrep '(GOT|PLT|JU?MP_SLOT)'
+000000000041  001000000004 R_X86_64_PLT32    0000000000000000 __ubsan_handle_ad[...] - 4
+$ zig build-obj -lc -fPIC mylib.c -target x86_64-linux-musl
+$ readelf --relocs mylib.o | egrep '(GOT|PLT|JU?MP_SLOT)'
+000000000015  000f0000002a R_X86_64_REX_GOTP 0000000000000000 total_times - 4
+000000000040  001000000004 R_X86_64_PLT32    0000000000000000 __ubsan_handle_ad[...] - 4
+00000000004a  000f0000002a R_X86_64_REX_GOTP 0000000000000000 total_times - 4
+```
+
+
 
 ### zig build
 

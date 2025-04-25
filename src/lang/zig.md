@@ -196,27 +196,28 @@ Enter two float values: 1
 2.000000 is the biggest
 ```
 
-
 注意, zig build-exe 构建的可执行程序可以直接运行，而 gcc 构建的程序可执行程序在运行时报错. 需要使用 `LD_LIBRARY_PATH=. ./a.out` 来运行程序.
 
-todo: 这里的ldd a.out 应该输出 -lmylib 无法找到.
 ```bash
 $ ldd a.out 
-        linux-vdso.so.1 (0x00007ffcf6144000)
-        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007735dfe00000)
-        /lib64/ld-linux-x86-64.so.2 (0x00007735e014c000)
+        linux-vdso.so.1 (0x00007ffcde02e000)
+        libmylib.so => not found
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007c9deea00000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007c9deee27000)
+
 $ readelf -d a.out 
 
-Dynamic section at offset 0x3bcf8 contains 28 entries:
+Dynamic section at offset 0x2da0 contains 28 entries:
   标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
  0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
- 0x0000000000000001 (NEEDED)             共享库：[ld-linux-x86-64.so.2]
- 0x000000000000000c (INIT)               0x2000
- 0x000000000000000d (FINI)               0x30660
- 0x0000000000000019 (INIT_ARRAY)         0x3c2d0
- 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+ 0x0000000000000019 (INIT_ARRAY)         0x3d90
+ ...
 ```
-zig build-exe 会自动的给运行时程序添加 runpath, 方便运行程序找到非系统路径中的动态共享库. 注意，库搜索的优先级顺序:
+
+zig build-exe 会自动的给运行时程序添加 runpath(增加), 方便运行程序找到非系统路径中的动态共享库. 注意，库搜索的优先级顺序:
 rpath  > LD_LIBRARY_PATH > runpath > /usr/local/lib > /usr/lib > /lib > ld.so.conf.d/*
 ```bash
 $ readelf -d myprog
@@ -232,12 +233,60 @@ Dynamic section at offset 0x7c0 contains 25 entries:
 ```
 
 
-todo: 增加 gcc rpath 配置
-> `gcc -L. -I. -Wl,--enable-new-dtags -Wl,-rpath='$ORIGIN' -Wall -o test main.c -lfoo`
+因为 linux 机器上可执行文件不会自动在当前路径寻找依赖共享库(windows的exe文件会再当前文件寻找依赖的 dll 库文件), runpath就是linux上非系统库路径的额外搜索路径.
+所以一般linux上编译时需要设置 `-Wl,-rpath` 来设置 runpath(注意, 设置 rpath 也是这个配置， 不过需要额外设置`-Wl,--disable-new-dtags`), 如下所示:
 
-> gcc myprog.c -L. -I. -Wl,--enable-new-dtags -Wl,-rpath='$ORIGIN' -Wall  -lmylib
-> gcc myprog.c -L. -I. -Wl,--enable-new-dtags -Wl,-rpath='.' -Wall  -lmylib
+- 同时设置 `-Wl,-rpath` 和 `-Wl,--enable-new-dtags` 就是设置 runpath
+> gcc myprog.c  -Wl,-rpath='.'  -Wl,--enable-new-dtags -Wall  -lmylib -L.  -I. 
 
+runpath:
+
+```bash
+$ gcc myprog.c  -Wl,-rpath='.'  -Wl,--enable-new-dtags -Wall  -lmylib -L.  -I. 
+$ readelf -d a.out 
+
+Dynamic section at offset 0x2d90 contains 29 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000001d (RUNPATH)            Library runpath: [.]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+...
+
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffeb2d79000)
+        libmylib.so => ./libmylib.so (0x00007a1f12e01000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007a1f12a00000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007a1f12e0d000)
+```
+
+
+- 设置`-Wl,-rpath` 和`-Wl,--disable-new-dtags`就是设置 rpath
+> gcc myprog.c -Wl,-rpath='$ORIGIN' -Wl,--disable-new-dtags -Wall  -lmylib -L. -I.
+
+rpath:
+```bash
+$ gcc myprog.c -Wl,-rpath='.' -Wl,--disable-new-dtags -Wall  -lmylib -L. -I. 
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffdaced9000)
+        libmylib.so => ./libmylib.so (0x00007ac41a5cc000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ac41a200000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007ac41a5d8000)
+$ readelf -d a.out 
+
+Dynamic section at offset 0x2d90 contains 29 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000000f (RPATH)              Library rpath: [.]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+ 0x0000000000000019 (INIT_ARRAY)         0x3d80
+ ...
+```
+
+[How to set RPATH and RUNPATH with GCC/LD?](https://stackoverflow.com/questions/52018092/how-to-set-rpath-and-runpath-with-gcc-ld)
 
 gcc如何使用静态库:
  
@@ -396,6 +445,12 @@ pub fn build(b: *std.Build) void {
 > zig build run --summary all
 
 
+#### [zig build explained (3 Part Series)](https://zig.news/xq/series/2)
+
+[1zig build explained - part 1](https://zig.news/xq/zig-build-explained-part-1-59lf "Published Jul 26 '21")
+[2zig build explained - part 2](https://zig.news/xq/zig-build-explained-part-2-1850 "Published Aug 15 '21")
+[3zig build explained - part 3](https://zig.news/xq/zig-build-explained-part-3-1ima "Published Nov 21 '21")
+
 ## as c compiler
 
 ### zig cc
@@ -523,3 +578,53 @@ $ file hello
 hello: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, for GNU/Linux 2.0.0, with debug_info, not stripped
 ```
 
+
+### $ORIGIN的缺陷
+
+> gcc myprog.c  -Wl,-rpath='$ORIGIN'  -Wl,--enable-new-dtags -Wall  -lmylib -L.  -I.
+
+'$ORIGIN' 会被解释为当前机器的绝对路径. 这样不方便移植.
+
+runpath
+
+```bash
+$ gcc myprog.c -Wl,-rpath='$ORIGIN'  -Wall  -lmylib -L. -I. 
+$ readelf -d a.out 
+
+Dynamic section at offset 0x2d90 contains 29 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+ ...
+$ 
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffc0cf3c000)
+        libmylib.so => /home/ryefccd/docs/republic/langsrc/zig/c/./libmylib.so (0x0000716165c0d000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000716165800000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000716165c19000)
+```
+
+rpath
+```bash
+$ gcc myprog.c -Wl,-rpath='$ORIGIN' -Wl,--disable-new-dtags -Wall  -lmylib -L. -I. 
+$ readelf -d a.out 
+
+Dynamic section at offset 0x2d90 contains 29 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000000f (RPATH)              Library rpath: [$ORIGIN]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+ ...
+ 
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007fff90185000)
+        libmylib.so => /home/ryefccd/docs/republic/langsrc/zig/c/./libmylib.so (0x000074f178f78000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000074f178c00000)
+        /lib64/ld-linux-x86-64.so.2 (0x000074f178f84000)
+
+```

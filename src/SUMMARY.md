@@ -100,6 +100,7 @@
 		- [16.7 Summary](diveintosystems/第16章-for%20Java%20Programmers/16.7%20Summary.md)
 		- [16.8 Exercises](diveintosystems/第16章-for%20Java%20Programmers/16.8%20Exercises.md)
 - [webserver](webserver/readme.md)
+	- [fastapi_cheetsheet](webserver/fastapi_cheetsheet.md)
 	- [nginx](webserver/nginx/index.md)
 	- [haproxy](webserver/haproxy/index.md)
 	- [gateway](webserver/gateway.md)

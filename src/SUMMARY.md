@@ -117,6 +117,8 @@
 	- [incus](devops/incus.md)
 	- [lxd](devops/lxd.md)
 - [langs](lang/c/README.md)
+	- [bun](lang/bun/bun.md)
+		- [全栈开发](lang/bun/全栈开发.md)
 	- [zig](lang/zig.md)
 	- [rust](lang/rust.md)
 	- [python](lang/python.md)

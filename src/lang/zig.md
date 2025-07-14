@@ -412,7 +412,7 @@ $ readelf --relocs mylib.o | egrep '(GOT|PLT|JU?MP_SLOT)'
 基本的命令 `zig build-exe`、`zig build-lib`、`zig build-obj` 和 `zig test` 通常已经足够。然而，有时项目需要另一层抽象来管理从源代码构建的复杂性。
 
 hello.zig
-```zig
+```c
 const std = @import("std"); 
 pub fn main() !void { 
 	std.debug.print("Hello World!\n", .{}); 
@@ -421,7 +421,7 @@ pub fn main() !void {
 
 
 build.zig
-```zig
+```c
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
@@ -579,11 +579,13 @@ hello: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically lin
 ```
 
 
-### $ORIGIN的缺陷
+### $ORIGIN 与 . 的区别
 
 > gcc myprog.c  -Wl,-rpath='$ORIGIN'  -Wl,--enable-new-dtags -Wall  -lmylib -L.  -I.
+> gcc myprog.c  -Wl,-rpath='.'  -Wl,--enable-new-dtags -Wall  -lmylib -L.  -I.
 
-'$ORIGIN' 会被解释为当前机器的绝对路径. 这样不方便移植.
+`$ORIGIN` 和`.` 都表示相对路径，表示当前执行文件所在的目录, 只是 `$ORIGIN` 在ldd中会被解释为绝对路径.
+rpath 中如果嵌入绝对路径，不方便跨机器移植程序. 如果是相对路径，可以让运行程序按照相对路径去寻找依赖库，就算复制到其他机器上，只要保持相对应的目录层级，仍然可以找到依赖库，运行程序.
 
 runpath
 
@@ -605,6 +607,24 @@ $ ldd a.out
         libmylib.so => /home/ryefccd/docs/republic/langsrc/zig/c/./libmylib.so (0x0000716165c0d000)
         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000716165800000)
         /lib64/ld-linux-x86-64.so.2 (0x0000716165c19000)
+
+$ gcc myprog.c -Wl,-rpath='.'  -Wall  -lmylib -L. -I. 
+$ readelf -d a.out 
+
+Dynamic section at offset 0x2d90 contains 29 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000001d (RUNPATH)            Library runpath: [.]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+ ...
+$ 
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007ffc0cf3c000)
+        libmylib.so => ./libmylib.so (0x0000716165c0d000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000716165800000)
+        /lib64/ld-linux-x86-64.so.2 (0x0000716165c19000)
 ```
 
 rpath
@@ -624,6 +644,25 @@ Dynamic section at offset 0x2d90 contains 29 entries:
 $ ldd a.out 
         linux-vdso.so.1 (0x00007fff90185000)
         libmylib.so => /home/ryefccd/docs/republic/langsrc/zig/c/./libmylib.so (0x000074f178f78000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000074f178c00000)
+        /lib64/ld-linux-x86-64.so.2 (0x000074f178f84000)
+
+
+$ gcc myprog.c -Wl,-rpath='.' -Wl,--disable-new-dtags -Wall  -lmylib -L. -I. 
+$ readelf -d a.out 
+
+Dynamic section at offset 0x2d90 contains 29 entries:
+  标记        类型                         名称/值
+ 0x0000000000000001 (NEEDED)             共享库：[libmylib.so]
+ 0x0000000000000001 (NEEDED)             共享库：[libc.so.6]
+ 0x000000000000000f (RPATH)              Library rpath: [.]
+ 0x000000000000000c (INIT)               0x1000
+ 0x000000000000000d (FINI)               0x128c
+ ...
+ 
+$ ldd a.out 
+        linux-vdso.so.1 (0x00007fff90185000)
+		./libmylib.so (0x000074f178f78000)
         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000074f178c00000)
         /lib64/ld-linux-x86-64.so.2 (0x000074f178f84000)
 

@@ -6,14 +6,6 @@ src = "src"
 title = "republic"
 
 
-[output.html]
-theme = "republic-theme"
-default-theme = "light"
-preferred-dark-theme = "navy"
-smart-punctuation = true
-mathjax-support = false
-git-repository-url = "https://github.com/republicroad/republic"
-
 [output.html.fold]
 enable = true # Set to true to enable folding
 level = 1     # Optional: Specifies the maximum nesting level at which sub-chapters will be folded by default.
@@ -24,6 +16,11 @@ level = 1     # Optional: Specifies the maximum nesting level at which sub-chapt
 [output.html]
 additional-css = ["theme/pagetoc.css"]
 additional-js  = ["theme/pagetoc.js"]
-
+theme = "theme"
+default-theme = "light"
+preferred-dark-theme = "navy"
+smart-punctuation = true
+mathjax-support = false
+git-repository-url = "https://github.com/republicroad/republic"
 
 [preprocessor.callouts]

@@ -127,6 +127,7 @@ For load testing, you _must use_ an HTTP benchmarking tool that is at least as
 - [`bombardier`](https://github.com/codesenberg/bombardier)
 - [`oha`](https://github.com/hatoo/oha)
 - [`http_load_test`](https://github.com/uNetworking/uSockets/blob/master/examples/http_load_test.c)
+- [k6 Load Testing Explained: A Developer's Guide to Performance Testing Success](https://freedium.cfd/https://medium.com/@rail_to_rescue/k6-load-testing-explained-a-developers-guide-to-performance-testing-success-3c7185d21eed)
 
 #### [`hyperfine`](https://github.com/sharkdp/hyperfine)
 

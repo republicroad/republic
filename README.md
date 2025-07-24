@@ -49,7 +49,9 @@ originssh       git@github.com:RYefccd/republic.git (push)
 	mdbook.exe serve republic
 
 
-### mdbook action
+其他配置可参考: [Configuring Renderers](https://rust-lang.github.io/mdBook/format/configuration/renderers.html#configuring-renderers)
+
+### mdbook 静态文件托管
 
 
 1. 克隆仓库 
@@ -112,10 +114,12 @@ wh@VM-16-16-ubuntu:~/workspace$ tree -L 2 .
 
 ```
 
-http://150.158.144.155/book/
 
 
-### mdbook-pagetoc
+### mdbook extensions
+#### mdbook-pagetoc
 
 [mdbook-pagetoc](https://crates.io/crates/mdbook-pagetoc)
 [In-page Table of contents issue](https://github.com/rust-lang/mdBook/issues/1523#issuecomment-1089103336)
+
+#### mdbook-callouts

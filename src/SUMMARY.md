@@ -138,5 +138,7 @@
 	- [passstore(密码管理)](utility/passstore.md)
 	- [windows_wsl2](utility/windows_wsl2.md)
 - [my designs](designs/readme.md)
+	- [authentication](designs/authentication.md)
+	- [authorization](designs/authorization.md)
 	- [zen-engine](designs/zen-engine.md)
 	- [zen-expression](designs/zen-expression.md)

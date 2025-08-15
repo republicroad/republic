@@ -51,6 +51,8 @@ ABAC 能够适应复杂的分布式环境，非常适合需要高度定制化和
 
 ## 参考资料
 
+[A Guide to Bearer Tokens: JWT vs. Opaque Tokens](https://www.permit.io/blog/a-guide-to-bearer-tokens-jwt-vs-opaque-tokens)  
+
 [Authentication and Authorization Best Practices](https://blog.gitguardian.com/authentication-and-authorization/)  
 [casbin 中文](https://casbin.org/zh/)  
 https://casbin.org/zh/docs/how-it-works
@@ -59,15 +61,24 @@ https://casbin.org/zh/docs/understanding-casbin-detail
 ### permit.io
 
 [Role-Based Access Control (RBAC)](http://permit.io/rbac?_gl=1*vlim4i*_gcl_au*MTg2MTk3NDM3OC4xNzU1MDQ4NDE1*_ga*ODM5MTI1NDkwLjE3NDM2NDQ4OTU.*_ga_SPFKH5NXDE*czE3NTUwNTYyODIkbzkkZzEkdDE3NTUwNTYzNDIkajYwJGwwJGgxOTI1Mzk1ODM0 "http://permit.io/rbac")
-
-
 https://www.permit.io/rbac
 https://www.permit.io/abac
 
+### openfga
+
+https://openfga.dev/docs/concepts  
+https://openfga.dev/docs/configuration-language  
+https://github.com/openfga/openfga  
+[openfga: Relationship-based access control made fast, scalable, and easy to use.](https://openfga.dev/)  
+[使用 RBAC、ReBAC 和 ABAC 构建授权系统的完整指南](https://levelup.gitconnected.com/complete-guide-to-building-authorization-systems-using-rbac-rebac-and-abac-0a2ce5311d25)  
 
 ### 实际例子
 
 [飞书IAM系统: 3年一线大厂高级开发，应变能力很强，定级P6+！](https://www.bilibili.com/video/BV1wHoiY9EBt/?spm_id_from=333.1387.upload.video_card.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
 [MuYun｜复杂系统的权限设计](https://www.bilibili.com/video/BV1iSDUYhEuh/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
 [IT老齐412】Mybaits-plus动态数据权限解决方案](https://www.bilibili.com/video/BV1Dh4y1i7Nm/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
+[Authorization Explained: When to Use RBAC, ABAC, ACL & More](https://www.youtube.com/watch?app=desktop&v=DT6Zy1X3ytM&t=552s)  
 
+### tanstack router practice
+
+[Contexts and Authenticated Routes deeper in the route tree #2032](https://github.com/TanStack/router/discussions/2032)  

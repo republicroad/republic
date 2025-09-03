@@ -76,9 +76,10 @@ https://github.com/openfga/openfga
 
 [飞书IAM系统: 3年一线大厂高级开发，应变能力很强，定级P6+！](https://www.bilibili.com/video/BV1wHoiY9EBt/?spm_id_from=333.1387.upload.video_card.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
 [MuYun｜复杂系统的权限设计](https://www.bilibili.com/video/BV1iSDUYhEuh/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
-[IT老齐412】Mybaits-plus动态数据权限解决方案](https://www.bilibili.com/video/BV1Dh4y1i7Nm/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
 [Authorization Explained: When to Use RBAC, ABAC, ACL & More](https://www.youtube.com/watch?app=desktop&v=DT6Zy1X3ytM&t=552s)  
-
+[【IT老齐412】Mybaits-plus动态数据权限解决方案](https://www.bilibili.com/video/BV1Dh4y1i7Nm/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
+[【IT老齐217】简单粗暴讲解RBAC四级角色权限模型](https://www.bilibili.com/video/BV1YT411N76n/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
+[【IT老齐218】浅析强大但复杂的ABAC属性访问控制](https://www.bilibili.com/video/BV1wT411M7bd/?spm_id_from=333.337.search-card.all.click&vd_source=8f2e8d9afb969c72b313832ed92dc193)  
 ### tanstack router practice
 
 [Contexts and Authenticated Routes deeper in the route tree #2032](https://github.com/TanStack/router/discussions/2032)  

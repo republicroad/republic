@@ -47,7 +47,11 @@ git config --global --unset-all http.proxy
 
 	git config --global user.email "xxxxx@xxx.com"
 	git config --global user.name "XXXXX"
-	
+
+
+- 移除在本地有追踪分支但是在远端服务器仓库不存在的分支，使用 `git fetch --prune` 命令。此命令可以更新本地的跟踪远程分支以及移除服务器上已经删除但是本地还在追踪的分支。
+
+
 ## cmd
 
 - git clone

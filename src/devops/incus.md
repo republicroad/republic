@@ -72,6 +72,7 @@ incus image list images: |less
 ### 下载image
 
 >    incus image copy images:ubuntu/24.10  local:
+>    incus image copy images:ubuntu/noble  local: --alias ubuntu/24.04
 
 
 ### 从镜像创建容器

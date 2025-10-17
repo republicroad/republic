@@ -196,6 +196,22 @@ default = false
 [How to set index url for uv like pip configurations](https://stackoverflow.com/questions/79603558/how-to-set-index-url-for-uv-like-pip-configurations)  
 [flat-indexes](https://docs.astral.sh/uv/concepts/indexes/#flat-indexes)  
 
+## uv add to an exsited project
+
+```bash
+uv init --bare
+uv add -r requirements.txt
+uv add --dev -r requirements-dev.txt
+```
+
+在这个项目中，使用如下命令:
+
+```bash
+uv add -r requirement.txt
+uv add --dev -r requirement_dev.txt
+uv pip freeze
+rm requirements.txt requirements-dev.txt
+```
 
 ## uv commands
 

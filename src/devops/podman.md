@@ -32,6 +32,11 @@ podman exec -it pg16 psql -U postgres
 [境内 Docker 镜像状态监控](https://status.anye.xyz/)  
 [毫秒镜像 - 专为中国开发者提供的专业容器仓库服务](https://1ms.run/)  
 
+
+## 示例
+
+[**Running PostgreSQL with Podman**](https://medium.com/@mehmetozanguven/running-postgresql-with-podman-4b71e31761b2)
+
 ## 参考
 
 ###  wsl2 proxy 设置

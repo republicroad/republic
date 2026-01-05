@@ -1,7 +1,7 @@
 [book]
 authors = ["republicroad"]
 language = "en"
-multilingual = false
+# multilingual = false
 src = "src"
 title = "republic"
 
@@ -11,8 +11,6 @@ enable = true # Set to true to enable folding
 level = 1     # Optional: Specifies the maximum nesting level at which sub-chapters will be folded by default.
               # Chapters nested deeper than this level will be folded by default, except for the current chapter and its ancestors.
 
-
-[preprocessor.pagetoc]
 [output.html]
 additional-css = ["theme/pagetoc.css"]
 additional-js  = ["theme/pagetoc.js"]
@@ -23,4 +21,9 @@ smart-punctuation = true
 mathjax-support = false
 git-repository-url = "https://github.com/republicroad/republic"
 
+[preprocessor.pagetoc]
+optional = true
+
+
 [preprocessor.callouts]
+optional = true

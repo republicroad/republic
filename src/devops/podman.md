@@ -1,5 +1,29 @@
 # podman
 
+## 最佳实践
+
+### ubuntu
+podman 在 linux 上的最佳实践
+file:///preferences/registries
+1.  apt install podman
+2.  安装 [podman desktop](https://podman-desktop.io/)
+3.  替换国内源在 podman desktop 设置 registries 中的 Preferred  为 **docker.1ms.run**
+![](attach/Pasted%20image%2020260106164929.png)
+4. (可选步骤)在更换源之后, 如果在拉取镜像时还是有点慢. 那么说明podman desktop 还是默认去查找了 docker.io, 需要配置代理加速.
+![](attach/Pasted%20image%2020260106174247.png)
+
+![](attach/Pasted%20image%2020260106174509.png)
+
+5. 可以在image功能中去拉取镜像, 输入镜像名即可搜索相关镜像.
+
+![](attach/Pasted%20image%2020260106174609.png)
+
+这里没有配置 docker.io 源，但是还是去搜索了docker.io, 这个行为特别奇怪.
+如果原来的机器没有安装 docker, 似乎就不会去搜索docker.io. 
+恰好 docker.io 在国内被禁，所以不配置代理，这里搜索镜像会长时间不可用直到超时.
+
+**注意**: 在 podman desktop 中配置的 registries 不会影响命令行中的命令. 命令行中使用 podman pull <镜像名> 时还需要去设置. 请参考 [镜像源](podman.md#podman#镜像源)
+
 ## install
 
 ```bash
@@ -8,7 +32,7 @@ sudo apt install podman
 ```
 
 podman 是一个 rootless 的容器管理系统，基本功能和 docker 类似. 
-相对比docker的优势 ：
+相对比docker的优势 [Podman vs Docker 2026: Security, Performance & Which to Choose](https://last9.io/blog/podman-vs-docker/)：
 
 1. 默认提供 rootless 且无守护进程(daemon), 安全性好
 2. 提供 pod 的概念，更容易和k8s之类的容器编排调度系统集成
@@ -54,8 +78,269 @@ unqualified-search-registries = ["docker.1ms.run"]
 
 > podman pull postgres:16
 > podman pull postgres:latest
+> podman pull ubuntu
 
-## 镜像别名(shortnames)
+
+**注意**: 如果在更换 unqualified-search-registries 之后还是 去 docker.io拉取某些镜像时, 如下所示.
+```bash
+ryefccd@republic:~$ podman pull node
+Resolved "node" as an alias (/etc/containers/registries.conf.d/shortnames.conf)
+Trying to pull docker.io/library/node:latest...
+WARN[0060] Failed, retrying in 1s ... (1/3). Error: initializing source docker://node:latest: pinging container registry registry-1.docker.io: Get "https://registry-1.docker.io/v2/": dial tcp 103.252.115.221:443: i/o timeout 
+```
+这个表示node在 (/etc/containers/registries.conf.d/shortnames.conf) 设置了别名:
+```toml
+...
+  # node
+  "node" = "docker.io/library/node"
+```
+那么需要把此 shortnames .conf 别名设置中的 docker.io 都替换成  docker.1ms.run. 具体操作请参看 [镜像别名(shortnames)](#镜像别名(shortnames))
+
+
+## container
+
+> podman run --name pg16 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fccdjny -p 5432:5432 -d postgres
+
+## exec
+
+非交互式运行:  
+
+> podman exec pg16 date
+
+交互式运行:  
+进入一个正在运行的容器中的shell，用于调试  
+
+> podman exec -it pg16 bash
+
+-i 表示交互式操作
+-t 表示使用一个 terminal 终端
+
+操作此pg16容器中的psql客户端
+> podman exec -it pg16 psql -U postgres
+
+
+### network
+
+podman 在ubuntu中默认的桥接网络配置文件:  /etc/cni/net.d/87-podman-bridge.conflist
+
+``` /etc/cni/net.d/87-podman-bridge.conflist
+{
+  "cniVersion": "0.4.0",
+  "name": "podman",
+  "plugins": [
+    {
+      "type": "bridge",
+      "bridge": "cni-podman0",
+      "isGateway": true,
+      "ipMasq": true,
+      "hairpinMode": true,
+      "ipam": {
+        "type": "host-local",
+        "routes": [{ "dst": "0.0.0.0/0" }],
+        "ranges": [
+          [
+            {
+              "subnet": "10.88.0.0/16",
+              "gateway": "10.88.0.1"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "type": "portmap",
+      "capabilities": {
+        "portMappings": true
+      }
+    },
+    {
+      "type": "firewall"
+    },
+    {
+      "type": "tuning"
+    }
+  ]
+}
+```
+
+
+### 查看podman的网络配置
+
+[Basic Networking Guide for Podman](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network)  
+
+> podman network ls
+
+```bash
+ryefccd@republic:~$ podman network ls
+NETWORK ID    NAME        DRIVER
+2f259bab93aa  podman      bridge
+```
+
+> podman network inspect podman 
+> 
+podman 这个网络桥接的配置和配置文件(~/.local/share/containers/storage/networks/podman.json) 是一致的
+
+```bash
+ryefccd@republic:~$ podman network inspect podman 
+[
+     {
+          "name": "podman",
+          "id": "2f259bab93aaaaa2542ba43ef33eb990d0999ee1b9924b557b7be53c0b7a1bb9",
+          "driver": "bridge",
+          "network_interface": "podman0",
+          "created": "2026-01-06T14:29:56.005594914+08:00",
+          "subnets": [
+               {
+                    "subnet": "10.88.0.0/16",
+                    "gateway": "10.88.0.1"
+               }
+          ],
+          "ipv6_enabled": false,
+          "internal": false,
+          "dns_enabled": false,
+          "ipam_options": {
+               "driver": "host-local"
+          }
+     }
+]
+```
+
+如文件所示: **dns_enabled : false** 表示未开启dns解析.
+所以不能通过容器名字去在网络访问容器. 如果需要开启容器名字的dns解析，请参考下一节.
+
+### 通过容器名字作为域名解析
+
+podman 默认不支持容器名字作为dns的解析.
+
+[The default network `podman` with netavark is memory-only. It does not support dns resolution because of backwards compatibility with Docker](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network)
+
+```json
+{
+...
+	"dns_enabled": true,
+...
+}
+```
+
+把 ~/.local/share/containers/storage/networks/podman.json 此文件的**dns_enabled**的配置开启，重启容器后即可分配ip, 并配置容器名字作为dns到ip的解析.
+
+> [!NOTE] alpine 镜像带有ping命令
+> 准备一个带有 ping 命令的容器  
+> >  podman pull alpine
+> >  podman run -d  --network podman --name a1 alpine sleep infinity
+
+> [!WARNING] ubuntu容器设置ICMP数据包权限
+> ubnutu 容器如果需要 ping 命令，需要单独设置 ICMP 数据包的权限  
+> > podman pull ubuntu
+> > podman run -d    --cap-add=NET_RAW --name ub ubuntu sleep infinity
+> > podman run -itd --cap-add=NET_RAW --name ub ubuntu bash
+
+podman 创建容器需要显示的传递网络配置才能分配ip和容器名作为域名访问.
+
+> podman run -d --network podman --name a1 alpine sleep infinity
+> podman run -d --network podman --name a2 alpine sleep infinity
+> podman run -d  --name a3 alpine sleep infinity
+
+> podman inspect -f '{{.NetworkSettings.IPAddress}}' a1
+> podman inspect -f '{{.NetworkSettings.IPAddress}}' a2
+> podman inspect -f '{{.NetworkSettings.IPAddress}}' a3
+
+可以看到 a1 和  a2 容器都分配了ip. a3 没有分配ip
+
+```bash
+ryefccd@republic:~$ podman inspect -f '{{.NetworkSettings.IPAddress}}' a1
+10.88.0.8
+ryefccd@republic:~$ podman inspect -f '{{.NetworkSettings.IPAddress}}' a2
+10.88.0.11
+ryefccd@republic:~$ podman inspect -f '{{.NetworkSettings.IPAddress}}' a3
+
+
+```
+
+> podman exec a1 ping -c 3 a2
+
+```bash
+ryefccd@republic:~$ podman exec a1 ping -c 3 a2
+PING a2 (10.88.0.11): 56 data bytes
+64 bytes from 10.88.0.11: seq=0 ttl=42 time=0.049 ms
+64 bytes from 10.88.0.11: seq=1 ttl=42 time=0.107 ms
+64 bytes from 10.88.0.11: seq=2 ttl=42 time=0.116 ms
+
+--- a2 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.049/0.090/0.116 ms
+
+```
+
+### 给容器一个固定ip
+
+> podman run -d  --network podman --ip 10.88.0.6 --name a6 alpine sleep infinity
+> podman run -d  --network podman --ip 10.88.0.7 --name a7 alpine sleep infinity
+
+
+## podman desktop
+
+[podman desktop download](https://podman-desktop.io/downloads)  
+
+完成安装后可以在桌面程序上管理容器, pod, 网络和存储卷，也能和k8s进行交互.
+
+podman desktop 无法识别在/etc/containers/registries.conf中配置的源, 界面中设置源也不生效:
+
+![设置镜像源的优先级](attach/Pasted%20image%2020260105173455.png)
+
+直接在 podman desktop 输入镜像名字拉取时会报错(如果在命令行执行 podman pull hello-world). 
+
+![](attach/Pasted%20image%2020260105173438.png)
+
+
+因为podman默认建议使用全路径容器限定名，所以在 podman desktop 上拉取镜像时最好指定源的域名路径: docker.1ms.run
+
+![](attach/Pasted%20image%2020260105173232.png)
+
+
+不管在界面还是命令行拉取的镜像，在界面都可以管理:
+
+![](attach/Pasted%20image%2020260105173835.png)
+
+
+## 示例
+
+### postgresql 容器
+
+[**Running PostgreSQL with Podman**](https://medium.com/@mehmetozanguven/running-postgresql-with-podman-4b71e31761b2)
+
+### atlasgo 数据库模式变更管理
+```bash
+apt install podman podman-docker
+sudo apt install podman podman-docker
+```
+
+podman 是一个 rootless 的容器管理系统，基本功能和 docker 类似. 只是默认提供 rootless 的模式，安全性比较好. 
+podman-docker 会在 $PATH 路径下设置一个 docker 的脚本命令，实际也是指向 podman 的执行文件. 这个库目的是兼容 docker 去适配一些开发工具行为。比如我们使用的 atlasgo 这个用于管理数据库表字段变更的工具.
+
+>  atlas migrate diff --env sqlalchemy --dev-url "docker://postgres/16"
+
+此处的 docker://postgres/16 会在命令运行时使用 docker 命令程序去运行 postgres:16 的镜像来做数据库模式变更迁移.
+
+
+
+## 参考
+
+### docker 镜像源
+
+[境内 Docker 镜像状态监控](https://status.anye.xyz/)  
+[毫秒镜像 - 专为中国开发者提供的专业容器仓库服务](https://1ms.run/)  
+
+docker 的配置文件(/etc/docker/daemon.json)：
+
+```/etc/docker/daemon.json
+{
+  "registry-mirrors": ["docker.1ms.run", "https://mirror.gcr.io",]
+}
+```
+
+
+### 镜像别名(shortnames)
 
 在 shortnames.conf 文件中还有一些别名设置，检测到某些常用的软件镜像直接就指定了查找源，因为国内的 docker 域名不能访问，所以也需要替换
 
@@ -127,76 +412,6 @@ Trying to pull docker.io/library/hello-world:latest...
 ```
 
 
-
-## container
-
-> podman run --name pg16 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fccdjny -p 5432:5432 -d postgres
-
-## exec
-
-> podman exec -it pg16 psql -U postgres
-
-
-## podman desktop
-
-[podman desktop download](https://podman-desktop.io/downloads)  
-
-完成安装后可以在桌面程序上管理容器, pod, 网络和存储卷，也能和k8s进行交互.
-
-podman desktop 无法识别在/etc/containers/registries.conf中配置的源, 界面中设置源也不生效:
-
-![设置镜像源的优先级](attach/Pasted%20image%2020260105173455.png)
-
-直接在 podman desktop 输入镜像名字拉取时会报错(如果在命令行执行 podman pull hello-world). 
-
-![](attach/Pasted%20image%2020260105173438.png)
-
-
-因为podman默认建议使用全路径容器限定名，所以在 podman desktop 上拉取镜像时最好指定源的域名路径: docker.1ms.run
-
-![](attach/Pasted%20image%2020260105173232.png)
-
-
-不管在界面还是命令行拉取的镜像，在界面都可以管理:
-
-![](attach/Pasted%20image%2020260105173835.png)
-
-
-## 示例
-
-### postgresql 容器
-
-[**Running PostgreSQL with Podman**](https://medium.com/@mehmetozanguven/running-postgresql-with-podman-4b71e31761b2)
-
-### atlasgo 数据库模式变更管理
-```bash
-apt install podman podman-docker
-sudo apt install podman podman-docker
-```
-
-podman 是一个 rootless 的容器管理系统，基本功能和 docker 类似. 只是默认提供 rootless 的模式，安全性比较好. 
-podman-docker 会在 $PATH 路径下设置一个 docker 的脚本命令，实际也是指向 podman 的执行文件. 这个库目的是兼容 docker 去适配一些开发工具行为。比如我们使用的 atlasgo 这个用于管理数据库表字段变更的工具.
-
->  atlas migrate diff --env sqlalchemy --dev-url "docker://postgres/16"
-
-此处的 docker://postgres/16 会在命令运行时使用 docker 命令程序去运行 postgres:16 的镜像来做数据库模式变更迁移.
-
-
-## 参考
-
-
-### docker 镜像源
-
-[境内 Docker 镜像状态监控](https://status.anye.xyz/)  
-[毫秒镜像 - 专为中国开发者提供的专业容器仓库服务](https://1ms.run/)  
-
-docker 的配置文件(/etc/docker/daemon.json)：
-
-```/etc/docker/daemon.json
-{
-  "registry-mirrors": ["docker.1ms.run", "https://mirror.gcr.io",]
-}
-```
 
 ###  wsl2 proxy 设置
 

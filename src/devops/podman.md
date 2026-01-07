@@ -101,8 +101,20 @@ WARN[0060] Failed, retrying in 1s ... (1/3). Error: initializing source docker:/
 
 > podman pull docker.1ms.run/library/postgres:16
 
-> podman run --name pg16 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fccdjny -p 5432:5432 -d postgres
+创建容器
 
+```bash
+podman run --name pg16 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fccdjny -p 5432:5432 -d postgres
+```
+
+
+创建容器容器指定网络
+
+```bash
+podman run -d --name my-container --network my-network nginx
+```
+
+创建网络请[[]]参考: [创建网络](podman.md#创建网络)
 ## exec
 
 非交互式运行:  
@@ -287,6 +299,66 @@ round-trip min/avg/max = 0.049/0.090/0.116 ms
 > podman run -d  --network podman --ip 10.88.0.7 --name a7 alpine sleep infinity
 
 
+### 创建网络
+
+
+**Subnet:** Specify a custom IP rangenet
+
+```bash
+podman network create --subnet 192.168.10.0/24 net192
+
+podman network create --subnet 10.0.0.0/24 --ip-range 10.0.0.100-10.0.0.200 my-custom-net
+
+```
+
+**Gateway:** Define the gateway IP for the network
+
+```bash
+podman network create --gateway 192.168.10.1 custom-net
+```
+
+**Driver:** Choose a specific network driver, such as `macvlan` or `ipvlan` (rootful only)
+
+```bash
+podman network create -d macvlan -o parent=eth0 macvlan-net
+```
+
+**Internal:** Create a network that is isolated from the host and external internet
+
+```bash
+podman network create --internal private-net
+```
+
+
+注意, 新创建的网络默认开启了 dns_enabled: true 的配置
+
+```bash
+ryefccd@republic:~$ podman network inspect net192
+[
+     {
+          "name": "net192",
+          "id": "fdc405841b2ed10679ffe3eacf9e6780af8f852bd9cd27e11355ed3eb751383b",
+          "driver": "bridge",
+          "network_interface": "podman3",
+          "created": "2026-01-07T15:29:51.040501876+08:00",
+          "subnets": [
+               {
+                    "subnet": "192.168.10.0/24",
+                    "gateway": "192.168.10.1"
+               }
+          ],
+          "ipv6_enabled": false,
+          "internal": false,
+          "dns_enabled": true,
+          "ipam_options": {
+               "driver": "host-local"
+          }
+     }
+]
+
+```
+用此网络设备的容器都可以通过容器名互相访问(ping)了.
+
 ## podman desktop
 
 
@@ -319,6 +391,21 @@ round-trip min/avg/max = 0.049/0.090/0.116 ms
 > create accounts with arbitrary names). This will prevent an image from being
 > spoofed, squatted or otherwise made insecure.  If it is necessary to use one
 > of these registries, it should be added at the end of the list.
+
+
+
+## podman compose
+
+兼容 docker-compose, 用来做多容器编排管理.
+默认文件是 **`compose.yaml`**, **`compose.yml`**, **`docker-compose.yaml`** or **`docker-compose.yml`**
+```bash
+podman compose up
+```
+如果是以其他文件命名, 可以使用 `-f` 来指定相关编排文件
+```bash
+
+podman compose -f my-alternative-name.yml up
+```
 
 
 

@@ -4,7 +4,7 @@
 
 ### ubuntu
 podman 在 linux 上的最佳实践
-file:///preferences/registries
+
 1.  apt install podman
 2.  安装 [podman desktop](https://podman-desktop.io/)
 3.  替换国内源在 podman desktop 设置 registries 中的 Preferred  为 **docker.1ms.run**
@@ -59,7 +59,7 @@ Error: short-name "redis" did not resolve to an alias and no unqualified-search 
 
 2. 因为国内的docker镜像源不可使用，所以需要更换国内可以使用的源: https://1ms.run/  具体配置参考下一节**镜像源**
 
-## 镜像源
+### 镜像源
 
 修改podman国内镜像源(兼容docker)
 
@@ -99,6 +99,8 @@ WARN[0060] Failed, retrying in 1s ... (1/3). Error: initializing source docker:/
 
 ## container
 
+> podman pull docker.1ms.run/library/postgres:16
+
 > podman run --name pg16 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fccdjny -p 5432:5432 -d postgres
 
 ## exec
@@ -119,7 +121,7 @@ WARN[0060] Failed, retrying in 1s ... (1/3). Error: initializing source docker:/
 > podman exec -it pg16 psql -U postgres
 
 
-### network
+## network
 
 podman 在ubuntu中默认的桥接网络配置文件:  /etc/cni/net.d/87-podman-bridge.conflist
 
@@ -165,8 +167,7 @@ podman 在ubuntu中默认的桥接网络配置文件:  /etc/cni/net.d/87-podman-
 
 
 ### 查看podman的网络配置
-
-[Basic Networking Guide for Podman](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network)  
+[Basic Networking Guide for Podman](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network)    
 
 > podman network ls
 
@@ -176,9 +177,9 @@ NETWORK ID    NAME        DRIVER
 2f259bab93aa  podman      bridge
 ```
 
+
+查看 podman 网络设置中名为 podman 的网桥配置
 > podman network inspect podman 
-> 
-podman 这个网络桥接的配置和配置文件(~/.local/share/containers/storage/networks/podman.json) 是一致的
 
 ```bash
 ryefccd@republic:~$ podman network inspect podman 
@@ -205,15 +206,24 @@ ryefccd@republic:~$ podman network inspect podman
 ]
 ```
 
+
 如文件所示: **dns_enabled : false** 表示未开启dns解析.
 所以不能通过容器名字去在网络访问容器. 如果需要开启容器名字的dns解析，请参考下一节.
 
+
 ### 通过容器名字作为域名解析
 
-podman 默认不支持容器名字作为dns的解析.
 
-[The default network `podman` with netavark is memory-only. It does not support dns resolution because of backwards compatibility with Docker](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network)
+[podman 默认不支持容器名字作为dns的解析](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network:~:text=It%20does%20not%20support%20dns%20resolution%20because%20of%20backwards%20compatibility%20with%20Docker)
 
+
+查看 podman 默认的网络配置, 这个配置默认是保存在内存中的.
+
+```
+podman network inspect podman | jq .[] > ~/.local/share/containers/storage/networks/podman.json
+```
+
+如果需要修改, 需要把此配置导出 `~/.local/share/containers/storage/networks/podman.json` 文件, 修改其中的**dns_enabled**的配置开启，重启容器即可通过容器名字访问(ping).
 ```json
 {
 ...
@@ -222,7 +232,6 @@ podman 默认不支持容器名字作为dns的解析.
 }
 ```
 
-把 ~/.local/share/containers/storage/networks/podman.json 此文件的**dns_enabled**的配置开启，重启容器后即可分配ip, 并配置容器名字作为dns到ip的解析.
 
 > [!NOTE] alpine 镜像带有ping命令
 > 准备一个带有 ping 命令的容器  
@@ -235,7 +244,7 @@ podman 默认不支持容器名字作为dns的解析.
 > > podman run -d    --cap-add=NET_RAW --name ub ubuntu sleep infinity
 > > podman run -itd --cap-add=NET_RAW --name ub ubuntu bash
 
-podman 创建容器需要显示的传递网络配置才能分配ip和容器名作为域名访问.
+
 
 > podman run -d --network podman --name a1 alpine sleep infinity
 > podman run -d --network podman --name a2 alpine sleep infinity
@@ -245,13 +254,13 @@ podman 创建容器需要显示的传递网络配置才能分配ip和容器名�
 > podman inspect -f '{{.NetworkSettings.IPAddress}}' a2
 > podman inspect -f '{{.NetworkSettings.IPAddress}}' a3
 
-可以看到 a1 和  a2 容器都分配了ip. a3 没有分配ip
+可以看到 a1 和  a2 容器都分配了ip. a3 没有分配ip, 这是因为podman 创建容器需要显示的传递网络配置才能分配ip和容器名作为域名访问.
 
 ```bash
 ryefccd@republic:~$ podman inspect -f '{{.NetworkSettings.IPAddress}}' a1
-10.88.0.8
+10.88.0.2
 ryefccd@republic:~$ podman inspect -f '{{.NetworkSettings.IPAddress}}' a2
-10.88.0.11
+10.88.0.3
 ryefccd@republic:~$ podman inspect -f '{{.NetworkSettings.IPAddress}}' a3
 
 
@@ -280,27 +289,37 @@ round-trip min/avg/max = 0.049/0.090/0.116 ms
 
 ## podman desktop
 
+
 [podman desktop download](https://podman-desktop.io/downloads)  
 
 完成安装后可以在桌面程序上管理容器, pod, 网络和存储卷，也能和k8s进行交互.
 
-podman desktop 无法识别在/etc/containers/registries.conf中配置的源, 界面中设置源也不生效:
 
-![设置镜像源的优先级](attach/Pasted%20image%2020260105173455.png)
-
-直接在 podman desktop 输入镜像名字拉取时会报错(如果在命令行执行 podman pull hello-world). 
-
-![](attach/Pasted%20image%2020260105173438.png)
-
-
-因为podman默认建议使用全路径容器限定名，所以在 podman desktop 上拉取镜像时最好指定源的域名路径: docker.1ms.run
+在拉取镜像时直接指定 registry 的域名也可以在其中搜索镜像.
+如下图所示, 输入 **docker.1ms.run** 搜索此源镜像:  
 
 ![](attach/Pasted%20image%2020260105173232.png)
 
+下面是 `/etc/containers/registries.conf` 配置中提到的为什么镜像使用全限定名称的原因.
 
-不管在界面还是命令行拉取的镜像，在界面都可以管理:
+> [!WARNING] NOTE: RISK OF USING UNQUALIFIED IMAGE NAMES
+> 
+> We recommend always using fully qualified image names including the registry 
+> server (full dns name), namespace, image name, and tag
+> (e.g., registry.redhat.io/ubi8/ubi:latest). Pulling by digest (i.e.,
+> quay.io/repository/name@digest) further eliminates the ambiguity of tags.
+> When using short names, there is always an inherent risk that the image being
+> pulled could be spoofed. For example, a user wants to pull an image named
+> `foobar` from a registry and expects it to come from myregistry.com. If
+> myregistry.com is not first in the search list, an attacker could place a
+> different `foobar` image at a registry earlier in the search list. The user
+> would accidentally pull and run the attacker's image and code rather than the
+> intended content. We recommend only adding registries which are completely
+> trusted (i.e., registries which don't allow unknown or anonymous users to
+> create accounts with arbitrary names). This will prevent an image from being
+> spoofed, squatted or otherwise made insecure.  If it is necessary to use one
+> of these registries, it should be added at the end of the list.
 
-![](attach/Pasted%20image%2020260105173835.png)
 
 
 ## 示例
@@ -415,6 +434,7 @@ Trying to pull docker.io/library/hello-world:latest...
 
 ###  wsl2 proxy 设置
 
+windows 中使用 podman 需要使用 wsl2 作为 podman machine.
 在windows 中 C:\Users\${USER} 创建 .wslconfig 文件并写入以下配置识别系统代理
 ```ini
 [experimental]
@@ -423,6 +443,5 @@ networkingMode=mirrored
 dnsTunneling=true
 firewall=true
 autoProxy=true
-
 ```
 

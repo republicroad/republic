@@ -114,7 +114,7 @@ podman run --name pg16 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=fccdjny -p
 podman run -d --name my-container --network my-network nginx
 ```
 
-创建网络请[[]]参考: [创建网络](podman.md#创建网络)
+创建网络请参考: [创建网络](podman.md#创建网络)
 ## exec
 
 非交互式运行:  
@@ -396,10 +396,15 @@ ryefccd@republic:~$ podman network inspect net192
 
 ## podman compose
 
-兼容 docker-compose, 用来做多容器编排管理.
+安装 podman-compose
+```bash
+sudo apt install podman-compose 
+```
+
+podman-compose兼容 docker-compose, 用来做多容器编排管理.
 默认文件是 **`compose.yaml`**, **`compose.yml`**, **`docker-compose.yaml`** or **`docker-compose.yml`**
 ```bash
-podman compose up
+podman compose up -d
 ```
 如果是以其他文件命名, 可以使用 `-f` 来指定相关编排文件
 ```bash
@@ -407,7 +412,13 @@ podman compose up
 podman compose -f my-alternative-name.yml up
 ```
 
+只更新其中一个容器, 比如haproxy:
 
+```bash
+
+podman compose up -d --force-recreate haproxy
+
+```
 
 ## 示例
 

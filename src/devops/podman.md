@@ -74,6 +74,11 @@ sudo vim /etc/containers/registries.conf
 unqualified-search-registries = ["docker.1ms.run"]
 ```
 
+可以使用sed在文件最后添加 `unqualified-search-registries = ["docker.1ms.run"]`配置: 
+```bash
+sudo sed -i '$a \unqualified-search-registries = ["docker.1ms.run"]' /etc/containers/registries.conf
+```
+
 设置完源以后，就可以直接使用镜像名字下载了
 
 > podman pull postgres:16
@@ -495,11 +500,15 @@ Trying to pull docker.io/library/hello-world:latest...
 
 查看替换结果:
 
-> sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf
+```bash
+sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf
+```
 
 在原文件直接替换:  
 
-> sudo sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf -i
+```bash
+sudo sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf -i
+```
 
 替换后结果如下:
 

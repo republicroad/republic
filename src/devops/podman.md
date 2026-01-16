@@ -26,6 +26,7 @@ podman 在 linux 上的最佳实践
 
 ## install
 
+### ubuntu
 ```bash
 apt install podman
 sudo apt install podman
@@ -38,6 +39,41 @@ podman 是一个 rootless 的容器管理系统，基本功能和 docker 类似.
 2. 提供 pod 的概念，更容易和k8s之类的容器编排调度系统集成
 3. 完全开源, 提供了兼容 docker 的标准的容器格式规范
 
+### win11
+
+安装好 wsl2 和 podman, podman desktop之后，按如下步骤修改相关配置:
+
+初始化 podman 虚拟机
+
+```powershell
+podman machine init
+```
+
+先拉镜像查看命令行关于镜像源的输出:
+
+```powershell
+podman pull haproxy
+Resolving "haproxy" using unqualified-search registries (/etc/containers/registries.conf.d/999-podman-machine.conf)
+Trying to pull docker.io/library/haproxy:latest...
+```
+
+可以看到镜像是从 docker.io 拉取，配置文件位置是 `(/etc/containers/registries.conf.d/999-podman-machine.conf`
+
+
+登录到 podman 虚拟机修改此文件
+```bash
+podman machine ssh
+```
+
+在虚拟机内修改镜像源
+```bash
+[user@LAPTOP-FSLMG090 ~]$ sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/999-podman-machine.conf
+```
+同时，podman镜像对一些知名镜像还做了别名设置，其中设置的源优先级高于上面的默认配置，也需要将其中的 docker.io 修改为我们配置的源.
+
+```bash
+[user@LAPTOP-FSLMG090 ~]$ sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/000-shortnames.conf
+```
 ## image
 
 > podman pull redis
@@ -507,7 +543,7 @@ sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.
 在原文件直接替换:  
 
 ```bash
-sudo sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf -i
+sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf
 ```
 
 替换后结果如下:

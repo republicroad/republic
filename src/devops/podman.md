@@ -74,6 +74,24 @@ podman machine ssh
 ```bash
 [user@LAPTOP-FSLMG090 ~]$ sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/000-shortnames.conf
 ```
+
+### macos
+
+在 macOS 上使用 Homebrew 安装 Podman  
+```bash
+brew install podman  
+```
+  
+初始化一个新的 Podman 虚拟机（由于 Podman 运行在虚拟机中，因此在 macOS 上需要此步骤） 
+```bash
+podman machine init  
+```
+
+启动 Podman 虚拟机  
+```bash
+podman machine start
+```
+
 ## image
 
 > podman pull redis

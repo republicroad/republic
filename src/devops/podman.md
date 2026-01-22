@@ -75,6 +75,17 @@ podman machine ssh
 [user@LAPTOP-FSLMG090 ~]$ sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/000-shortnames.conf
 ```
 
+#### podman compose in windows 
+
+powershell 中执行下列命令:
+
+```powershell
+# windows 安装 podman-compose
+pip install podman-compose
+# docker-compose.exe 优先级高于 podman-compose, 所以需要删除 docker-compose.exe
+Remove-Item "$(where.exe docker-compose.exe)" -Force
+```
+
 ### macos
 
 在 macOS 上使用 Homebrew 安装 Podman  
@@ -479,6 +490,10 @@ podman compose up -d --force-recreate haproxy
 
 ```
 
+### 多仓库编排
+
+https://docs.docker.com/reference/compose-file/build/#context
+
 ## 示例
 
 ### postgresql 容器
@@ -606,3 +621,29 @@ firewall=true
 autoProxy=true
 ```
 
+### windows podman compose
+
+```powershell
+# windows 安装 podman-compose
+# echo "$(where.exe podman-compose)"
+pip install podman-compose
+
+# docker-compose.exe 优先级高于 podman-compose, 所以需要删除 docker-compose.exe
+Remove-Item "$(where.exe docker-compose.exe)" -Force
+# Remove-Item "$HOME\\AppData\\Local\\Microsoft\\WindowsApps\\docker-compose.exe" -Force
+# Remove-Item "C:\\Users\\RYefccd\\AppData\\Local\\Microsoft\\WindowsApps\\docker-compose.exe" -Force
+```
+
+### git url with branch
+
+```bash
+# Clone a specific branch directly
+git clone -b develop https://github.com/octocat/Spoon-Knife.git
+# Or for some tools:
+git clone https://github.com/octocat/Spoon-Knife.git#develop
+```
+
+```bash
+# npm package
+some-package@git+https://github.com/user/repo.git#your-branch-name
+```

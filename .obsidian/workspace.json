@@ -11,46 +11,32 @@
             "id": "d2ce4034cb946e35",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "split-diff-view",
               "state": {
-                "file": "src/lang/zig.md",
-                "mode": "source",
-                "source": false
+                "aFile": "src/devops/podman.md",
+                "bFile": "src/devops/podman.md",
+                "aRef": ""
               },
-              "icon": "lucide-file",
-              "title": "zig"
+              "icon": "diff",
+              "title": "Diff: podman"
             }
           },
           {
-            "id": "46589f34b2004554",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "src/lang/bun/bun.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "bun"
-            }
-          },
-          {
-            "id": "43664b699cc3e5e8",
+            "id": "af948cdeb1aa8197",
             "type": "leaf",
             "state": {
               "type": "split-diff-view",
               "state": {
-                "aFile": ".obsidian/plugins/show-hidden-files/main.js",
-                "bFile": ".obsidian/plugins/show-hidden-files/main.js",
+                "aFile": "src/devops/podman.md",
+                "bFile": "src/devops/podman.md",
                 "aRef": ""
               },
               "icon": "diff",
-              "title": "Diff: main.js"
+              "title": "Diff: podman"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -82,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "advance topic",
+                "query": "index",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -208,7 +194,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:创建新数据库": false,
+      "bases:新建数据库": false,
       "obsidian-git:Open Git source control": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
@@ -222,11 +208,43 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "43664b699cc3e5e8",
+  "active": "af948cdeb1aa8197",
   "lastOpenFiles": [
+    "src/devops/podman.md",
+    "journal/RYefccd/2026-01-08.md",
+    "src/devops/lxd.md",
+    "src/devops/attach/Pasted image 20260105173232.png",
+    "src/devops/attach/Pasted image 20260105173835.png",
+    "src/devops/attach/Pasted image 20260106164929.png",
+    "src/devops/attach/Pasted image 20260105173455.png",
+    "src/devops/attach/Pasted image 20260105173438.png",
+    "journal/RYefccd/2026-01-05.md",
+    "journal/RYefccd/2026-01-06.md",
+    "src/devops/README.md",
+    "src/devops/system_tools.md",
+    "src/lang/zig.md",
+    "src/devops/attach/Pasted image 20260106174609.png",
+    "src/devops/attach/Pasted image 20260106174509.png",
+    "src/devops/attach/Pasted image 20260106174247.png",
+    "src/SUMMARY.md",
     "book.toml",
+    "book/diveintosystems/第1章-优美的c语言/attach/Pasted image 20240326162852.png",
+    "book/diveintosystems/第1章-优美的c语言/attach/Pasted image 20240326161900.png",
+    "book/diveintosystems/第1章-优美的c语言/attach",
+    "book/diveintosystems/第13章-The Operating System",
+    "book/diveintosystems/第14章-Leveraging Shared Memory in the Multicore Era",
+    "book/diveintosystems/第15章-Other Parallel Systems and Parallel Programming Models第15章",
+    "book/diveintosystems/第12章-Code Optimization",
+    "book/diveintosystems/第17章-Using Unix",
+    "book/diveintosystems/第11章-Storage and the Memory Hierarchy",
+    "book/editor/keyboard-shortcuts-windows.pdf",
+    "book/editor/attach/2024-01-15",
+    "journal/RYefccd/2025-12-17.md",
+    "src/lang/bun/bun.md",
+    "2025-11-12.md",
+    "src/webserver/nginx/index.md",
+    "README.md",
     "src/diveintosystems/第7章-64-bit x86 Assembly (x86-64)/7.3. Additional Arithmetic Instructions.md",
-    "未命名.base",
     "journal/RYefccd/2025-11-08.md",
     "journal/RYefccd/2025-10-25.md",
     "journal/RYefccd/2025-10-26.md",
@@ -234,42 +252,10 @@
     "src/lang/abi.md",
     "src/designs/sqlite/sqlite随机查询.md",
     "src/designs/sqlite/sqlite.md",
-    "src/designs/sqlite",
     "src/designs/risk.md",
     "src/designs/python/异步上下文生成器.md",
     "src/designs/python/uv.md",
     "src/designs/python/python.md",
-    "src/designs/python",
-    "src/designs/compile.md",
-    "src/circuits/Sequential Circuits.md",
-    "src/circuits",
-    "langsrc/ormdemo/readme.md",
-    "langsrc/ormdemo",
-    "journal/RYefccd/2025-09-29.md",
-    "journal/RYefccd/2025-09-27.md",
-    "journal/RYefccd/2025-09-08.md",
-    "journal/RYefccd/2025-08-27.md",
-    "journal/RYefccd/2025-08-13.md",
-    "journal/RYefccd/2025-08-24.md",
-    "journal/RYefccd/2025-08-26.md",
-    "journal/RYefccd/2025-08-23.md",
-    "journal/RYefccd/2025-08-16.md",
-    "journal/RYefccd/2025-05-03.md",
-    "src/network/Effective TCPIP programming 44 tips to improve your network programs (Snader, Jon C) (Z-Library).pdf",
-    "theme/pagetoc.js",
-    "theme/pagetoc.css",
-    "theme",
-    "src/lang/bun",
-    "src/network/attach/export_0ke6.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_10-40-18.png",
-    "journal/pengyang/attach/Snipaste_2024-12-24_10-39-36.png",
-    "journal/pengyang/attach/images.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_12-12-01.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_12-04-21.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_12-03-00.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_11-58-51.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_11-54-50.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_10-33-34.png",
     "未命名.canvas"
   ]
 }

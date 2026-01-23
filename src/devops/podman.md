@@ -191,6 +191,26 @@ podman run -d --name my-container --network my-network nginx
 操作此pg16容器中的psql客户端
 > podman exec -it pg16 psql -U postgres
 
+## attach
+
+把一个容器以交互式后台运行后，容器正在运行:
+
+```bash
+podman run -itd --name a1 alpine:latest sh
+podman run -itd --name n1 nginx bash
+```
+
+可以通过 `podman ps` 看到这个正在后台运行交互式shell的容器，可以通过 attach 命令重新去控制这个shell:
+```bash
+ryefccd@republic:~$ podman attach a1
+/ # cat /etc/issue 
+Welcome to Alpine Linux 3.23
+Kernel \r on \m (\l)
+
+/ # 
+```
+
+注意，在attach的shell中如果执行 `exit` 那么容器便退出了。如果只是希望退出当前的shell控制，而不是让容器退出，不要输入 `exit`，要输入  ==**Ctrl-P  Ctrl-Q**== 来退出attach的容器.
 
 ## network
 
@@ -606,3 +626,60 @@ firewall=true
 autoProxy=true
 ```
 
+### `EXPOSE` vs. `PUBLISH` (`-p`)
+
+It is crucial to understand that `EXPOSE` is different from publishing a port using the `-p` or `--publish` flag with the `docker run` command: 
+
+- **`EXPOSE` (Dockerfile instruction):** Declares an internal container port. It is a build-time instruction that sets metadata.
+- **`PUBLISH` (`-p` flag):** Maps a specific port on the host machine to a port inside the container at runtime, making the service accessible from the outside world. 
+
+You can publish any container port using `-p`, even if it is not listed in the `EXPOSE` instruction in the Dockerfile.
+
+
+### nginx in container
+
+[What is the difference between nginx daemon on/off option?](https://stackoverflow.com/questions/25970711/what-is-the-difference-between-nginx-daemon-on-off-option)  
+
+In Docker, `nginx -g 'daemon off;'` is the standard and recommended way to run NGINX in the **foreground**, which ensures that the Docker container remains running. 
+
+Why `daemon off` is necessary in Docker
+
+Docker operates on the principle that one container runs one foreground process (PID 1). 
+
+- **Standard NGINX behavior:** By default, NGINX runs as a daemon (`daemon on`), which means the initial process quickly spawns worker processes in the background and then exits.
+- **Docker's reaction:** If the primary process (PID 1) exits, Docker assumes the container's task is complete and stops the container immediately.
+- **The solution:** Setting `daemon off;` tells NGINX to stay in the foreground, becoming the primary process that Docker monitors. As long as NGINX is running, the container stays alive. 
+
+How to use `daemon off`
+
+You can configure NGINX with `daemon off` in a few ways:
+
+- **In a `Dockerfile`:** Modify your NGINX configuration file (`nginx.conf`) to include the directive, or pass it as a command-line argument in the `CMD` instruction. The official NGINX Docker images handle this automatically in their entrypoint scripts, but if you provide a custom `CMD` or `ENTRYPOINT`, you may need to explicitly include it.
+    
+    dockerfile
+    
+    ```
+    # Example Dockerfile snippet
+    CMD ["nginx", "-g", "daemon off;"]
+    ```
+    
+- **In a `docker run` command:**
+    
+    bash
+    
+    ```
+    docker run -d --name my-nginx -p 8080:80 nginx:latest nginx -g 'daemon off;'
+    ```
+    
+- **In a `docker-compose.yaml` file:**
+    
+    yaml
+    
+    ```
+    services:
+      web:
+        image: nginx:latest
+        ports:
+          - "8080:80"
+        command: [nginx, '-g', 'daemon off;']
+    ```

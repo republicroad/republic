@@ -34,9 +34,23 @@
               "icon": "diff",
               "title": "Diff: podman"
             }
+          },
+          {
+            "id": "33d7f74b200d36c9",
+            "type": "leaf",
+            "state": {
+              "type": "split-diff-view",
+              "state": {
+                "aFile": "src/devops/podman.md",
+                "bFile": "src/devops/podman.md",
+                "aRef": ""
+              },
+              "icon": "diff",
+              "title": "Diff: podman"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -208,9 +222,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "af948cdeb1aa8197",
+  "active": "33d7f74b200d36c9",
   "lastOpenFiles": [
     "src/devops/podman.md",
+    "conflict-files-obsidian-git.md",
     "journal/RYefccd/2026-01-08.md",
     "src/devops/lxd.md",
     "src/devops/attach/Pasted image 20260105173232.png",
@@ -255,7 +270,6 @@
     "src/designs/risk.md",
     "src/designs/python/异步上下文生成器.md",
     "src/designs/python/uv.md",
-    "src/designs/python/python.md",
     "未命名.canvas"
   ]
 }

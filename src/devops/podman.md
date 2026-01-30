@@ -4,6 +4,7 @@
 
 ### ubuntu
 podman 在 linux 上的最佳实践
+[Installing podman 5+ on ubuntu older versions](https://github.com/containers/podman/discussions/25582#discussioncomment-12803424)  
 
 1.  apt install podman
 2.  安装 [podman desktop](https://podman-desktop.io/)
@@ -28,7 +29,6 @@ podman 在 linux 上的最佳实践
 
 ### ubuntu
 ```bash
-apt install podman
 sudo apt install podman
 ```
 
@@ -38,6 +38,25 @@ podman 是一个 rootless 的容器管理系统，基本功能和 docker 类似.
 1. 默认提供 rootless 且无守护进程(daemon), 安全性好
 2. 提供 pod 的概念，更容易和k8s之类的容器编排调度系统集成
 3. 完全开源, 提供了兼容 docker 的标准的容器格式规范
+
+#### podman compose in ubuntu
+
+注意, 不要使用 `apt install podman-compose ` 来安装, 这样不是最新版本.
+使用如下步骤单独安装 podman-compose 最新的 standalone 版本:
+```bash
+curl -o ~/.local/bin/podman-compose https://raw.githubusercontent.com/containers/podman-compose/main/podman_compose.py
+chmod +x ~/.local/bin/podman-compose
+```
+
+查看 podman 和 podman-compose的版本:
+```bash
+ryefccd@republic:~/brde$ podman compose --version
+>>>> Executing external compose provider "/home/ryefccd/.local/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+podman-compose version 1.5.0
+podman version 5.4.1
+```
+确定 podman compose 的 provider  "/home/ryefccd/.local/bin/podman-compose" 是来自我们上面手动安装即可。
 
 ### win11
 
@@ -486,10 +505,6 @@ ryefccd@republic:~$ podman network inspect net192
 
 ## podman compose
 
-安装 podman-compose
-```bash
-sudo apt install podman-compose 
-```
 
 podman-compose兼容 docker-compose, 用来做多容器编排管理.
 默认文件是 **`compose.yaml`**, **`compose.yml`**, **`docker-compose.yaml`** or **`docker-compose.yml`**

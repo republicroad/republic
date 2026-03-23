@@ -685,3 +685,17 @@ contains(customer.groups, "admin") // true
 ```
 
 > `$`也被认为是上下文的一部分，它指的是当前列（单元格内）。
+
+
+
+# feel lang
+
+## EBNF
+
+## python 
+https://github.com/TencentBlueKing/bkflow-feel  
+https://github.com/russellmcdonell/pySFeel  
+
+## docs
+
+https://sparxsystems.com/enterprise_architect_user_guide/16.1/guide_books/expression_languages.html  

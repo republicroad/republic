@@ -143,3 +143,27 @@ class AddHeader:
 addons = [AddHeader()]
 
 ```
+
+
+## 五. 容器使用示例
+
+如果是用容器docker或者 podman, 可以使用如下命令.
+
+开启 mitmproxy 命令行
+```bash
+podman run -it --rm -p 8080:8080 -p 8081:8081 -v ~/.mitmproxy:/home/mitmproxy/.mitmproxy mitmproxy/mitmproxy
+```
+
+开启 mitmweb 代理配置页面
+```
+podman run -it --rm -p 8080:8080 -p 8081:8081 -v ~/.mitmproxy:/home/mitmproxy/.mitmproxy mitmproxy/mitmproxy mitmweb --web-host 0.0.0.0 --web-port 8081 -p 8080
+```
+
+
+如果允许局域网内其他主机访问容器曝露在主机的服务，还需要配置防火墙允许特定端口访问:
+
+```bash
+sudo ufw status          # 查看防火墙规则
+sudo ufw allow 8080/tcp  # 将本机器 8080 端口曝露给网络上其他机器访问
+sudo ufw allow 8081/tcp  # 将本机器 8081 端口曝露给网络上其他机器访问
+```

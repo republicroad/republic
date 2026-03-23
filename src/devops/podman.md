@@ -552,6 +552,17 @@ podman-docker 会在 $PATH 路径下设置一个 docker 的脚本命令，实际
 
 ## 参考
 
+### ubuntu podman 容器服务被其他主机访问(防火墙)
+
+除了要使用 -p 将容器端口曝露到主机端口上，还需要在主机上配置防火墙，给服务端口放行.
+比如为了给 haproxy 计数器服务的容器所在的主机曝露服务，需要运行以下脚本:
+```bash
+sudo ufw status          # 查看防火墙规则
+sudo ufw allow 8888/tcp  # 将本机器8888端口曝露给网络上其他机器访问
+```
+
+[UFW: Uncomplicated Firewall — Cheat Sheet](https://blog.rtsp.us/ufw-uncomplicated-firewall-cheat-sheet-a9fe61933330)
+
 ### docker 镜像源
 
 [境内 Docker 镜像状态监控](https://status.anye.xyz/)  

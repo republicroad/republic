@@ -106,6 +106,10 @@ Remove-Item "$(where.exe docker-compose.exe)" -Force
 ```
 
 ### macos
+在macOS 上 使用Homebrew 安装qemu(这是 Podman 在 macOS 上运行所必需的虚拟化工具。)
+```bash
+brew install qemu  
+```
 
 在 macOS 上使用 Homebrew 安装 Podman  
 ```bash
@@ -121,6 +125,43 @@ podman machine init
 ```bash
 podman machine start
 ```
+
+命令验证安装是否成功
+```bash
+podman info
+```
+
+‌验证连接
+```bash
+podman system connection list
+```
+
+安装podman-compose 使得compose执行指令是用的podman的指令而不是docker的指令
+```bash
+brew install podman-compose
+```
+
+登录到 podman 虚拟机修改镜象源  
+
+```bash
+podman machine ssh
+
+
+把下面这个变量改成如下配置并保存退出
+sudo vi /etc/containers/registries.conf.d/999-podman-machine.conf
+unqualified-search-registries = ["docker.1ms.run"]
+
+如果还不行，可把下面文件配置也修改一下保存退出
+sudo vi /etc/containers/registries.conf
+unqualified-search-registries = ["docker.1ms.run"]
+```
+
+需要执行指令可参考如下指令(podman-compose来执行，避免compose指令在同时安装了docker和podman的环境中被识别成docker指令)
+```bash
+podman-compose -f compose.yml up -d
+```
+
+
 
 ## image
 

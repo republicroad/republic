@@ -14,7 +14,14 @@ TODO
 
 ## 资料
 
-### flink cep
+[redpanda: 复杂事件处理——架构及其他实际考量](https://www.redpanda.com/guides/event-stream-processing-complex-event-processing#:~:text=Summary%20of%20key%20complex%20event%20processing%20concepts&text=A%20specialized%20technique%20for%20analyzing,to%20identify%20patterns%20and%20trends.&text=Origins%20of%20events%20in%20a,generate%20data%20streams%20for%20analysis.&text=Standard%20techniques%20or%20rules%20in,%2C%20aggregation%2C%20and%20relationship%20identification.&text=Architectural%20models%20in%20CEP%2C%20choosing,servers/nodes%20(distributed).)
+
+### timeplus
+
+[Complex Event Processing Made Easy with Streaming SQL + UDF](https://www.timeplus.com/post/cep-with-streaming-sql-udf)  
+[timeplus: 技术分享｜使用流式SQL+UDF简化复杂事件处理](https://zhuanlan.zhihu.com/p/1968754849265980826)  
+https://gist.github.com/gangtao/44fce0d019be441f94e19503c0923cf7  
+### [flink cep](https://nightlies.apache.org/flink/flink-docs-release-2.0/docs/dev/table/sql/queries/match_recognize/#known-limitations)  
 
 [# FlinkCEP - Flink的复杂事件处理](https://nightlies.apache.org/flink/flink-docs-stable/zh/docs/libs/cep/)  
 [第十一章，Flink CEP简介](https://confucianzuoyuan.github.io/flink-tutorial/book/chapter11-00-00-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%EF%BC%8CFlink-CEP%E7%AE%80%E4%BB%8B.html#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0flink-cep%E7%AE%80%E4%BB%8B)

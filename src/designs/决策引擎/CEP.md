@@ -26,6 +26,8 @@ https://gist.github.com/gangtao/44fce0d019be441f94e19503c0923cf7
 [# FlinkCEP - Flink的复杂事件处理](https://nightlies.apache.org/flink/flink-docs-stable/zh/docs/libs/cep/)  
 [第十一章，Flink CEP简介](https://confucianzuoyuan.github.io/flink-tutorial/book/chapter11-00-00-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%EF%BC%8CFlink-CEP%E7%AE%80%E4%BB%8B.html#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0flink-cep%E7%AE%80%E4%BB%8B)
 [# 动态Flink CEP电商实时预警系统](https://help.aliyun.com/zh/flink/realtime-flink/use-cases/build-an-e-commerce-early-warning-system-with-flink-cep)
+[基于 Flink 构建大规模实时风控系统在阿里巴巴的落地](https://xie.infoq.cn/article/37d249a7cd16de527b4a39051)  
+[详解 Flink CEP（以直播平台监控用户弹幕为例）](https://xie.infoq.cn/article/b2ffe9c41ecb4647a1ed8a340)  
 
 
 ### drools cep

@@ -73,15 +73,10 @@ auth : [React Context API：无需 Redux 的状态管理](https://medium.com/@ko
 [Ky.js: A Delightful Alternative to Axios](https://madanbajgai.com.np/blog/ky-js-is-a-modern-alternative-to-axios/)  
 [Why Ky is the Best Alternative to Axios and Fetch for Modern HTTP Requests](https://freedium-mirror.cfd/https://medium.com/@usluer/why-ky-is-the-best-alternative-to-axios-and-fetch-for-modern-http-requests-e41abeb0b81f)  
 
-### toast
-页面弹出通知(一般在右下角)  
-[Sonner — The Toast Library That Made My UI Feel Alive](https://medium.com/@subashnatrayan28/%EF%B8%8F-sonner-the-toast-library-that-made-my-ui-feel-alive-cf77452eb2c8)
-
-### i18n
-
 
 ## 状态管理
 
+[How to Pass Initial Props to Zustand State Without Losing Your Mind](https://www.buildwithmatija.com/blog/how-to-pass-initial-props-to-zustand-state-without-losing-your-mind)
 [Why choose Zustand over Jotai?](https://www.reddit.com/r/reactjs/comments/1ctsnov/why_choose_zustand_over_jotai/)  
 [Jotai Comparison](https://jotai.org/docs/basics/comparison)  
 [State Management in 2025: When to Use Context, Redux, Zustand, or Jotai](https://dev.to/hijazi313/state-management-in-2025-when-to-use-context-redux-zustand-or-jotai-2d2k)  
@@ -134,6 +129,22 @@ If you need to interact with the store outside of React components (e.g., in a u
 ## fullstack
 [How to Use TypeScript for Full-Stack Web Development](https://www.mindstudio.ai/blog/how-to-use-typescript-full-stack-development)  
 [How to Structure Large-Scale React Applications for Maintainability](https://oneuptime.com/blog/post/2026-01-15-structure-large-scale-react-applications/view#6-service-layer-architecture)  
+
+## toast
+页面弹出通知(一般在右下角)  
+[Sonner — The Toast Library That Made My UI Feel Alive](https://medium.com/@subashnatrayan28/%EF%B8%8F-sonner-the-toast-library-that-made-my-ui-feel-alive-cf77452eb2c8)
+
+## i18n
+
+## multi-step
+
+1. [The Fastest Way to Build Multi Step Forms](https://shadcn-ui-multi-form.vercel.app/)  
+[multi-step-form builder](https://shadcn-ui-multi-form.vercel.app/build)  
+
+2. [stepperize: Multi-step flows made simple](https://stepperize.vercel.app/)  
+[Simplifying Multi-Step Processes in React](https://stepperize.vercel.app/docs/react#simplifying-multi-step-processes-in-react)  
+
+3. https://reui.io/components/stepper
 ## 参考
 
 [TkDodo's blog](https://tkdodo.eu/blog)  

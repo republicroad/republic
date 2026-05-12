@@ -6,5 +6,5 @@
   "newFileLocation": "current",
   "newLinkFormat": "relative",
   "showLineNumber": true,
-  "readableLineLength": true
+  "readableLineLength": false
 }

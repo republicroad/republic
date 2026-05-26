@@ -4,6 +4,9 @@
 # User Guide
 
 -  [blog](blog/index.md)
+	- [决策引擎实时算子](blog/决策引擎实时算子.md)
+	- [限流与流式窗口](blog/限流与流式窗口.md)
+	- [front best practice](blog/front%20best%20practice.md)
 - [editor](editor/README.md)
 	- [obsidian](editor/obsidian.md)
 	- [vscode](editor/vscode.md)

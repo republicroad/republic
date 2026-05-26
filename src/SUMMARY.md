@@ -3,6 +3,7 @@
 [Introduction](./README.md)
 # User Guide
 
+-  [blog](blog/index.md)
 - [editor](editor/README.md)
 	- [obsidian](editor/obsidian.md)
 	- [vscode](editor/vscode.md)

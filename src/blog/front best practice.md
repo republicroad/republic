@@ -124,7 +124,7 @@ If you need to interact with the store outside of React components (e.g., in a u
 [Markdown 也能类型安全? 用 TanStack Start 和 Markdown 构建博客的最佳方式！ | Josef Bender](https://www.bilibili.com/video/BV1syZZBDEsU/?vd_source=8f2e8d9afb969c72b313832ed92dc193)  
 [如何使用 Markdown 创建静态页面和博客文章](https://workspace.hr/blog/how-to-use-markdown-to-make-static-pages-and-blog-posts)  
 [Content Collections](https://www.content-collections.dev/)  
-
+[渲染 Markdown](https://tanstack.com/start/latest/docs/framework/react/guide/rendering-markdown)  
 
 ## fullstack
 [How to Use TypeScript for Full-Stack Web Development](https://www.mindstudio.ai/blog/how-to-use-typescript-full-stack-development)  

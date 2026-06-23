@@ -39,14 +39,14 @@
             "id": "d94e75d476f937a5",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": "journal/RYefccd/2026-05-11.md",
-                "bFile": "journal/RYefccd/2026-05-11.md",
-                "aRef": ""
+                "file": "src/blog/决策引擎.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: 2026-05-11"
+              "icon": "lucide-file",
+              "title": "决策引擎"
             }
           }
         ],
@@ -82,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "advance topic",
+                "query": "markdown",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -171,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "src/editor/vscode_keyboard_shortcuts.md",
+                "file": "src/blog/决策引擎.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "vscode_keyboard_shortcuts 的大纲"
+              "title": "决策引擎 的大纲"
             }
           },
           {
@@ -225,11 +225,22 @@
   },
   "active": "d94e75d476f937a5",
   "lastOpenFiles": [
+    "src/blog/决策引擎.md",
+    "src/blog/决策引擎实时算子.md",
+    "src/blog/决策引擎使用场景.md",
+    "src/blog/营销归因.md",
+    "src/blog/attach/Pasted image 20260622141044.png",
+    "journal/RYefccd/2026-06-08.md",
+    "journal/RYefccd/2026-05-25.md",
+    "src/blog/attach/Pasted image 20260621121623.png",
+    "src/blog/attach",
+    "src/blog/营销拉新.md",
     "src/blog/限流与流式窗口.md",
-    "journal/RYefccd/2026-05-11.md",
     "src/blog/front best practice.md",
-    "src/designs/topk.md",
     "src/SUMMARY.md",
+    "src/blog/index.md",
+    "journal/RYefccd/2026-05-11.md",
+    "src/designs/topk.md",
     "journal/RYefccd/2026-04-30.md",
     "journal/RYefccd/2026-04-24.md",
     "journal/RYefccd/2026-04-17.md",
@@ -243,16 +254,7 @@
     "src/designs/决策引擎/readme.md",
     "src/designs/决策引擎/dmn.md",
     "src/editor/vscode_keyboard_shortcuts.md",
-    "journal/RYefccd/2026-03-31.md",
-    "journal/RYefccd/2026-03-30.md",
-    "journal/RYefccd/2026-03-27.md",
-    "journal/RYefccd/2026-03-25.md",
-    "journal/RYefccd/2026-03-23.md",
-    "journal/RYefccd/2026-03-22.md",
-    "journal/RYefccd/2026-01-16.md",
-    "src/designs/分布式缓存设计.md",
     "src/designs/决策引擎",
-    "src/designs/nim.md",
     "src/devops/attach/Pasted image 20260106164929.png",
     "src/devops/attach/Pasted image 20260106174609.png",
     "src/devops/attach/Pasted image 20260106174509.png",
@@ -268,9 +270,6 @@
     "src/designs/python",
     "src/circuits",
     "langsrc/ormdemo",
-    "src/network/Effective TCPIP programming 44 tips to improve your network programs (Snader, Jon C) (Z-Library).pdf",
-    "src/network/attach/export_0ke6.png",
-    "journal/pengyang/attach/Snipaste_2024-12-26_10-40-18.png",
     "未命名.canvas"
   ]
 }

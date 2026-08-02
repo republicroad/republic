@@ -1,9 +1,24 @@
 
 # clash
 
-> [!NOTE] Title
->myproxy.zip 这个压缩文件包含clash客户端, 解压密码: clash
+> [!NOTE] clashverge
+> https://www.clashverge.dev/
 
+### Ubuntu / macOS
+
+```bash
+export HTTPS_PROXY=https://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+export NO_PROXY=localhost,127.0.0.1
+```
+
+### PowerShell
+
+```powershell
+$env:HTTPS_PROXY="http://127.0.0.1:7890"
+$env:HTTP_PROXY="http://127.0.0.1:7890"
+$env:NO_PROXY="localhost,127.0.0.1"
+```
 
 1. 打开以后exe文件后, 首页如下
 

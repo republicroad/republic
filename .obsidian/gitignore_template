@@ -1,0 +1,13 @@
+# Ignore temporary workspaces and UI states (Crucial)
+workspace.json
+workspace-mobile.json
+graph.json
+
+
+# Optional: Ignore all settings by default, or manually allow specific ones
+*
+!app.json
+!appearance.json
+!community-plugins.json
+!core-plugins.json
+!hotkeys.json

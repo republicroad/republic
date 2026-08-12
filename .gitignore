@@ -7,3 +7,19 @@ book
 .ipynb_checkpoints/
 Excalidraw/
 **/*.exe
+
+# Ignore temporary workspaces and UI states (Crucial)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+
+# Ignore Obsidian's internal trash bin
+.trash/
+
+# Optional: Ignore all settings by default, or manually allow specific ones
+.obsidian/*
+!.obsidian/app.json
+!.obsidian/appearance.json
+!.obsidian/community-plugins.json
+!.obsidian/core-plugins.json
+!.obsidian/gitignore_template

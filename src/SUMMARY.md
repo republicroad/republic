@@ -9,6 +9,7 @@
 	- [front best practice](blog/front%20best%20practice.md)
 - [editor](editor/README.md)
 	- [obsidian](editor/obsidian.md)
+	- [zed](editor/zed.md)
 	- [vscode](editor/vscode.md)
 	- [vscode_快捷键](editor/vscode_keyboard_shortcuts.md)
 	- [excalidraw](editor/excalidraw.md)

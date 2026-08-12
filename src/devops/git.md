@@ -1,30 +1,7 @@
 
-# git tips
+# git
 
-
-## windows git 
-
-
-- 避免windows提醒文件的换行符. 这个只在windows系统上设置, 不能跨平台设置. 
-	```
-	git config --global core.autocrlf false
-	```
-
-- 给仓库配置 ssh 和 https 协议
-
-		ssh 协议方便提交(设置无密码的公钥), https 协议方便设置代理(http.proxy)
-
-```shell
-$ git remote -v
-origin  https://github.com/republicroad/republic.git (fetch)
-origin  https://github.com/republicroad/republic.git (push)
-originssh       git@github.com:RYefccd/republic.git (fetch)
-originssh       git@github.com:RYefccd/republic.git (push)
-```
-
-
-
-## 常用技巧
+## best practice
 
 - git 设置代理
 ```
@@ -51,18 +28,55 @@ git config --global --unset-all http.proxy
 
 - 移除在本地有追踪分支但是在远端服务器仓库不存在的分支，使用 `git fetch --prune` 命令。此命令可以更新本地的跟踪远程分支以及移除服务器上已经删除但是本地还在追踪的分支。
 
+### gitignore
 
-## cmd
+文件夹中只有几个文件需要被追踪, 那么可以在此文件夹创建一个.gitignore文件, 首先输入一行*，然后接下来的行写 **!xxxx.json**, 这样就可以实现反选的逻辑.
 
-- git clone
-- git remote -v
+```shell
+# *
+# !app.json
+# !hotkeys.json
+```
+
+```shell
+# .obsidian/*
+# !.obsidian/app.json
+# !.obsidian/hotkeys.json
+```
 
 
-## github
+
+## git cmds
+
+### git clone
+
+clone 仓库:  
+> git clone https://github.com/republicroad/editor.git
+
+clone 指定 zrule 分支:  
+> git clone  --branch zrule  https://github.com/republicroad/editor.git
+### git remote
+
+### git submodule
+
+#### clone with submodule
+
+> git clone --recurse-submodules --branch zrule  https://github.com/republicroad/editor.git
+
+#### set branch
+修改 git submodule (.gitmodules 文件branch属性)中的子仓库分支:
+```bash
+# .gitmodules 中的 branch 会修改为 zrule
+git submodule set-branch --branch zrule jdm-editor
+
+```
+
+
+## troubleshooting
 
 ### git ssh connection timeout
 
-遇到了 git on ssh 协议的连接超时, 如下图所示:
+连接 github 遇到了 git on ssh 协议的连接超时, 如下图所示:
 ```bash
 $ git pull originssh main
 ssh: connect to host github.com port 22: Connection timed out
@@ -71,7 +85,7 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
 ```
-解决方案如下:
+[解决方案](https://medium.com/@gopilakshman93/work-around-for-port-22-connection-timed-out-issue-while-ssh-to-github-com-50d9a32c0288)如下:
 1. 使用 https 协议
 2. 设置 ssh config(~/.ssh/config)中增加如下配置. [解决方案](https://stackoverflow.com/a/52817036)
 ```
@@ -82,9 +96,8 @@ Host github.com
 
 使用 ssh -vt 命令调试
 
-
-	ssh -vT git@github.com
-
+> ssh -vT git@github.com
+> ssh -vT git@ssh.github.com -p 443
 ```bash
 $ ssh -vT git@github.com
 OpenSSH_9.5p1, OpenSSL 3.1.4 24 Oct 2023
@@ -188,19 +201,22 @@ IdentityFile ~/.ssh/id_rsa
 
 [github和gitlab ssh 服务器域名](https://stackoverflow.com/a/55149904)
 
+## platform
+### windows
 
-## gitignore
+- 避免windows提醒文件的换行符. 这个只在windows系统上设置, 不能跨平台设置. 
+	```
+	git config --global core.autocrlf false
+	```
 
-文件夹中只有几个文件需要被追踪, 那么可以在此文件夹创建一个.gitignore文件, 首先输入一行*，然后接下来的行写 **!xxxx.json**, 这样就可以实现反选的逻辑.
+- 给仓库配置 ssh 和 https 协议
+
+		ssh 协议方便提交(设置无密码的公钥), https 协议方便设置代理(http.proxy)
 
 ```shell
-# *
-# !app.json
-# !hotkeys.json
-```
-
-```shell
-# .obsidian/*
-# !.obsidian/app.json
-# !.obsidian/hotkeys.json
+$ git remote -v
+origin  https://github.com/republicroad/republic.git (fetch)
+origin  https://github.com/republicroad/republic.git (push)
+originssh       git@github.com:RYefccd/republic.git (fetch)
+originssh       git@github.com:RYefccd/republic.git (push)
 ```

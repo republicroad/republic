@@ -6,25 +6,6 @@
 podman 在 linux 上的最佳实践
 [Installing podman 5+ on ubuntu older versions](https://github.com/containers/podman/discussions/25582#discussioncomment-12803424)  
 
-1.  apt install podman
-2.  安装 [podman desktop](https://podman-desktop.io/)
-3.  替换国内源在 podman desktop 设置 registries 中的 Preferred  为 **docker.1ms.run**
-![](attach/Pasted%20image%2020260106164929.png)
-4. (可选步骤)在更换源之后, 如果在拉取镜像时还是有点慢. 那么说明podman desktop 还是默认去查找了 docker.io, 需要配置代理加速.
-![](attach/Pasted%20image%2020260106174247.png)
-
-![](attach/Pasted%20image%2020260106174509.png)
-
-5. 可以在image功能中去拉取镜像, 输入镜像名即可搜索相关镜像.
-
-![](attach/Pasted%20image%2020260106174609.png)
-
-这里没有配置 docker.io 源，但是还是去搜索了docker.io, 这个行为特别奇怪.
-如果原来的机器没有安装 docker, 似乎就不会去搜索docker.io. 
-恰好 docker.io 在国内被禁，所以不配置代理，这里搜索镜像会长时间不可用直到超时.
-
-**注意**: 在 podman desktop 中配置的 registries 不会影响命令行中的命令. 命令行中使用 podman pull <镜像名> 时还需要去设置. 请参考 [镜像源](podman.md#podman#镜像源)
-
 ## install
 
 ### ubuntu
@@ -39,72 +20,9 @@ podman 是一个 rootless 的容器管理系统，基本功能和 docker 类似.
 2. 提供 pod 的概念，更容易和k8s之类的容器编排调度系统集成
 3. 完全开源, 提供了兼容 docker 的标准的容器格式规范
 
-#### podman compose in ubuntu
-
-注意, 不要使用 `apt install podman-compose ` 来安装, 这样不是最新版本.
-使用如下步骤单独安装 podman-compose 最新的 standalone 版本:
-```bash
-curl -o ~/.local/bin/podman-compose https://raw.githubusercontent.com/containers/podman-compose/main/podman_compose.py
-chmod +x ~/.local/bin/podman-compose
-```
-
-查看 podman 和 podman-compose的版本:
-```bash
-ryefccd@republic:~/brde$ podman compose --version
->>>> Executing external compose provider "/home/ryefccd/.local/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
-
-podman-compose version 1.5.0
-podman version 5.4.1
-```
-确定 podman compose 的 provider  "/home/ryefccd/.local/bin/podman-compose" 是来自我们上面手动安装即可。
-
 ### win11
 
-安装好 wsl2 和 podman, podman desktop之后，按如下步骤修改相关配置:
-
-初始化 podman 虚拟机
-
-```powershell
-podman machine init
-```
-
-先拉镜像查看命令行关于镜像源的输出:
-
-```powershell
-podman pull haproxy
-Resolving "haproxy" using unqualified-search registries (/etc/containers/registries.conf.d/999-podman-machine.conf)
-Trying to pull docker.io/library/haproxy:latest...
-```
-
-可以看到镜像是从 docker.io 拉取，配置文件位置是 `(/etc/containers/registries.conf.d/999-podman-machine.conf`
-
-
-登录到 podman 虚拟机修改此文件
-```bash
-podman machine ssh
-```
-
-在虚拟机内修改镜像源
-```bash
-[user@LAPTOP-FSLMG090 ~]$ sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/999-podman-machine.conf
-```
-同时，podman镜像对一些知名镜像还做了别名设置，其中设置的源优先级高于上面的默认配置，也需要将其中的 docker.io 修改为我们配置的源.
-
-```bash
-[user@LAPTOP-FSLMG090 ~]$ sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/000-shortnames.conf
-```
-
-#### podman compose in windows 
-
-powershell 中执行下列命令:
-
-```powershell
-# windows 安装 podman-compose
-pip install podman-compose
-# docker-compose.exe 优先级高于 podman-compose, 所以需要删除 docker-compose.exe
-Remove-Item "$(where.exe docker-compose.exe)" -Force
-```
-
+[podman-windows](podman/podman-windows.md)
 ### macos
 在macOS 上 使用Homebrew 安装qemu(这是 Podman 在 macOS 上运行所必需的虚拟化工具。)
 ```bash
@@ -136,100 +54,13 @@ podman info
 podman system connection list
 ```
 
-安装podman-compose 使得compose执行指令是用的podman的指令而不是docker的指令
-```bash
-brew install podman-compose
-```
-
-登录到 podman 虚拟机修改镜象源  
-
-```bash
-podman machine ssh
-
-
-把下面这个变量改成如下配置并保存退出
-sudo vi /etc/containers/registries.conf.d/999-podman-machine.conf
-unqualified-search-registries = ["docker.1ms.run"]
-
-如果还不行，可把下面文件配置也修改一下保存退出
-sudo vi /etc/containers/registries.conf
-unqualified-search-registries = ["docker.1ms.run"]
-```
-
-需要执行指令可参考如下指令(podman-compose来执行，避免compose指令在同时安装了docker和podman的环境中被识别成docker指令)
-```bash
-podman-compose -f compose.yml up -d
-```
-
-
-
 ## image
 
 > podman pull redis
 
-直接拉取镜像会报错:
-
-```
-ryefccd@republic:~$ podman pull redis
-Error: short-name "redis" did not resolve to an alias and no unqualified-search registries are defined in "/etc/containers/registries.conf"
-
-```
-
-解决方案有两个:
-1. 指定某个可以使用的源
-
-	```bash
-	podman pull docker.1ms.run/library/postgres:16
-	```
-
-2. 因为国内的docker镜像源不可使用，所以需要更换国内可以使用的源: https://1ms.run/  具体配置参考下一节**镜像源**
-
-### 镜像源
-
-修改podman国内镜像源(兼容docker)
-
-```bash
-# 在此文件增加源的配置
-sudo vim /etc/containers/registries.conf
-```
-
-```toml
-# # An array of host[:port] registries to try when pulling an unqualified image, in order.
-# unqualified-search-registries = ["example.com"]
-unqualified-search-registries = ["docker.1ms.run"]
-```
-
-可以使用sed在文件最后添加 `unqualified-search-registries = ["docker.1ms.run"]`配置: 
-```bash
-sudo sed -i '$a \unqualified-search-registries = ["docker.1ms.run"]' /etc/containers/registries.conf
-```
-
-设置完源以后，就可以直接使用镜像名字下载了
-
-> podman pull postgres:16
-> podman pull postgres:latest
-> podman pull ubuntu
-
-
-**注意**: 如果在更换 unqualified-search-registries 之后还是 去 docker.io拉取某些镜像时, 如下所示.
-```bash
-ryefccd@republic:~$ podman pull node
-Resolved "node" as an alias (/etc/containers/registries.conf.d/shortnames.conf)
-Trying to pull docker.io/library/node:latest...
-WARN[0060] Failed, retrying in 1s ... (1/3). Error: initializing source docker://node:latest: pinging container registry registry-1.docker.io: Get "https://registry-1.docker.io/v2/": dial tcp 103.252.115.221:443: i/o timeout 
-```
-这个表示node在 (/etc/containers/registries.conf.d/shortnames.conf) 设置了别名:
-```toml
-...
-  # node
-  "node" = "docker.io/library/node"
-```
-那么需要把此 shortnames .conf 别名设置中的 docker.io 都替换成  docker.1ms.run. 具体操作请参看 [镜像别名(shortnames)](#镜像别名(shortnames))
-
-
 ## container
 
-> podman pull docker.1ms.run/library/postgres:16
+> podman pull postgres:16
 
 创建容器
 
@@ -284,49 +115,6 @@ Kernel \r on \m (\l)
 注意，在attach的shell中如果执行 `exit` 那么容器便退出了。如果只是希望退出当前的shell控制，而不是让容器退出，不要输入 `exit`，要输入  ==**Ctrl-P  Ctrl-Q**== 来退出attach的容器.
 
 ## network
-
-podman 在ubuntu中默认的桥接网络配置文件:  /etc/cni/net.d/87-podman-bridge.conflist
-
-``` /etc/cni/net.d/87-podman-bridge.conflist
-{
-  "cniVersion": "0.4.0",
-  "name": "podman",
-  "plugins": [
-    {
-      "type": "bridge",
-      "bridge": "cni-podman0",
-      "isGateway": true,
-      "ipMasq": true,
-      "hairpinMode": true,
-      "ipam": {
-        "type": "host-local",
-        "routes": [{ "dst": "0.0.0.0/0" }],
-        "ranges": [
-          [
-            {
-              "subnet": "10.88.0.0/16",
-              "gateway": "10.88.0.1"
-            }
-          ]
-        ]
-      }
-    },
-    {
-      "type": "portmap",
-      "capabilities": {
-        "portMappings": true
-      }
-    },
-    {
-      "type": "firewall"
-    },
-    {
-      "type": "tuning"
-    }
-  ]
-}
-```
-
 
 ### 查看podman的网络配置
 [Basic Networking Guide for Podman](https://github.com/containers/podman/blob/main/docs/tutorials/basic_networking.md#default-network)    
@@ -458,7 +246,6 @@ round-trip min/avg/max = 0.049/0.090/0.116 ms
 podman network create --subnet 192.168.10.0/24 net192
 
 podman network create --subnet 10.0.0.0/24 --ip-range 10.0.0.100-10.0.0.200 my-custom-net
-
 ```
 
 **Gateway:** Define the gateway IP for the network
@@ -508,44 +295,45 @@ ryefccd@republic:~$ podman network inspect net192
 
 ```
 用此网络设备的容器都可以通过容器名互相访问(ping)了.
-
-## podman desktop
-
-
-[podman desktop download](https://podman-desktop.io/downloads)  
-
-完成安装后可以在桌面程序上管理容器, pod, 网络和存储卷，也能和k8s进行交互.
-
-
-在拉取镜像时直接指定 registry 的域名也可以在其中搜索镜像.
-如下图所示, 输入 **docker.1ms.run** 搜索此源镜像:  
-
-![](attach/Pasted%20image%2020260105173232.png)
-
-下面是 `/etc/containers/registries.conf` 配置中提到的为什么镜像使用全限定名称的原因.
-
-> [!WARNING] NOTE: RISK OF USING UNQUALIFIED IMAGE NAMES
-> 
-> We recommend always using fully qualified image names including the registry 
-> server (full dns name), namespace, image name, and tag
-> (e.g., registry.redhat.io/ubi8/ubi:latest). Pulling by digest (i.e.,
-> quay.io/repository/name@digest) further eliminates the ambiguity of tags.
-> When using short names, there is always an inherent risk that the image being
-> pulled could be spoofed. For example, a user wants to pull an image named
-> `foobar` from a registry and expects it to come from myregistry.com. If
-> myregistry.com is not first in the search list, an attacker could place a
-> different `foobar` image at a registry earlier in the search list. The user
-> would accidentally pull and run the attacker's image and code rather than the
-> intended content. We recommend only adding registries which are completely
-> trusted (i.e., registries which don't allow unknown or anonymous users to
-> create accounts with arbitrary names). This will prevent an image from being
-> spoofed, squatted or otherwise made insecure.  If it is necessary to use one
-> of these registries, it should be added at the end of the list.
-
-
-
 ## podman compose
 
+### ubuntu
+
+注意, 不要使用 `apt install podman-compose` 来安装, 这样不是最新版本. 使用如下步骤单独安装 podman-compose 最新的 standalone 版本:
+```bash
+curl -o ~/.local/bin/podman-compose https://raw.githubusercontent.com/containers/podman-compose/main/podman_compose.py
+chmod +x ~/.local/bin/podman-compose
+```
+
+查看 podman 和 podman-compose的版本:
+```bash
+ryefccd@republic:~/brde$ podman compose --version
+>>>> Executing external compose provider "/home/ryefccd/.local/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+podman-compose version 1.5.0
+podman version 5.4.1
+```
+确定 podman compose 的 provider  "~/.local/bin/podman-compose" 是来自我们上面手动安装即可。
+
+### windows 
+
+powershell 中执行下列命令:
+
+```powershell
+# windows 安装 podman-compose
+pip install podman-compose
+# docker-compose.exe 优先级高于 podman-compose, 所以需要删除 docker-compose.exe
+Remove-Item "$(where.exe docker-compose.exe)" -Force
+```
+
+### macos
+
+安装podman-compose 使得compose执行指令是用的podman的指令而不是docker的指令
+```bash
+brew install podman-compose
+```
+
+### 编排命令
 
 podman-compose兼容 docker-compose, 用来做多容器编排管理.
 默认文件是 **`compose.yaml`**, **`compose.yml`**, **`docker-compose.yaml`** or **`docker-compose.yml`**
@@ -561,9 +349,7 @@ podman compose -f my-alternative-name.yml up
 只更新其中一个容器, 比如haproxy:
 
 ```bash
-
 podman compose up -d --force-recreate haproxy
-
 ```
 
 ### 多仓库编排
@@ -616,84 +402,6 @@ docker 的配置文件(/etc/docker/daemon.json)：
   "registry-mirrors": ["docker.1ms.run", "https://mirror.gcr.io",]
 }
 ```
-
-
-### 镜像别名(shortnames)
-
-在 shortnames.conf 文件中还有一些别名设置，检测到某些常用的软件镜像直接就指定了查找源，因为国内的 docker 域名不能访问，所以也需要替换
-
-```bash
-~$ podman pull hello-world
-Resolved "hello-world" as an alias (/etc/containers/registries.conf.d/shortnames.conf)
-Trying to pull docker.io/library/hello-world:latest...
-
-```
-
-```/etc/containers/registries.conf.d/shortnames.conf
-...
-
-  # docker
-  "alpine" = "docker.io/library/alpine"
-  "docker" = "docker.io/library/docker"
-  "registry" = "docker.io/library/registry"
-  "hello-world" = "docker.io/library/hello-world"
-...
-
-# Ubuntu
-  "ubuntu" = "docker.io/library/ubuntu"
-  # Oracle Linux
-  "oraclelinux" = "container-registry.oracle.com/os/oraclelinux"
-  # busybox
-  "busybox" = "docker.io/library/busybox"
-  # php
-  "php" = "docker.io/library/php"
-  # python
-  "python" = "docker.io/library/python"
-  # node
-  "node" = "docker.io/library/node"
-...
-```
-
-查看替换结果:
-
-```bash
-sed 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf
-```
-
-在原文件直接替换:  
-
-```bash
-sudo sed -i 's/docker.io/docker.1ms.run/g' /etc/containers/registries.conf.d/shortnames.conf
-```
-
-替换后结果如下:
-
-```/etc/containers/registries.conf.d/shortnames.conf
-...
-
-  # docker
-  "alpine" = "docker.1ms.run/library/alpine"
-  "docker" = "docker.1ms.run/library/docker"
-  "registry" = "docker.1ms.run/library/registry"
-  "hello-world" = "docker.1ms.run/library/hello-world"
-...
-
-# Ubuntu
-  "ubuntu" = "docker.1ms.run/library/ubuntu"
-  # Oracle Linux
-  "oraclelinux" = "container-registry.oracle.com/os/oraclelinux"
-  # busybox
-  "busybox" = "docker.1ms.run/library/busybox"
-  # php
-  "php" = "docker.1ms.run/library/php"
-  # python
-  "python" = "docker.1ms.run/library/python"
-  # node
-  "node" = "docker.1ms.run/library/node"
-...
-```
-
-
 
 ###  wsl2 proxy 设置
 
@@ -779,18 +487,3 @@ Remove-Item "$(where.exe docker-compose.exe)" -Force
 # Remove-Item "$HOME\\AppData\\Local\\Microsoft\\WindowsApps\\docker-compose.exe" -Force
 # Remove-Item "C:\\Users\\RYefccd\\AppData\\Local\\Microsoft\\WindowsApps\\docker-compose.exe" -Force
 ```
-
-### git url with branch
-
-```bash
-# Clone a specific branch directly
-git clone -b develop https://github.com/octocat/Spoon-Knife.git
-# Or for some tools:
-git clone https://github.com/octocat/Spoon-Knife.git#develop
-```
-
-```bash
-# npm package
-some-package@git+https://github.com/user/repo.git#your-branch-name
-```
-

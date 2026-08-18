@@ -3,6 +3,7 @@
 [Introduction](./README.md)
 # User Guide
 
+- [知识库](kb/index.md)
 -  [blog](blog/index.md)
 	- [决策引擎实时算子](blog/决策引擎实时算子.md)
 	- [限流与流式窗口](blog/限流与流式窗口.md)

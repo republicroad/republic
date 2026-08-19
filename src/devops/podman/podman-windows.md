@@ -204,11 +204,7 @@ location = "docker.nju.edu.cn"
 
 ```toml
 [containers]
-env = [
-  "http_proxy=http://127.0.0.1:7890",
-  "https_proxy=http://127.0.0.1:7890",
-  "no_proxy=localhost,127.0.0.1,docker.1ms.run,docker.m.daocloud.io,docker.nju.edu.cn"
-]
+http_proxy = false  # 阻止 [engine].env 的代理变量传入容器（仅 podman run 生效，podman build 有 bug）
 
 [engine]
 env = [
@@ -230,13 +226,13 @@ env = [
 
 | 字段 | 作用 |
 |---|---|
-| `[containers].env` | 注入到每个容器内的环境变量 |
-| `[engine].env` | Podman engine 自身使用的环境变量（pull/push 时） |
+| `[containers].http_proxy` | 设为 `false` 阻止代理变量传入容器（⚠️ podman build 有 bug） |
+| `[engine].env` | Podman engine 自身环境变量（pull/push 时引擎进程需要） |
 | `no_proxy` | 国内镜像站直连，不走代理 |
 
-**前提**：需要 `.wslconfig` 启用 `networkingMode=mirrored`，否则 WSL 内 `127.0.0.1` 无法访问 Windows 的 Clash 代理。
+**前提**：需要 `.wslconfig` 启用 `networkingMode=mirrored`，否则容器无法直连外网。
 
-修改后需重启 engine：`podman machine stop && podman machine start`
+修改 `[engine]` 后需重启 engine：`podman machine stop && podman machine start`
 
 ### 配置生效机制
 
@@ -255,6 +251,8 @@ Windows 写入                              WSL 读取
 **需要重启 podman machine 的场景**：
 - 修改 `containers.conf` 中的 `[engine]` 部分
 - 修改 `.wslconfig`（需 `wsl --shutdown` + `podman machine start`）
+
+> **注意**：`[containers]` 部分的修改（如 `http_proxy = false`）对已运行的容器不影响，新启动的容器会使用新配置。
 
 ---
 
@@ -303,7 +301,7 @@ notepad "$env:APPDATA\containers\registries.conf"
 ### 修改代理
 
 ```powershell
-# 编辑 containers.conf
+# 编辑 containers.conf（仅需修改 [engine] 部分）
 notepad "$env:APPDATA\containers\containers.conf"
 
 # 重启 engine 使生效
@@ -395,8 +393,9 @@ podman pull ghcr.1ms.run/linuxserver/webtop:latest
    - 不要在 `~\.config\containers\` 下放 `containers.conf` 或 `registries.conf`，podman machine 不读
 
 2. **代理地址**
-   - mirrored 模式下用 `127.0.0.1:7890`（WSL 共享 Windows 网络栈）
-   - 非 mirrored 模式下需用 WSL 网关 IP（`ip route show default | awk '{print $3}'`）
+   - `[engine].env` 用 `127.0.0.1:7890`（WSL 共享 Windows 网络栈）
+   - `[containers].http_proxy = false` 阻止代理变量传入容器
+   - 如需容器访问 Windows 上的 `127.0.0.1` 服务，必须使用 `--network host`
 
 3. **镜像站故障自动切换**
    - Podman 按 `registries.conf` 中 mirror 列表顺序尝试
@@ -410,3 +409,17 @@ podman pull ghcr.1ms.run/linuxserver/webtop:latest
    - `podman search` CLI 同样不走镜像源，镜像源仅对 `pull` 生效
    - 这是 [已知限制](https://github.com/podman-desktop/podman-desktop/issues/13915)，墙内搜索会超时
    - **解决方法**：忽略搜索超时，直接输入完整镜像名进行 pull（如 `docker.io/library/nginx`）
+
+6. **Rootless Podman 容器网络隔离**
+   - 容器内 `127.0.0.1` 是容器自己的 loopback，非宿主机
+   - `host.containers.internal` (169.254.1.2) 在 WSL2 下不可达
+   - 容器可直连外网（mirrored 模式），无需代理环境变量
+   - 如需容器访问 Windows 上的 `127.0.0.1` 服务，必须使用 `--network host`
+
+7. **`podman build` 不支持 `http_proxy = false`（Podman 6.0.x 已知 bug）**
+   - `podman run` 正常：`http_proxy = false` 生效 ✅
+   - `podman build` 异常：`RUN` 指令仍继承宿主机代理变量 ❌
+   - 相关 Issue：[#29299](https://github.com/podman-container-tools/podman/issues/29299)、[#24838](https://github.com/podman-container-tools/podman/issues/24838)
+   - 临时解决：`podman build --http-proxy=false -t myimage .`
+   - Dockerfile 方案：`ENV http_proxy=""` 或 `RUN unset http_proxy https_proxy no_proxy`
+   - `podman-compose` 不支持 `--http-proxy` 参数（[#782](https://github.com/containers/podman-compose/issues/782)），需用 Dockerfile 方案
